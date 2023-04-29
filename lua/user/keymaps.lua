@@ -20,9 +20,9 @@ key('i', '<A-1>', '<Esc>:NvimTreeToggle<CR>', opts)
 
 -- Telescope
 local builtin = require('telescope.builtin')
+local project_nvim = require('project_nvim')
 
 key('n', ',fp', ':Telescope projects<CR>', opts)
 vkey('n', ',ff', builtin.find_files, opts)
 
-local project_nvim = require('project_nvim')
 vkey('n', ',fr', project_nvim.get_recent_projects, opts)
