@@ -34,14 +34,28 @@ packer.init({
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- Have packer manage itself
 
-  use {
-	  'nvim-treesitter/nvim-treesitter'
-  }
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
+
+  -- Handles adding closing brackets
+  use 'rstacruz/vim-closer'
+
+  use 'nvim-treesitter/nvim-treesitter'
+  
+  -- Code completion
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'saadparwaiz1/cmp_luasnip' -- What is this?
+
+  -- Code snippets
+  use 'L3MON4D3/LuaSnip'
+  use 'rafamadriz/friendly-snippets'
 
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-tree/nvim-tree.lua'
 
-  use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'ahmedkhalf/project.nvim'
 
