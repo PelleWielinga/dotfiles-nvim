@@ -1,6 +1,34 @@
 local cmp = require "cmp"
 local luasnip = require "luasnip"
 
+local kind_icons = {
+  Text = "",
+  Method = "m",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "",
+  Interface = "",
+  Module = "",
+  Property = "",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
+}
+
 cmp.setup {
   snippet = {
     expand = function(args) 
@@ -35,11 +63,10 @@ cmp.setup {
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      vim_item.kind = string.format("%s", vim_item.kind)
+      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
 
       vim_item.menu = ({
-        luasnip = "[Snip]",
-        buffer = "[Buffer]",
+        luasnip = "[Snippet]",
         path = "[Path]",
       })[entry.source.name]
 
@@ -48,8 +75,9 @@ cmp.setup {
   },
 
   sources = {
+    { name = "nvim_lsp" },
+    { name = "nvim_lua" },
     { name = "luasnip" },
-    { name = "buffer" },
     { name = "path" },
   },
 

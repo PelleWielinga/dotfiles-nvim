@@ -42,12 +42,18 @@ return packer.startup(function(use)
 
   -- Syntax highlighting and LSP
   use 'nvim-treesitter/nvim-treesitter'
+
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+  use 'jose-elias-alvarez/null-ls.nvim'
   
   -- Code completion
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
 
   -- Code snippets

@@ -24,5 +24,6 @@ local project_nvim = require('project_nvim')
 
 key('n', ',fp', ':Telescope projects<CR>', opts)
 vkey('n', ',ff', builtin.find_files, opts)
+vkey('n', ',fg', builtin.live_grep, opts)
 
 vkey('n', ',fr', project_nvim.get_recent_projects, opts)
