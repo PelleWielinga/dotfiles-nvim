@@ -5,6 +5,7 @@ require "user.options"
 require "user.colorscheme"
 require "user.telescope"
 require "user.completion"
+require "user.buffers"
 
 -- After loading plugins
 require "user.keymaps"

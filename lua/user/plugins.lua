@@ -40,6 +40,7 @@ return packer.startup(function(use)
   -- Handles adding closing brackets
   use 'rstacruz/vim-closer'
 
+  -- Syntax highlighting and LSP
   use 'nvim-treesitter/nvim-treesitter'
   
   -- Code completion
@@ -47,17 +48,23 @@ return packer.startup(function(use)
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
-  use 'saadparwaiz1/cmp_luasnip' -- What is this?
+  use 'saadparwaiz1/cmp_luasnip'
 
   -- Code snippets
   use 'L3MON4D3/LuaSnip'
   use 'rafamadriz/friendly-snippets'
 
+  -- Tree
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-tree/nvim-tree.lua'
 
+  -- Telescope
   use 'nvim-telescope/telescope.nvim'
   use 'ahmedkhalf/project.nvim'
+
+  -- Random stuff
+  use 'akinsho/bufferline.nvim'
+  use 'moll/vim-bbye' -- Needed for bufferline?
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()

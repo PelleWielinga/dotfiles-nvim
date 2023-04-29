@@ -1,5 +1,5 @@
 local cmp = require "cmp"
-require "luasnip"
+local luasnip = require "luasnip"
 
 cmp.setup {
   snippet = {
