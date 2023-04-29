@@ -66,6 +66,7 @@ return packer.startup(function(use)
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'
+  use 'nvim-telescope/telescope-media-files.nvim'
   use 'ahmedkhalf/project.nvim'
 
   -- Random stuff
