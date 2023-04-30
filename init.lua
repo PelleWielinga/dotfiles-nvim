@@ -7,6 +7,7 @@ require "user.telescope"
 require "user.completion"
 require "user.buffers"
 require "user.lsp"
+require "user.tree"
 
 -- After loading plugins
 require "user.keymaps"

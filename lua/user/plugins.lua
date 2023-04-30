@@ -69,6 +69,9 @@ return packer.startup(function(use)
   use 'nvim-telescope/telescope-media-files.nvim'
   use 'ahmedkhalf/project.nvim'
 
+  -- Git
+  use "lewis6991/gitsigns.nvim"
+
   -- Random stuff
   use 'akinsho/bufferline.nvim'
   use 'moll/vim-bbye' -- Needed for bufferline?

@@ -1,29 +1,22 @@
-local opts = { noremap = true, silent = true }
+local user = require 'user.lib.helpers'
 
-local key = vim.api.nvim_set_keymap
-local vkey = vim.keymap.set
-
-key('n', '<A-h>', ":bnext<CR>", opts)
-key('n', '<A-l>', ":bprevious<CR>", opts)
+user.bind_key('n', '<A-l>', ":bnext<CR>")
+user.bind_key('n', '<A-h>', ":bprevious<CR>")
 
 -- Keep selection when changing indent
-key('v', '<', '<gv', opts)
-key('v', '>', '>gv', opts)
+user.bind_key('v', '<', '<gv')
+user.bind_key('v', '>', '>gv')
 
 -------------
 -- Plugins --
 -------------
 
--- File tree
-key('n', '<A-1>', ':NvimTreeToggle<CR>', opts)
-key('i', '<A-1>', '<Esc>:NvimTreeToggle<CR>', opts)
-
 -- Telescope
 local builtin = require('telescope.builtin')
 local project_nvim = require('project_nvim')
 
-key('n', ',fp', ':Telescope projects<CR>', opts)
-vkey('n', ',ff', builtin.find_files, opts)
-vkey('n', ',fg', builtin.live_grep, opts)
+user.bind_key('n', ',fp', ':Telescope projects<CR>')
+user.bind_key('n', ',ff', builtin.find_files)
+user.bind_key('n', ',fg', builtin.live_grep)
 
-vkey('n', ',fr', project_nvim.get_recent_projects, opts)
+user.bind_key('n', ',fr', project_nvim.get_recent_projects)
