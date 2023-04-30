@@ -9,6 +9,7 @@ require "user.buffers"
 require "user.lsp"
 require "user.tree"
 require "user.git"
+require "user.terminal"
 
 -- After loading plugins
 require "user.keymaps"

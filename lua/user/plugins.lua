@@ -72,6 +72,9 @@ return packer.startup(function(use)
   -- Git
   use "lewis6991/gitsigns.nvim"
 
+  -- Terminal
+  use 'akinsho/toggleterm.nvim'
+
   -- Random stuff
   use 'akinsho/bufferline.nvim'
   use 'moll/vim-bbye' -- Needed for bufferline?
