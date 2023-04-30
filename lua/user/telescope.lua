@@ -4,7 +4,7 @@ local telescope = require('telescope')
 local builtin = require('telescope.builtin')
 
 user.bind_key('n', ',fp', ':Telescope projects<CR>')
-user.bind_key('n', ',ff', builtin.find_files)
+user.bind_key('n', ',ff', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>")
 user.bind_key('n', ',fg', builtin.live_grep)
 user.bind_key('n', ',fs', builtin.git_status)
 
@@ -13,7 +13,6 @@ user.bind_key('n', ',fs', builtin.git_status)
 local project_nvim = require('project_nvim')
 
 telescope.load_extension('projects')
-
 
 project_nvim.setup {
   detection_methods = {"pattern"},
