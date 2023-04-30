@@ -76,6 +76,9 @@ return packer.startup(function(use)
   use 'akinsho/bufferline.nvim'
   use 'moll/vim-bbye' -- Needed for bufferline?
 
+  use 'rktjmp/lush.nvim'
+  use 'briones-gabriel/darcula-solid.nvim'
+
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end
