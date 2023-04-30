@@ -8,6 +8,7 @@ require "user.completion"
 require "user.buffers"
 require "user.lsp"
 require "user.tree"
+require "user.git"
 
 -- After loading plugins
 require "user.keymaps"
