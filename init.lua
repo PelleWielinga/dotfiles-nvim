@@ -10,6 +10,7 @@ require "user.lsp"
 require "user.tree"
 require "user.git"
 require "user.terminal"
+require "user.treesitter"
 
 -- After loading plugins
 require "user.keymaps"

@@ -4,6 +4,7 @@ local servers = {
   "lua_ls",
   "jsonls",
   "tsserver",
+  "kotlin_language_server",
 }
 
 local settings = {
