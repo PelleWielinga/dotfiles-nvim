@@ -5,6 +5,9 @@ local options = {
 
   termguicolors = true,
   clipboard = "unnamedplus",
+
+  timeout = true,
+  timeoutlen = 300,
 }
 
 for k, v in pairs(options) do

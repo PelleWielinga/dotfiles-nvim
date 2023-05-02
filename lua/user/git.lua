@@ -1,12 +1,17 @@
-local fns = require 'user.lib.helpers'
+local wk = require('which-key')
 
 require('gitsigns').setup {
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
 
-    fns.bind_key('n', ',hr', gs.reset_hunk)
-    fns.bind_key('n', ',hd', gs.diffthis)
-    fns.bind_key('n', ',hp', gs.preview_hunk)
+    wk.register({
+      h = {
+        name = "Git signs",
+        r = { gs.reset_hunk, "Reset hunk" },
+        d = { gs.diffthis, "Diff this" },
+        p = { gs.preview_hunk, "Preview hunk" },
+      },
+    }, { prefix = "," })
   end
 }
 

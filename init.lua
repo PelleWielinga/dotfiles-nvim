@@ -11,7 +11,7 @@ require "user.tree"
 require "user.git"
 require "user.terminal"
 -- require "user.treesitter"
-require "user.tests"
+require "user.which-key"
 
 -- After loading plugins
 require "user.keymaps"

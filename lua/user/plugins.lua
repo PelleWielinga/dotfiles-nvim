@@ -85,6 +85,8 @@ return packer.startup(function(use)
   use 'rktjmp/lush.nvim'
   use 'briones-gabriel/darcula-solid.nvim'
 
+  use 'folke/which-key.nvim'
+
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end
