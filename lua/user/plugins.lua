@@ -47,7 +47,10 @@ return packer.startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
-  
+
+  -- Tests
+  use 'vim-test/vim-test'
+
   -- Code completion
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-buffer'

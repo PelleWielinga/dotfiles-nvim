@@ -24,9 +24,9 @@ user.bind_key('n', '<C-\\>', ":ToggleTerm<CR>")
 user.bind_key('i', '<C-\\>', "<Esc>:ToggleTerm<CR>")
 user.bind_key('t', '<C-\\>', "<cmd>close<CR>")
 
-simple_command(',tg', 'lazygit')
-simple_command(',tc', 'cmatrix')
+simple_command(',eg', 'lazygit')
+simple_command(',ec', 'cmatrix')
 
 -- TODO: Make these commands specific to the type of project.
-simple_command(',tn', 'npm i ; read -P ""')
-simple_command(',th', 'home-manager switch --flake /home/pelle/dev/space/home/nixos ; read -P ""')
+simple_command(',en', 'npm i ; read -P ""')
+simple_command(',eh', 'home-manager switch --flake /home/pelle/dev/space/home/nixos ; read -P ""')
