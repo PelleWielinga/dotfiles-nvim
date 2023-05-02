@@ -70,7 +70,7 @@ return packer.startup(function(use)
   -- Telescope
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-media-files.nvim'
-  use 'ahmedkhalf/project.nvim'
+  use 'cljoly/telescope-repo.nvim'
 
   -- Git
   use "lewis6991/gitsigns.nvim"
@@ -86,6 +86,7 @@ return packer.startup(function(use)
   use 'briones-gabriel/darcula-solid.nvim'
 
   use 'folke/which-key.nvim'
+  use 'nvim-lualine/lualine.nvim'
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()

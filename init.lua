@@ -12,6 +12,7 @@ require "user.git"
 require "user.terminal"
 -- require "user.treesitter"
 require "user.which-key"
+require "user.lualine"
 
 -- After loading plugins
 require "user.keymaps"

@@ -1,7 +1,6 @@
 local wk = require('which-key')
 
 local telescope = require('telescope.builtin')
-local project_nvim = require('project_nvim')
 
 vim.api.nvim_set_var("mapleader", ",")
 
@@ -16,7 +15,7 @@ wk.register({
 
   f = {
     name = "Find",
-    p = { "<cmd>Telescope projects<CR>", "Find projects" },
+    p = { "<cmd>Telescope repo<CR>", "Find projects" },
     f = { "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>", "Find files"},
     g = { telescope.live_grep, "Grep" },
     s = { telescope.git_status, "Changed files" },
