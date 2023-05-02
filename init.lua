@@ -13,6 +13,7 @@ require "user.terminal"
 -- require "user.treesitter"
 require "user.which-key"
 require "user.lualine"
+require "user.start"
 
 -- After loading plugins
 require "user.keymaps"

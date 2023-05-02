@@ -87,6 +87,7 @@ return packer.startup(function(use)
 
   use 'folke/which-key.nvim'
   use 'nvim-lualine/lualine.nvim'
+  use 'startup-nvim/startup.nvim'
 
   if PACKER_BOOTSTRAP then
     require('packer').sync()
