@@ -1,13 +1,13 @@
-local nvim_tree_view = require 'nvim-tree.view'
+local tree = require('nvim-tree.api').tree
 local fns = require 'user.lib.helpers'
 
 local function nvim_toggle_or_exit()
   fns.ensure_normal_mode()
 
-  if nvim_tree_view.is_visible() then
-    vim.cmd("NvimTreeClose")
+  if tree.is_tree_buf() then
+    tree.close()
   else
-    vim.cmd("NvimTreeFindFile")
+    tree.open({ find_file = true })
   end
 end
 
