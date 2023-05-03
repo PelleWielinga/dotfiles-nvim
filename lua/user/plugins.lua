@@ -89,6 +89,8 @@ return packer.startup(function(use)
   use 'nvim-lualine/lualine.nvim'
   use 'startup-nvim/startup.nvim'
 
+  use 'ap/vim-css-color'
+
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end
