@@ -5,6 +5,7 @@ local servers = {
   "jsonls",
   "tsserver",
   "kotlin_language_server",
+  "gopls"
 }
 
 local settings = {
