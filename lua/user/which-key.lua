@@ -21,5 +21,16 @@ wk.register({
     s = { telescope.git_status, "Changed files" },
   },
 
+  d = {
+    name = "Diagnostics",
+    o = { vim.diagnostic.open_float, "View diagnostic" },
+  },
+
+  r = {
+    name = "Refactor",
+    f = { vim.lsp.buf.format, "Format code" },
+    r = { vim.lsp.buf.rename, "Rename variable" },
+  }
+
 }, { prefix = "," })
 
