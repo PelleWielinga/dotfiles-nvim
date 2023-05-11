@@ -11,6 +11,6 @@ local function nvim_toggle_or_exit()
   end
 end
 
-fns.bind_key('n', '<A-1>', nvim_toggle_or_exit)
-fns.bind_key('i', '<A-1>', nvim_toggle_or_exit)
+fns.bind_key('n', '<A-`>', nvim_toggle_or_exit)
+fns.bind_key('i', '<A-`>', nvim_toggle_or_exit)
 

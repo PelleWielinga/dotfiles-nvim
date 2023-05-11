@@ -4,13 +4,13 @@ local toggleterm = require('toggleterm')
 local Terminal = require('toggleterm.terminal').Terminal
 
 toggleterm.setup {
-  direction = 'float',
 }
 
 local function simple_command(key, cmd, name)
   local term = Terminal:new({
     cmd = cmd,
     hidden = true,
+    direction = "float",
   })
 
   local function toggle()
@@ -20,9 +20,15 @@ local function simple_command(key, cmd, name)
   wk.register({[key] = {toggle, name}}, {prefix = ",e"})
 end
 
-user.bind_key('n', '<C-\\>', ":ToggleTerm<CR>")
-user.bind_key('i', '<C-\\>', "<Esc>:ToggleTerm<CR>")
-user.bind_key('t', '<C-\\>', "<cmd>close<CR>")
+user.bind_key('n', '<C-\\>', "<cmd>ToggleTerm<CR>")
+user.bind_key('i', '<C-\\>', "<cmd>ToggleTerm<CR>")
+user.bind_key('t', '<C-\\>', "<cmd>ToggleTerm<CR>")
+
+for i = 1,5 do
+  user.bind_key('n', '<A-' .. i .. '>', "<cmd>ToggleTerm " .. i .. "<CR>")
+  user.bind_key('i', '<A-' .. i .. '>', "<cmd>ToggleTerm " .. i .. "<CR>")
+  user.bind_key('t', '<A-' .. i .. '>', "<cmd>ToggleTerm " .. i .. "<CR>")
+end
 
 wk.register({[",e"] = { name = "Execute" }})
 
