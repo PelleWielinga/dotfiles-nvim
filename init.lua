@@ -14,7 +14,7 @@ require "user.terminal"
 require "user.which-key"
 require "user.lualine"
 require "user.start"
+require("user.languages.init").setup()
 
 -- After loading plugins
 require "user.keymaps"
-

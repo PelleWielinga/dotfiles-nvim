@@ -48,6 +48,8 @@ return packer.startup(function(use)
   use 'williamboman/mason-lspconfig.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
 
+  require('user.languages.init').packages(use)
+
   -- Tests
   use 'vim-test/vim-test'
 
@@ -84,6 +86,7 @@ return packer.startup(function(use)
 
   use 'rktjmp/lush.nvim'
   use 'briones-gabriel/darcula-solid.nvim'
+  use 'folke/tokyonight.nvim'
 
   use 'folke/which-key.nvim'
   use 'nvim-lualine/lualine.nvim'
