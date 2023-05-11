@@ -1,6 +1,8 @@
 require "user.plugins"
 require("nvim-tree").setup() -- Should be setup elsewhere?
 
+require "user.notify"
+
 require "user.options"
 require "user.colorscheme"
 require "user.telescope"

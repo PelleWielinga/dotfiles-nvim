@@ -91,9 +91,9 @@ return packer.startup(function(use)
   use 'folke/which-key.nvim'
   use 'nvim-lualine/lualine.nvim'
   use 'startup-nvim/startup.nvim'
-
+  use 'rcarriga/nvim-notify'
   use 'ap/vim-css-color'
-
+  
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end
