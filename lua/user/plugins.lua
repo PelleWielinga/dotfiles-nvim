@@ -48,7 +48,12 @@ return packer.startup(function(use)
   use 'williamboman/mason-lspconfig.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
 
-  require('user.languages.init').packages(use)
+  -- Languages
+  -- Rust
+  use "simrat39/rust-tools.nvim"
+
+  -- Python
+  use 'dccsillag/magma-nvim'
 
   -- Tests
   use 'vim-test/vim-test'
@@ -93,7 +98,7 @@ return packer.startup(function(use)
   use 'startup-nvim/startup.nvim'
   use 'rcarriga/nvim-notify'
   use 'ap/vim-css-color'
-  
+
   if PACKER_BOOTSTRAP then
     require('packer').sync()
   end

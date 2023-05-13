@@ -18,14 +18,6 @@ for _, lang in pairs(language_keys) do
   end
 end
 
-M.packages = function(use)
-  for _, module in pairs(modules) do
-    if module.packages ~= nil then
-      module.packages(use)
-    end
-  end
-end
-
 M.setup = function()
   for _, module in pairs(modules) do
     if module.setup ~= nil then
