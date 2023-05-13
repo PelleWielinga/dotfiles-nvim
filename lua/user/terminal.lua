@@ -4,6 +4,10 @@ local toggleterm = require('toggleterm')
 local Terminal = require('toggleterm.terminal').Terminal
 
 toggleterm.setup {
+  height = 20,
+  on_open = function()
+    vim.cmd("startinsert!")
+  end
 }
 
 local function simple_command(key, cmd, name)
@@ -20,14 +24,30 @@ local function simple_command(key, cmd, name)
   wk.register({[key] = {toggle, name}}, {prefix = ",e"})
 end
 
-user.bind_key('n', '<C-\\>', "<cmd>ToggleTerm<CR>")
-user.bind_key('i', '<C-\\>', "<cmd>ToggleTerm<CR>")
-user.bind_key('t', '<C-\\>', "<cmd>ToggleTerm<CR>")
+local function register_generic_term(index)
+  local term = Terminal:new()
+
+  local name = "Toggle terminal " .. index
+
+  local function toggle()
+    if not term:is_open() then
+      term:open()
+    elseif not term:is_focused() then
+      term:focus()
+      vim.cmd("startinsert!")
+    else
+      term:close()
+    end
+  end
+
+  wk.register({["<A-" .. index .. ">"] = {toggle, name}}, {mode = {"n", "t", "i"}})
+end
+
+wk.register({ ["<esc>"] = { [[<C-\><C-n>]], "" }, }, { mode = "t", })
+wk.register({ ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" } }, { mode = {"n", "i", "t"} })
 
 for i = 1,5 do
-  user.bind_key('n', '<A-' .. i .. '>', "<cmd>ToggleTerm " .. i .. "<CR>")
-  user.bind_key('i', '<A-' .. i .. '>', "<cmd>ToggleTerm " .. i .. "<CR>")
-  user.bind_key('t', '<A-' .. i .. '>', "<cmd>ToggleTerm " .. i .. "<CR>")
+  register_generic_term(i)
 end
 
 wk.register({[",e"] = { name = "Execute" }})

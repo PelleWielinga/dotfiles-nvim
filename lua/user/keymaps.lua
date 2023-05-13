@@ -1,4 +1,5 @@
 local user = require 'user.lib.helpers'
+local wk = require 'which-key'
 
 user.bind_key('n', '<A-l>', ":bnext<CR>")
 user.bind_key('n', '<A-h>', ":bprevious<CR>")
@@ -7,9 +8,14 @@ user.bind_key('n', '<A-h>', ":bprevious<CR>")
 user.bind_key('v', '<', '<gv')
 user.bind_key('v', '>', '>gv')
 
-user.bind_key('n', '<C-h>', '<C-w>h')
-user.bind_key('n', '<C-l>', '<C-w>l')
-user.bind_key('n', '<C-j>', '<C-w>j')
-user.bind_key('n', '<C-k>', '<C-w>k')
+-- Tab movement
+wk.register({
+  ["<C-h>"] = { [[<Cmd>wincmd h<CR>]], "Focus split to the left" },
+  ["<C-l>"] = { [[<Cmd>wincmd l<CR>]], "Focus split to the right" },
+  ["<C-j>"] = { [[<Cmd>wincmd j<CR>]], "Focus split to below" },
+  ["<C-k>"] = { [[<Cmd>wincmd k<CR>]], "Focus split to above" }
+}, {
+  mode = { "t", "i", "n" },
+})
 
 user.bind_key('n', '<C-x>', ':wa<cr>:qa<cr>')
