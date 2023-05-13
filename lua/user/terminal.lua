@@ -1,10 +1,9 @@
-local user = require('user.lib.helpers')
 local wk = require("which-key")
 local toggleterm = require('toggleterm')
 local Terminal = require('toggleterm.terminal').Terminal
 
 toggleterm.setup {
-  height = 20,
+  size = 30,
   on_open = function()
     vim.cmd("startinsert!")
   end
