@@ -1,9 +1,10 @@
 local fn = vim.fn
 
 -- Automatically install packer
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  PACKER_BOOTSTRAP =
+      fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
   print("Installing packer close and reopen Neovim...")
 end
 
@@ -23,83 +24,118 @@ end
 
 -- Have packer use a popup window
 packer.init({
-    display = {
-      open_fn = function()
-        return require('packer.util').float({ border = 'single' })
-      end
-    }
-  }
-)
+  display = {
+    open_fn = function()
+      return require("packer.util").float({ border = "single" })
+    end,
+  },
+})
 
 return packer.startup(function(use)
-  use 'wbthomason/packer.nvim' -- Have packer manage itself
+  use("wbthomason/packer.nvim") -- Have packer manage itself
 
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-lua/plenary.nvim'
+  local plenary = "nvim-lua/plenary.nvim"
+  local treesitter = "nvim-treesitter/nvim-treesitter"
+  local which_key = "folke/which-key.nvim"
+
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = { "java", "kotlin", "twig", "rust" },
+      })
+    end,
+  })
+
+  use({ plenary })
+  use({ which_key })
+
+  use("nvim-lua/popup.nvim")
 
   -- Handles adding closing brackets
-  use 'rstacruz/vim-closer'
+  use("rstacruz/vim-closer")
 
   -- Syntax highlighting and LSP
-  use 'nvim-treesitter/nvim-treesitter'
-
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
-  use 'jose-elias-alvarez/null-ls.nvim'
+  use("neovim/nvim-lspconfig")
+  use("williamboman/mason.nvim")
+  use("williamboman/mason-lspconfig.nvim")
+  use("jose-elias-alvarez/null-ls.nvim")
 
   -- Languages
   -- Rust
-  use "simrat39/rust-tools.nvim"
+  use("simrat39/rust-tools.nvim")
 
   -- Python
-  use 'dccsillag/magma-nvim'
+  use("dccsillag/magma-nvim")
 
   -- Tests
-  use 'vim-test/vim-test'
+  use({
+    "nvim-neotest/neotest",
+    requires = {
+      plenary,
+      treesitter,
+      which_key,
+      "rouge8/neotest-rust",
+    },
+    config = function()
+      local ntest = require("neotest")
+      local wk = require("which-key")
+
+      ntest.setup({
+        adapters = {
+          require("neotest-rust"),
+        },
+      })
+
+      wk.register({
+        name = "Test",
+        n = { "<cmd>lua require('neotest').run.run()<cr>", "Test nearest" },
+      }, { prefix = "<leader>t" })
+    end,
+  })
 
   -- Code completion
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'saadparwaiz1/cmp_luasnip'
+  use("hrsh7th/nvim-cmp")
+  use("hrsh7th/cmp-buffer")
+  use("hrsh7th/cmp-path")
+  use("hrsh7th/cmp-cmdline")
+  use("hrsh7th/cmp-nvim-lsp")
+  use("saadparwaiz1/cmp_luasnip")
 
   -- Code snippets
-  use 'L3MON4D3/LuaSnip'
-  use 'rafamadriz/friendly-snippets'
+  use("L3MON4D3/LuaSnip")
+  use("rafamadriz/friendly-snippets")
 
   -- Tree
-  use 'nvim-tree/nvim-web-devicons'
-  use 'nvim-tree/nvim-tree.lua'
+  use("nvim-tree/nvim-web-devicons")
+  use("nvim-tree/nvim-tree.lua")
 
   -- Telescope
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-media-files.nvim'
-  use 'cljoly/telescope-repo.nvim'
+  use("nvim-telescope/telescope.nvim")
+  use("nvim-telescope/telescope-media-files.nvim")
+  use("cljoly/telescope-repo.nvim")
 
   -- Git
-  use "lewis6991/gitsigns.nvim"
+  use("lewis6991/gitsigns.nvim")
 
   -- Terminal
-  use 'akinsho/toggleterm.nvim'
+  use("akinsho/toggleterm.nvim")
 
   -- Random stuff
-  use 'akinsho/bufferline.nvim'
-  use 'moll/vim-bbye' -- Needed for bufferline?
+  use("akinsho/bufferline.nvim")
+  use("moll/vim-bbye") -- Needed for bufferline?
 
-  use 'rktjmp/lush.nvim'
-  use 'briones-gabriel/darcula-solid.nvim'
-  use 'folke/tokyonight.nvim'
+  use("rktjmp/lush.nvim")
+  use("briones-gabriel/darcula-solid.nvim")
+  use("folke/tokyonight.nvim")
 
-  use 'folke/which-key.nvim'
-  use 'nvim-lualine/lualine.nvim'
-  use 'startup-nvim/startup.nvim'
-  use 'rcarriga/nvim-notify'
-  use 'ap/vim-css-color'
+  use("nvim-lualine/lualine.nvim")
+  use("startup-nvim/startup.nvim")
+  use("rcarriga/nvim-notify")
+  use("ap/vim-css-color")
 
   if PACKER_BOOTSTRAP then
-    require('packer').sync()
+    require("packer").sync()
   end
 end)

@@ -42,7 +42,6 @@ local function register_generic_term(index)
   wk.register({["<A-" .. index .. ">"] = {toggle, name}}, {mode = {"n", "t", "i"}})
 end
 
-wk.register({ ["<esc>"] = { [[<C-\><C-n>]], "" }, }, { mode = "t", })
 wk.register({ ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" } }, { mode = {"n", "i", "t"} })
 
 for i = 1,5 do

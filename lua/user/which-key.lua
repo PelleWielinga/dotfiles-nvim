@@ -6,13 +6,6 @@ vim.api.nvim_set_var("mapleader", ",")
 
 wk.register({
 
-  t = {
-    name = "Test",
-    f = { ":w<CR>:TestFile<CR>", "Test file" },
-    a = { ":wa<CR>:TestSuite<CR>", "Test all" },
-    l = { ":w<CR>:TestLast<CR>", "Test last" }, -- What does this do?
-  },
-
   f = {
     name = "Find",
     p = { "<cmd>Telescope repo<CR>", "Find projects" },
@@ -38,5 +31,5 @@ wk.register({
     -- The project commands are defined in other places
   },
 
-}, { prefix = "," })
+}, { prefix = "<leader>" })
 
