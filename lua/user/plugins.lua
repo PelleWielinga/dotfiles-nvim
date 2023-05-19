@@ -39,7 +39,7 @@ return packer.startup(function(use)
   local which_key = "folke/which-key.nvim"
 
   use({
-    "nvim-treesitter/nvim-treesitter",
+    treesitter,
     run = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
@@ -88,9 +88,31 @@ return packer.startup(function(use)
         },
       })
 
+      local test_nearest = function()
+        vim.cmd(":wa")
+        ntest.run.run()
+      end
+
+      local test_last = function()
+        vim.cmd(":wa")
+        ntest.run.run_last()
+      end
+
+      local test_file = function()
+        vim.cmd(":wa")
+        ntest.run.run(vim.fn.expand("%"))
+      end
+
+      local show_output = function()
+        ntest.output.open({enter = true})
+      end
+
       wk.register({
         name = "Test",
-        n = { "<cmd>lua require('neotest').run.run()<cr>", "Test nearest" },
+        o = { show_output, "Show test output", },
+        n = { test_nearest, "Test nearest" },
+        l = { test_last, "Test last" },
+        f = { test_file, "Test file" },
       }, { prefix = "<leader>t" })
     end,
   })
