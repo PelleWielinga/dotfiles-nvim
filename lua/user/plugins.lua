@@ -16,6 +16,13 @@ vim.cmd([[
   augroup end
 ]])
 
+local filename = "*/lua/user/test.lua"
+vim.cmd([[
+  augroup packer_user_config
+    autocmd BufWritePost ]] .. filename .. [[ source <afile>
+  augroup end
+]])
+
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
@@ -31,12 +38,34 @@ packer.init({
   },
 })
 
+local function load_plugins(use, module)
+  package.loaded[module] = nil
+
+  local package_load_ok, loaded_package = pcall(require, module)
+  if not package_load_ok then
+    vim.notify("Failed to load package " .. module, vim.log.levels.ERROR)
+    return
+  end
+
+  if not (type(loaded_package) == "table") or not (type(loaded_package.setup) == "function") then
+    vim.notify("Package " .. module .. " does not return a setup function", vim.log.levels.ERROR)
+    return
+  end
+
+  local package_setup_ok, _ = pcall(loaded_package.setup, use)
+  if not package_setup_ok then
+    vim.notify("Package " .. module .. " has an error in the setup function", vim.log.levels.ERROR)
+    return
+  end
+end
+
 return packer.startup(function(use)
   use("wbthomason/packer.nvim") -- Have packer manage itself
 
   local plenary = "nvim-lua/plenary.nvim"
   local treesitter = "nvim-treesitter/nvim-treesitter"
   local which_key = "folke/which-key.nvim"
+  local devicons = "nvim-tree/nvim-web-devicons"
 
   use({
     treesitter,
@@ -56,18 +85,21 @@ return packer.startup(function(use)
   -- Handles adding closing brackets
   use("rstacruz/vim-closer")
 
-  -- Syntax highlighting and LSP
-  use("neovim/nvim-lspconfig")
-  use("williamboman/mason.nvim")
-  use("williamboman/mason-lspconfig.nvim")
-  use("jose-elias-alvarez/null-ls.nvim")
+  load_plugins(use, "user.mason")
 
-  -- Languages
-  -- Rust
-  use("simrat39/rust-tools.nvim")
+  use({
+    -- Several error reporting improvements
+    "folke/trouble.nvim",
+    requires = { devicons, which_key },
+    config = function()
+      require("trouble").setup({})
+      local wk = require("which-key")
 
-  -- Python
-  use("dccsillag/magma-nvim")
+      wk.register({
+        t = { "<cmd>Trouble<cr>", "Open Trouble window" },
+      }, { prefix = "<leader>d" })
+    end,
+  })
 
   -- Tests
   use({
@@ -104,12 +136,12 @@ return packer.startup(function(use)
       end
 
       local show_output = function()
-        ntest.output.open({enter = true})
+        ntest.output.open({ enter = true })
       end
 
       wk.register({
         name = "Test",
-        o = { show_output, "Show test output", },
+        o = { show_output, "Show test output" },
         n = { test_nearest, "Test nearest" },
         l = { test_last, "Test last" },
         f = { test_file, "Test file" },
@@ -130,7 +162,6 @@ return packer.startup(function(use)
   use("rafamadriz/friendly-snippets")
 
   -- Tree
-  use("nvim-tree/nvim-web-devicons")
   use("nvim-tree/nvim-tree.lua")
 
   -- Telescope
