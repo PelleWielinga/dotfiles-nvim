@@ -176,8 +176,17 @@ return packer.startup(function(use)
   use("akinsho/toggleterm.nvim")
 
   -- Random stuff
-  use("akinsho/bufferline.nvim")
-  use("moll/vim-bbye") -- Needed for bufferline?
+  use({
+    "akinsho/bufferline.nvim",
+    requires = { "moll/vim-bbye" },
+    config = function()
+      require("bufferline").setup {
+        options = {
+          offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+        },
+      }
+    end
+  })
 
   use("rktjmp/lush.nvim")
   use("briones-gabriel/darcula-solid.nvim")
