@@ -162,7 +162,12 @@ return packer.startup(function(use)
   use("rafamadriz/friendly-snippets")
 
   -- Tree
-  use("nvim-tree/nvim-tree.lua")
+  use({
+    "nvim-tree/nvim-tree.lua",
+    config = function()
+      require("nvim-tree").setup()
+    end
+  })
 
   -- Telescope
   use("nvim-telescope/telescope.nvim")
@@ -170,7 +175,26 @@ return packer.startup(function(use)
   use("cljoly/telescope-repo.nvim")
 
   -- Git
-  use("lewis6991/gitsigns.nvim")
+  use({
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      local wk = require('which-key')
+      local gs = require("gitsigns")
+
+      gs.setup {
+        on_attach = function()
+          wk.register({
+            h = {
+              name = "Git signs",
+              r = { gs.reset_hunk, "Reset hunk" },
+              d = { gs.diffthis, "Diff this" },
+              p = { gs.preview_hunk, "Preview hunk" },
+            },
+          }, { prefix = "," })
+        end
+      }
+    end
+  })
 
   -- Terminal
   use("akinsho/toggleterm.nvim")
@@ -192,9 +216,27 @@ return packer.startup(function(use)
   use("briones-gabriel/darcula-solid.nvim")
   use("folke/tokyonight.nvim")
 
-  use("nvim-lualine/lualine.nvim")
-  use("startup-nvim/startup.nvim")
-  use("rcarriga/nvim-notify")
+  use({
+    "nvim-lualine/lualine.nvim",
+    config = function()
+      require("lualine").setup()
+    end
+  })
+
+  use({
+    "startup-nvim/startup.nvim",
+    config = function()
+      require("startup").setup()
+    end
+  })
+
+  use({
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require("notify")
+    end
+  })
+
   use("ap/vim-css-color")
 
   if PACKER_BOOTSTRAP then

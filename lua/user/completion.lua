@@ -31,7 +31,7 @@ local kind_icons = {
 
 cmp.setup {
   snippet = {
-    expand = function(args) 
+    expand = function(args)
       luasnip.lsp_expand(args.body)
     end
   },
