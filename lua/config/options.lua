@@ -1,11 +1,12 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 local options = {
   wrap = false,
   number = true,
   swapfile = false,
-
   termguicolors = true,
   clipboard = "unnamedplus",
-
   timeout = true,
   timeoutlen = 300,
 }
