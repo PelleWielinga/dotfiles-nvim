@@ -9,6 +9,7 @@ local options = {
   clipboard = "unnamedplus",
   timeout = true,
   timeoutlen = 300,
+  sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 }
 
 for k, v in pairs(options) do

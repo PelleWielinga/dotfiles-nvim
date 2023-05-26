@@ -17,15 +17,11 @@ local function lsp_keymaps(bufnr)
 
   wk.register({
     ["<leader>"] = {
-      f = { vim.diagnostic.open_float, "Open diagnostic float" },
       q = { vim.diagnostic.setloclist, "Set loc list" },
       r = {
         name = "Refactor",
         f = { vim.lsp.buf.format, "Format code" },
         r = { vim.lsp.buf.rename, "Rename variable" },
-      },
-      c = {
-        a = { vim.lsp.buf.code_action, "Code actions" },
       },
     },
     g = {
@@ -36,7 +32,7 @@ local function lsp_keymaps(bufnr)
       l = { vim.diagnostic.open_float, "Open diagnostic float" }, -- Duplicate binding?
     },
     K = { vim.lsp.buf.hover, "Hover" },
-    ["<C-k>"] = { vim.lsp.buf.signature_help, "Signature help" },
+    ["<C-Space>"] = { vim.lsp.buf.code_action, "Code actions" },
     ["[d"] = { prev_diagnostic, "Goto previous diagnostic" },
     ["]d"] = { next_diagnostic, "Goto next diagnostic" },
   }, { bufnr = bufnr })
@@ -115,7 +111,8 @@ return {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
     dependencies = {
-      "williamboman/mason-lspconfig.nvim"
+      "williamboman/mason-lspconfig.nvim",
+      "jay-babu/mason-null-ls.nvim"
     },
     config = function()
       require("mason").setup({})
@@ -125,6 +122,10 @@ return {
         automatic_installation = {
           exclude = { "rust_analyzer", "lua_ls" },
         },
+      })
+
+      require("mason-null-ls").setup({
+        ensure_installed = { "rustfmt" }
       })
     end,
   },
@@ -169,6 +170,9 @@ return {
   -- Several error reporting improvements
   {
     "folke/trouble.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
     config = function()
       require("trouble").setup({})
       local wk = require("which-key")

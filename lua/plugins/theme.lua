@@ -15,13 +15,6 @@ return {
   },
 
   {
-    "startup-nvim/startup.nvim",
-    config = function()
-      require("startup").setup()
-    end
-  },
-
-  {
     "akinsho/bufferline.nvim",
     dependencies = { "moll/vim-bbye" },
     config = function()

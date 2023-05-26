@@ -22,6 +22,9 @@ return {
           media_files = {
             filetypes = { "png", "jpg" },
           },
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown {}
+          }
         },
       }
 

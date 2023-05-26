@@ -23,5 +23,14 @@ return {
     config = function ()
       require("leap").add_default_mappings()
     end
+  },
+
+  {
+    "rmagatti/auto-session",
+    config = function ()
+      require("auto-session").setup({
+        auto_session_allowed_dirs = { "~/dev/**" },
+      })
+    end
   }
 }
