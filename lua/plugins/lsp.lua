@@ -1,12 +1,18 @@
 local wk = require("which-key")
 
 local function lsp_keymaps(bufnr)
+  local tsb = require("telescope.builtin")
+
   local function next_diagnostic()
     vim.diagnostic.goto_next({ border = "rounded" })
   end
 
   local function prev_diagnostic()
     vim.diagnostic.goto_prev({ border = "rounded" })
+  end
+
+  local function goto_references()
+    tsb.lsp_references()
   end
 
   wk.register({
@@ -23,7 +29,7 @@ local function lsp_keymaps(bufnr)
       D = { vim.lsp.buf.declaration, "Goto declaration" },
       d = { vim.lsp.buf.definition, "Goto definition" },
       i = { vim.lsp.buf.implementation, "Goto implementation" },
-      r = { vim.lsp.buf.references, "Goto references" },
+      r = { goto_references, "Goto references" },
       l = { vim.diagnostic.open_float, "Open diagnostic float" }, -- Duplicate binding?
     },
     c = {
@@ -102,11 +108,6 @@ return {
           },
         }
       })
-
-      lspconfig["rust_analyzer"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
     end
   },
 
@@ -140,6 +141,14 @@ return {
     "simrat39/rust-tools.nvim",
     config = function()
       require("rust-tools").setup()
+
+      local lspconfig = require("lspconfig")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      lspconfig["rust_analyzer"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
     end,
   },
 

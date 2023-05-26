@@ -8,5 +8,20 @@ return {
     end
   },
 
-  "rstacruz/vim-closer"
+  {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end
+  },
+
+  {
+    "ggandor/leap.nvim",
+    dependencies = {
+      "tpope/vim-repeat"
+    },
+    config = function ()
+      require("leap").add_default_mappings()
+    end
+  }
 }
