@@ -133,7 +133,11 @@ return {
   {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
-      require("null-ls").setup({})
+      local null_ls = require("null-ls")
+
+      null_ls.setup({
+        sources = { null_ls.builtins.formatting.rustfmt },
+      })
     end
   },
 
@@ -141,14 +145,13 @@ return {
   {
     "simrat39/rust-tools.nvim",
     config = function()
-      require("rust-tools").setup()
-
-      local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      lspconfig["rust_analyzer"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities
+      require("rust-tools").setup({
+        server = {
+          on_attach = on_attach,
+          capabilities = capabilities
+        }
       })
     end,
   },
