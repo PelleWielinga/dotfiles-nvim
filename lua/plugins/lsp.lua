@@ -23,7 +23,10 @@ local function lsp_keymaps(bufnr)
         name = "Refactor",
         f = { vim.lsp.buf.format, "Format code" },
         r = { vim.lsp.buf.rename, "Rename variable" },
-      }
+      },
+      c = {
+        a = { vim.lsp.buf.code_action, "Code actions" },
+      },
     },
     g = {
       D = { vim.lsp.buf.declaration, "Goto declaration" },
@@ -31,9 +34,6 @@ local function lsp_keymaps(bufnr)
       i = { vim.lsp.buf.implementation, "Goto implementation" },
       r = { goto_references, "Goto references" },
       l = { vim.diagnostic.open_float, "Open diagnostic float" }, -- Duplicate binding?
-    },
-    c = {
-      a = { vim.lsp.buf.code_action, "Code actions" },
     },
     K = { vim.lsp.buf.hover, "Hover" },
     ["<C-k>"] = { vim.lsp.buf.signature_help, "Signature help" },

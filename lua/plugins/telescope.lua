@@ -3,6 +3,7 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-media-files.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
       "cljoly/telescope-repo.nvim"
     },
     config = function()
@@ -20,12 +21,13 @@ return {
           },
           media_files = {
             filetypes = { "png", "jpg" },
-          }
+          },
         },
       }
 
       telescope.load_extension('repo')
       telescope.load_extension('media_files')
+      telescope.load_extension("ui-select")
 
       local function find_files()
         builtin.find_files({
