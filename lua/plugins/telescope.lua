@@ -42,8 +42,8 @@ return {
         name = "Find",
         p = { "<cmd>Telescope repo<CR>", "Find projects" },
         f = { find_files, "Find files" },
-        g = { telescope.live_grep, "Grep" },
-        s = { telescope.git_status, "Changed files" },
+        g = { builtin.live_grep, "Grep" },
+        s = { builtin.git_status, "Changed files" },
       }, { prefix = "<leader>f" })
     end
   },
