@@ -10,6 +10,7 @@ local options = {
   timeout = true,
   timeoutlen = 300,
   sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos",
+  scrolloff = 9999,
 }
 
 for k, v in pairs(options) do
