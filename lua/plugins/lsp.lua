@@ -156,9 +156,6 @@ return {
     end,
   },
 
-  -- Python
-  "dccsillag/magma-nvim",
-
   -- CSS
   "ap/vim-css-color",
 
