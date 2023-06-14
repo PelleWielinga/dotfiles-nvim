@@ -45,7 +45,8 @@ return {
     "rmagatti/auto-session",
     config = function()
       require("auto-session").setup({
-        auto_session_allowed_dirs = { "~/dev/**" },
+--         auto_session_allowed_dirs = { "~/dev/**" },
+          auto_session_suppress_dirs = { "~/", "~/Downloads", "/" }
       })
     end
   }
