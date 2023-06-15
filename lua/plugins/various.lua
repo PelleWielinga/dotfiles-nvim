@@ -29,7 +29,11 @@ return {
     "Pocco81/auto-save.nvim",
     config = function()
       require("auto-save").setup({
-        debounce_delay = 500
+        debounce_delay = 500,
+        execution_message = {
+          -- Disable the message on save
+          message = function() return "" end
+        }
       })
     end
   },
