@@ -49,7 +49,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "java", "kotlin", "twig", "rust" },
+        ensure_installed = { "java", "kotlin", "twig", "rust", "nix" },
       })
     end
   },
@@ -93,6 +93,11 @@ return {
         capabilities = capabilities
       })
 
+      lspconfig["rnix"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+
       lspconfig["pyright"].setup({
         on_attach = on_attach,
         capabilities = capabilities,
@@ -118,7 +123,7 @@ return {
       require("mason").setup({})
 
       require("mason-lspconfig").setup({
-        ensure_installed = { "gopls", "sqlls", "tsserver", "pyright" },
+        ensure_installed = { "gopls", "sqlls", "tsserver", "pyright", "rnix" },
         automatic_installation = {
           exclude = { "rust_analyzer", "lua_ls" },
         },
