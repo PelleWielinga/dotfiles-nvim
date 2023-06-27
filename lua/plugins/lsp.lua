@@ -49,7 +49,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "java", "kotlin", "twig", "rust", "nix" },
+        ensure_installed = { "java", "clojure", "kotlin", "twig", "rust", "nix" },
       })
     end
   },
@@ -94,6 +94,11 @@ return {
       })
 
       lspconfig["rnix"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+
+      lspconfig["clojure_lsp"].setup({
         on_attach = on_attach,
         capabilities = capabilities
       })
@@ -159,6 +164,11 @@ return {
         }
       })
     end,
+  },
+
+  -- Clojure
+  {
+    "Olical/conjure"
   },
 
   -- CSS
