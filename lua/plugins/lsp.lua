@@ -192,6 +192,7 @@ return {
   -- Nice spinner when loading lsp
   {
     "j-hui/fidget.nvim",
+    tag = "legacy",
     config = function()
       require("fidget").setup({})
     end,
