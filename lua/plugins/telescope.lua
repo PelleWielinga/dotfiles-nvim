@@ -38,9 +38,16 @@ return {
         })
       end
 
+      local function find_all_files()
+        builtin.find_files({
+          find_command = { "rg", "--files", "--hidden", "-g", "!.git", "--no-ignore" }
+        })
+      end
+
       wk.register({
         name = "Find",
         p = { "<cmd>Telescope repo<CR>", "Find projects" },
+        a = { find_all_files, "Find files including gitignore"},
         f = { find_files, "Find files" },
         g = { builtin.live_grep, "Grep" },
         s = { builtin.git_status, "Changed files" },
