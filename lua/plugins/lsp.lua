@@ -49,7 +49,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "java", "clojure", "kotlin", "twig", "rust", "nix" },
+        ensure_installed = { "java", "clojure", "kotlin", "twig", "rust", "nix", "php" },
       })
     end
   },
@@ -98,7 +98,22 @@ return {
         capabilities = capabilities
       })
 
+      lspconfig["jsonls"].setup({
+        on_attach = function (x, bufnr)
+          on_attach(x, bufnr)
+          wk.register({
+            ["<leader>rj"] = { "<cmd>%!jq .<cr>", "Format json" }
+          }, {bufnr = bufnr})
+        end,
+        capabilities = capabilities
+      })
+
       lspconfig["clojure_lsp"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+
+      lspconfig["intelephense"].setup({
         on_attach = on_attach,
         capabilities = capabilities
       })
@@ -128,9 +143,9 @@ return {
       require("mason").setup({})
 
       require("mason-lspconfig").setup({
-        ensure_installed = { "gopls", "sqlls", "tsserver", "pyright", "rnix" },
+        ensure_installed = { "gopls", "sqlls", "tsserver", "pyright", "rnix", "intelephense" },
         automatic_installation = {
-          exclude = { "rust_analyzer", "lua_ls" },
+          exclude = { "rust_analyzer", "lua_ls", "clojure_lsp" },
         },
       })
 
