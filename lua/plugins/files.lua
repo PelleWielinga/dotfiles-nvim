@@ -1,26 +1,21 @@
 return {
   {
-    "nvim-tree/nvim-tree.lua",
+    'echasnovski/mini.files',
     config = function()
-      require("nvim-tree").setup()
+      local mf = require('mini.files')
+      local wk = require('which-key')
 
-      local tree = require('nvim-tree.api').tree
-      local fns = require('utils')
-      local wk = require("which-key")
-
-      local function nvim_toggle_or_exit()
-        fns.ensure_normal_mode()
-
-        if tree.is_tree_buf() then
-          tree.close()
-        else
-          tree.open({ find_file = true })
-        end
-      end
+      mf.setup({
+        use_as_default_explorer = false,
+        mappings = {
+          go_in = '',
+          go_in_plus = 'l'
+        }
+      })
 
       wk.register({
-        ["<A-`>"] = { nvim_toggle_or_exit, "Toggle file tree" }
-      }, { mode = { "n", "i" } })
+        ["<A-`>"] = { function() mf.open() end, "File browser" },
+      })
     end
-  }
+  },
 }
