@@ -29,7 +29,7 @@ return {
     "Pocco81/auto-save.nvim",
     config = function()
       require("auto-save").setup({
-        debounce_delay = 500,
+        debounce_delay = 2000,
         execution_message = {
           -- Disable the message on save
           message = function() return "" end
@@ -45,15 +45,15 @@ return {
     end
   },
 
-  {
-    "rmagatti/auto-session",
-    config = function()
-      require("auto-session").setup({
---         auto_session_allowed_dirs = { "~/dev/**" },
-          auto_session_suppress_dirs = { "~/", "~/Downloads", "/" }
-      })
-    end
-  },
+  -- {
+  --   "rmagatti/auto-session",
+  --   config = function()
+  --     require("auto-session").setup({
+  --       --         auto_session_allowed_dirs = { "~/dev/**" },
+  --       auto_session_suppress_dirs = { "~/", "~/Downloads", "/" }
+  --     })
+  --   end
+  -- },
 
   {
     "RRethy/vim-illuminate",
@@ -62,5 +62,14 @@ return {
         min_count_to_highlight = 2,
       })
     end
+  },
+
+  {
+    "guns/vim-sexp"
+  },
+
+  {
+    "tpope/vim-sexp-mappings-for-regular-people"
   }
+
 }
