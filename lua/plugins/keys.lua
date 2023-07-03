@@ -13,6 +13,7 @@ return {
       ["<C-u>"] = { "10k", "Move up fast"},
 
       ["<leader>"] = {
+        k = { "<cmd>!kitty &<cr>", "Open kitty in project root"},
         b = {
           name = "Buffer actions",
           d = { [[<cmd>bn<cr><cmd>bd#<cr>]], "Close buffer without closing window" }
