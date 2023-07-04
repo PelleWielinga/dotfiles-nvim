@@ -11,7 +11,9 @@ return {
   {
     "windwp/nvim-autopairs",
     config = function()
-      require("nvim-autopairs").setup({})
+      local ap = require("nvim-autopairs")
+      ap.setup()
+      ap.get_rules("'")[1].not_filetypes = { "scheme", "lisp", "clojure" }
     end
   },
 
