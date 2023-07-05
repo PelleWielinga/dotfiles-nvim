@@ -1,5 +1,7 @@
 return {
   "folke/which-key.nvim",
+  lazy = false,
+  priority = 999,
   config = function()
     local wk = require('which-key')
 
@@ -9,11 +11,13 @@ return {
       ["<C-x>"] = { ":wa<cr>:qa<cr>", "Save and close all" },
 
       -- Redefined down/up half a screen to be a bit slower. Easier to track across the screen.
-      ["<C-d>"] = { "10j", "Move down fast"},
-      ["<C-u>"] = { "10k", "Move up fast"},
+      ["<C-d>"] = { "10j", "Move down fast" },
+      ["<C-u>"] = { "10k", "Move up fast" },
 
       ["<leader>"] = {
-        k = { "<cmd>!kitty &<cr>", "Open kitty in project root"},
+        f = { name = "Find" },
+        h = { name = "Git" },
+        k = { "<cmd>!kitty &<cr>", "Open kitty in project root" },
         b = {
           name = "Buffer actions",
           d = { [[<cmd>bn<cr><cmd>bd#<cr>]], "Close buffer without closing window" }

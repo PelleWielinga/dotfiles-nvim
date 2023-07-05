@@ -1,5 +1,7 @@
 return {
+  -- TODO: Look at this thing
   "akinsho/toggleterm.nvim",
+  event = "VeryLazy",
   config = function()
     local wk = require("which-key")
     local toggleterm = require('toggleterm')

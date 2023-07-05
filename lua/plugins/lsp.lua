@@ -1,5 +1,3 @@
-local wk = require("which-key")
-
 local function lsp_keymaps(bufnr)
   local tsb = require("telescope.builtin")
 
@@ -15,7 +13,7 @@ local function lsp_keymaps(bufnr)
     tsb.lsp_references()
   end
 
-  wk.register({
+  require("which-key").register({
     ["<leader>"] = {
       q = { vim.diagnostic.setloclist, "Set loc list" },
       r = {
@@ -47,6 +45,7 @@ end
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    event = "VeryLazy",
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = { "java", "clojure", "kotlin", "twig", "rust", "nix", "php" },
@@ -56,6 +55,7 @@ return {
 
   {
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
     config = function()
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -99,11 +99,11 @@ return {
       })
 
       lspconfig["jsonls"].setup({
-        on_attach = function (x, bufnr)
+        on_attach = function(x, bufnr)
           on_attach(x, bufnr)
-          wk.register({
+          require("which-key").register({
             ["<leader>rj"] = { "<cmd>%!jq .<cr>", "Format json" }
-          }, {bufnr = bufnr})
+          }, { bufnr = bufnr })
         end,
         capabilities = capabilities
       })
@@ -134,6 +134,7 @@ return {
 
   {
     "williamboman/mason.nvim",
+    event = "VeryLazy",
     build = ":MasonUpdate",
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
@@ -157,6 +158,7 @@ return {
 
   {
     "jose-elias-alvarez/null-ls.nvim",
+    event = "VeryLazy",
     config = function()
       local null_ls = require("null-ls")
 
@@ -169,6 +171,7 @@ return {
   -- Rust
   {
     "simrat39/rust-tools.nvim",
+    ft = { "rust" },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -183,77 +186,58 @@ return {
 
   -- Clojure
   {
-    "Olical/conjure"
+    "Olical/conjure",
+    ft = { "clojure" }
   },
 
-  -- CSS
-  "ap/vim-css-color",
-
-  -- Nice spinner when loading lsp
   {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    config = function()
-      require("fidget").setup({})
-    end,
+    "ap/vim-css-color",
+    ft = { "css", "sass", "scss" }
   },
 
-  -- Several error reporting improvements
   {
     "folke/trouble.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
-    config = function()
-      require("trouble").setup({})
-      local wk = require("which-key")
-
-      wk.register({
-        t = { "<cmd>Trouble<cr>", "Open Trouble window" },
-      }, { prefix = "<leader>d" })
-    end,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {},
+    keys = {
+      { "<leader>d", "<cmd>Trouble<cr>", desc = "Open Trouble window" }
+    }
   },
 
   -- Tests
   {
     "nvim-neotest/neotest",
     dependencies = { "rouge8/neotest-rust" },
-    config = function()
-      local ntest = require("neotest")
-      local wk = require("which-key")
+    keys = {
+      {
+        "<leader>to",
+        function() require("neotest").output.open({ enter = true }) end,
+        desc = "Show test output"
+      },
+      {
+        "<leader>tn",
+        function() require("neotest").run.run() end,
+        desc = "Test nearest"
+      },
 
-      ntest.setup({
+      {
+        "<leader>tl",
+        function() require("neotest").run.run_last() end,
+        desc = "Test last"
+      },
+
+      {
+        "<leader>tf",
+        function() require("neotest").run.run(vim.fn.expand("%")) end,
+        desc = "Test file"
+      }
+    },
+    config = function()
+      require("neotest").setup({
         adapters = {
           require("neotest-rust"),
-        },
+        }
       })
-
-      local test_nearest = function()
-        vim.cmd(":wa")
-        ntest.run.run()
-      end
-
-      local test_last = function()
-        vim.cmd(":wa")
-        ntest.run.run_last()
-      end
-
-      local test_file = function()
-        vim.cmd(":wa")
-        ntest.run.run(vim.fn.expand("%"))
-      end
-
-      local show_output = function()
-        ntest.output.open({ enter = true })
-      end
-
-      wk.register({
-        name = "Test",
-        o = { show_output, "Show test output" },
-        n = { test_nearest, "Test nearest" },
-        l = { test_last, "Test last" },
-        f = { test_file, "Test file" },
-      }, { prefix = "<leader>t" })
-    end,
-  },
+    end
+  }
 }

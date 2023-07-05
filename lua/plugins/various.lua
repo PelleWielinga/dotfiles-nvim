@@ -1,61 +1,52 @@
 return {
   {
-    "rcarriga/nvim-notify",
-    priority = 1000,
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      vim.notify = require("notify")
-    end
-  },
-
-  {
     "windwp/nvim-autopairs",
+    event = "VeryLazy",
     config = function()
-      local ap = require("nvim-autopairs")
-      ap.setup()
-      ap.get_rules("'")[1].not_filetypes = { "scheme", "lisp", "clojure" }
-    end
-  },
-
-  {
-    "ggandor/leap.nvim",
-    dependencies = {
-      "tpope/vim-repeat"
-    },
-    config = function()
-      require("leap").add_default_mappings()
-    end
-  },
-
-  {
-    "Pocco81/auto-save.nvim",
-    config = function()
-      require("auto-save").setup({
-        debounce_delay = 2000,
-        execution_message = {
-          -- Disable the message on save
-          message = function() return "" end
-        }
+      require("nvim-autopairs").setup({
+        disable_filetype = { "scheme", "list", "clojure" }
       })
     end
   },
 
   {
+    "folke/flash.nvim",
+    opts = {},
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash", },
+      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter", },
+      { "r", mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash", },
+      {
+        "R",
+        mode = { "o", "x" },
+        function() require("flash").treesitter_search() end,
+        desc =
+        "Flash Treesitter Search",
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function() require("flash").toggle() end,
+        desc =
+        "Toggle Flash Search",
+      },
+    },
+  },
+
+  {
     "terrortylor/nvim-comment",
+    keys = {
+      { "<leader>cc", "<cmd>CommentToggle<cr>", desc = "Toggle comment" },
+    },
+    opts = {
+      create_mappings = false
+    },
     config = function()
-      require('nvim_comment').setup({})
+      require("nvim_comment").setup({ create_mappings = false })
     end
   },
 
-  -- {
-  --   "rmagatti/auto-session",
-  --   config = function()
-  --     require("auto-session").setup({
-  --       --         auto_session_allowed_dirs = { "~/dev/**" },
-  --       auto_session_suppress_dirs = { "~/", "~/Downloads", "/" }
-  --     })
-  --   end
-  -- },
+  { "folke/persistence.nvim",                     event = "BufReadPre", opts = {} },
 
   {
     "RRethy/vim-illuminate",
@@ -66,12 +57,7 @@ return {
     end
   },
 
-  {
-    "guns/vim-sexp"
-  },
-
-  {
-    "tpope/vim-sexp-mappings-for-regular-people"
-  }
-
+  -- TODO: This should not be here
+  { "guns/vim-sexp",                              ft = "clojure" },
+  { "tpope/vim-sexp-mappings-for-regular-people", ft = "clojure" }
 }

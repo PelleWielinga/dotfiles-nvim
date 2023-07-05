@@ -19,7 +19,10 @@ require("lazy").setup("plugins", {
   install = {
     colorscheme = { "tokyonight-night" }
   },
-  defaults = { lazy = false },
+  change_detection = {
+    enabled = false,
+  },
+  defaults = { lazy = true },
   ui = {
     border = "rounded",
   },

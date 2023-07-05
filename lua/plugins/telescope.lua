@@ -1,15 +1,65 @@
+local function find_files()
+  require("telescope.builtin").find_files({
+    find_command = { "rg", "--files", "--hidden", "-g", "!.git" }
+  })
+end
+
+local function find_all_files()
+  require("telescope.builtin").find_files({
+    find_command = { "rg", "--files", "--hidden", "-g", "!.git", "--no-ignore" }
+  })
+end
+
 return {
   {
     "nvim-telescope/telescope.nvim",
+    lazy = true,
+    keys = {
+      { "<leader>fa", find_all_files,                                           desc = "Find files including gitignore" },
+      { "<leader>ff", find_files,                                               desc = "Find files" },
+      { "<leader>fg", function() require("telescope.builtin").live_grep() end,  desc = "Grep" },
+      { "<leader>fs", function() require("telescope.builtin").git_status() end, desc = "Changed files" },
+    },
     dependencies = {
-      "nvim-telescope/telescope-media-files.nvim",
-      "nvim-telescope/telescope-ui-select.nvim",
-      "cljoly/telescope-repo.nvim"
+      "folke/which-key.nvim",
+    },
+  },
+
+  {
+    "nvim-telescope/telescope-media-files.nvim",
+    lazy = true,
+    keys = {
+      { "<leader>fm", "<cmd>Telescope media_files<cr>", desc = "Find media files", }
+    },
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
     },
     config = function()
       local telescope = require('telescope')
-      local builtin = require("telescope.builtin")
-      local wk = require("which-key")
+
+      telescope.setup {
+        extensions = {
+          media_files = {
+            filetypes = { "png", "jpg" },
+          },
+        },
+      }
+
+      telescope.load_extension('media_files')
+    end
+  },
+
+  {
+    "cljoly/telescope-repo.nvim",
+    lazy = true,
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
+    keys = {
+      { "<leader>fp", "cmd>Telescope repo list", desc = "Find projects" }
+    },
+    config = function()
+      local telescope = require('telescope')
 
       telescope.setup {
         extensions = {
@@ -19,39 +69,33 @@ return {
               search_dirs = { "~/dev" },
             },
           },
-          media_files = {
-            filetypes = { "png", "jpg" },
-          },
+        },
+      }
+
+      telescope.load_extension('repo')
+    end
+  },
+
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
+    lazy = true,
+    -- TODO: Can this be triggered on sime kind of event instead of at VeryLazy?
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      local telescope = require('telescope')
+
+      telescope.setup {
+        extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown {}
           }
         },
       }
 
-      telescope.load_extension('repo')
-      telescope.load_extension('media_files')
       telescope.load_extension("ui-select")
-
-      local function find_files()
-        builtin.find_files({
-          find_command = { "rg", "--files", "--hidden", "-g", "!.git" }
-        })
-      end
-
-      local function find_all_files()
-        builtin.find_files({
-          find_command = { "rg", "--files", "--hidden", "-g", "!.git", "--no-ignore" }
-        })
-      end
-
-      wk.register({
-        name = "Find",
-        p = { "<cmd>Telescope repo<CR>", "Find projects" },
-        a = { find_all_files, "Find files including gitignore"},
-        f = { find_files, "Find files" },
-        g = { builtin.live_grep, "Grep" },
-        s = { builtin.git_status, "Changed files" },
-      }, { prefix = "<leader>f" })
     end
   },
 }

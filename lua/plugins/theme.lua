@@ -1,6 +1,10 @@
 return {
   {
     "folke/tokyonight.nvim",
+
+    -- Since start plugins can possibly change existing highlight groups,
+    -- it's important to make sure that your main colorscheme is loaded first.
+    lazy = false,
     priority = 1000,
     config = function()
       vim.cmd([[colorscheme tokyonight-night]])
@@ -8,22 +12,41 @@ return {
   },
 
   {
-    "nvim-lualine/lualine.nvim",
+    "rcarriga/nvim-notify",
+    lazy = false,
+    priority = 1000,
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      require("lualine").setup()
+      vim.notify = require("notify")
     end
   },
 
   {
-    "akinsho/bufferline.nvim",
-    dependencies = { "moll/vim-bbye" },
-    config = function()
-      require("bufferline").setup {
-        options = {
-          offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
-        },
+    -- TODO: More customization on this is possible
+    'glepnir/dashboard-nvim',
+    event = 'VimEnter',
+    dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+    opts = {
+      change_to_vcs_root = true,
+      config = {
+        week_header = {
+          enable = true,
+        }
       }
-    end
+    },
+  },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
+
+  {
+    "akinsho/bufferline.nvim",
+    event = "VeryLazy",
+    dependencies = { "moll/vim-bbye" },
+    opts = {},
   },
 
   {
@@ -33,8 +56,25 @@ return {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify"
     },
-    config = function()
-      require("noice").setup({})
-    end
-  }
+    opts = {},
+  },
+
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "<leader>hr", function() require("gitsigns").reset_hunk() end,   desc = "Reset hunk" },
+      { "<leader>hd", function() require("gitsigns").diffthis() end,     desc = "Diff this" },
+      { "<leader>hp", function() require("gitsigns").preview_hunk() end, desc = "Preview hunk" },
+    },
+    opts = {},
+  },
+
+  {
+    -- Nice spinner when loading lsp
+    "j-hui/fidget.nvim",
+    event = "VeryLazy",
+    tag = "legacy",
+    opts = {},
+  },
 }
