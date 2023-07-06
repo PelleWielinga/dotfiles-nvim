@@ -67,28 +67,22 @@ return {
   },
 
   {
-    "cljoly/telescope-repo.nvim",
+    "ahmedkhalf/project.nvim",
+    event = "VeryLazy",
     dependencies = {
-      "nvim-telescope/telescope.nvim",
+      "nvim-telescope/telescope.nvim"
     },
     keys = {
-      { "<leader>fp", "<cmd>Telescope repo list<cr>", desc = "Find projects" }
+      { "<leader>fp", "<cmd>Telescope projects<cr>", "Telescope projects" }
     },
     config = function()
-      local telescope = require('telescope')
-
-      telescope.setup {
-        extensions = {
-          repo = {
-            list = {
-              cwd = "~/dev",
-              search_dirs = { "~/dev" },
-            },
-          },
-        },
+      require('project_nvim').setup {
+        silent_chdir = false,
+        detection_methods = { "pattern " },
+        exclude_dirs = { "~/.config/*" }
       }
 
-      telescope.load_extension('repo')
+      require('telescope').load_extension('projects')
     end
   },
 
