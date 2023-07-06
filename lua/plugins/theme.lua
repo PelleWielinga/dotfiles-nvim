@@ -22,7 +22,6 @@ return {
   },
 
   {
-    -- TODO: More customization on this is possible
     'glepnir/dashboard-nvim',
     event = 'VimEnter',
     dependencies = { { 'nvim-tree/nvim-web-devicons' } },
