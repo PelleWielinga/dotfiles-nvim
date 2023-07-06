@@ -20,7 +20,8 @@ require("lazy").setup("plugins", {
     colorscheme = { "tokyonight-night" }
   },
   change_detection = {
-    enabled = false,
+    enabled = true,
+    notify = false,
   },
   defaults = { lazy = true },
   ui = {
