@@ -22,29 +22,19 @@ return {
   },
 
   {
-    'glepnir/dashboard-nvim',
-    event = 'VimEnter',
-    dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     opts = {
-      change_to_vcs_root = true,
-      config = {
-        week_header = {
-          enable = true,
-        }
+      options = {
+        globalstatus = true
       }
     },
   },
 
   {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
-
-  {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
-    dependencies = { "moll/vim-bbye" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
   },
 
