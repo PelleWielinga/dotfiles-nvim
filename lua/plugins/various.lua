@@ -46,8 +46,6 @@ return {
     end
   },
 
-  { "folke/persistence.nvim",                     event = "BufReadPre", opts = {} },
-
   {
     "RRethy/vim-illuminate",
     config = function()
