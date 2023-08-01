@@ -12,4 +12,28 @@ return {
       }
     },
   },
+
+  {
+    'rgroli/other.nvim',
+    keys = {
+      { "go", "<cmd>Other<cr>", desc = "Goto other" }
+    },
+    opts = {
+      mappings = {
+        {
+          pattern = "/src/(.*)/(.*).clj",
+          target = "/test/%1/%2_test.clj",
+          context = "test"
+        },
+        {
+          pattern = "/test/(.*)/(.*)_test.clj",
+          target = "/src/%1/%2.clj",
+          context = "source"
+        }
+      }
+    },
+    config = function (_, opts)
+      require("other-nvim").setup(opts)
+    end
+  }
 }
