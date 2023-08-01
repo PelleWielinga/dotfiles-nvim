@@ -11,6 +11,9 @@ local options = {
   timeoutlen = 300,
   sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos",
   scrolloff = 9999,
+  expandtab = true,
+  tabstop = 4,
+  shiftwidth = 4,
 
   -- Maximum number of items to show in a popup menu. Useful for limiting
   -- options in autocompletion.
