@@ -30,6 +30,11 @@ return {
         function() require("telescope.builtin").git_status() end,
         desc = "Changed files"
       },
+      {
+        "<leader>fn",
+        "<cmd>Telescope notify<cr>",
+        "Telescope notify"
+      }
     },
   },
 
@@ -67,22 +72,32 @@ return {
   },
 
   {
-    "ahmedkhalf/project.nvim",
+    "nvim-telescope/telescope-project.nvim",
     event = "VeryLazy",
     dependencies = {
       "nvim-telescope/telescope.nvim"
     },
     keys = {
-      { "<leader>fp", "<cmd>Telescope projects<cr>", "Telescope projects" }
+      {
+        "<leader>fp",
+        "<cmd>Telescope project<cr>",
+        "Telescope projects"
+      },
     },
     config = function()
-      require('project_nvim').setup {
-        silent_chdir = false,
-        detection_methods = { "pattern " },
-        exclude_dirs = { "~/.config/*" }
+      local telescope = require('telescope');
+
+      telescope.setup {
+        extensions = {
+          project = {
+            base_dirs = { "~/dev", max_depth = 4 },
+            order_by = "recent",
+            search_by = "path",
+          }
+        }
       }
 
-      require('telescope').load_extension('projects')
+      telescope.load_extension('project')
     end
   },
 
