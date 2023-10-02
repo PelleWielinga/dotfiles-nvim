@@ -44,16 +44,6 @@ end
 
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = { "java", "clojure", "kotlin", "twig", "rust", "nix", "php" },
-      })
-    end
-  },
-
-  {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
     config = function()
@@ -94,6 +84,11 @@ return {
       })
 
       lspconfig["rnix"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+
+      lspconfig["hls"].setup({
         on_attach = on_attach,
         capabilities = capabilities
       })
