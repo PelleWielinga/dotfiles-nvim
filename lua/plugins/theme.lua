@@ -21,6 +21,11 @@ return {
     },
     config = function()
       vim.notify = require("notify")
+      vim.notify.setup({
+        render = "default",
+        stages = "static",
+        top_down = false
+      })
     end
   },
 
