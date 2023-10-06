@@ -29,6 +29,16 @@ return {
           pattern = "/test/(.*)/(.*)_test.clj",
           target = "/src/%1/%2.clj",
           context = "source"
+        },
+        {
+          pattern = "/src/(.*)/(.*).php",
+          target = "/tests/%1/%2Test.php",
+          context = "test"
+        },
+        {
+          pattern = "/tests/(.*)/(.*)Test.php",
+          target = "/src/%1/%2.php",
+          context = "source"
         }
       }
     },

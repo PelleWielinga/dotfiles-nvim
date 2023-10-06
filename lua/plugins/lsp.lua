@@ -108,7 +108,7 @@ return {
         capabilities = capabilities
       })
 
-      lspconfig["intelephense"].setup({
+      lspconfig["phpactor"].setup({
         on_attach = on_attach,
         capabilities = capabilities
       })
@@ -139,9 +139,9 @@ return {
       require("mason").setup({})
 
       require("mason-lspconfig").setup({
-        ensure_installed = { "gopls", "sqlls", "tsserver", "pyright", "rnix", "intelephense" },
+        ensure_installed = { "gopls", "sqlls", "tsserver", "pyright", "rnix" },
         automatic_installation = {
-          exclude = { "rust_analyzer", "lua_ls", "clojure_lsp" },
+          exclude = { "rust_analyzer", "lua_ls", "clojure_lsp", "phpactor" },
         },
       })
 
