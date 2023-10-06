@@ -64,7 +64,7 @@ return {
   {
     "camgraff/telescope-tmux.nvim",
     keys = {
-      { "<leader>ft", "<cmd>Telescope tmux sessions<cr>", "Telescope sessions" },
+      { "<leader>ft", "<cmd>Telescope tmux sessions<cr>", desc = "Telescope sessions" },
     },
     config = function()
       require('telescope').load_extension("tmux")
