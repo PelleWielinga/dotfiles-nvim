@@ -15,6 +15,7 @@ local function lsp_keymaps(bufnr)
 
   require("which-key").register({
     ["<leader>"] = {
+      a = { vim.lsp.buf.code_action, "Code actions" },
       q = { vim.diagnostic.setloclist, "Set loc list" },
       r = {
         name = "Refactor",
@@ -30,7 +31,6 @@ local function lsp_keymaps(bufnr)
       l = { vim.diagnostic.open_float, "Open diagnostic float" }, -- Duplicate binding?
     },
     K = { vim.lsp.buf.hover, "Hover" },
-    ["<C-Space>"] = { vim.lsp.buf.code_action, "Code actions" },
     ["[d"] = { prev_diagnostic, "Goto previous diagnostic" },
     ["]d"] = { next_diagnostic, "Goto next diagnostic" },
   }, { bufnr = bufnr })
@@ -110,7 +110,11 @@ return {
 
       lspconfig["phpactor"].setup({
         on_attach = on_attach,
-        capabilities = capabilities
+        capabilities = capabilities,
+        init_options = {
+          ["language_server_phpstan.enabled"] = true,
+          ["language_server_psalm.enabled"] = true,
+        },
       })
 
       lspconfig["pyright"].setup({
