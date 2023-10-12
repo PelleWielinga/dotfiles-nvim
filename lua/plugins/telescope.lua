@@ -73,7 +73,6 @@ return {
 
   {
     "nvim-telescope/telescope-project.nvim",
-    event = "VeryLazy",
     dependencies = {
       "nvim-telescope/telescope.nvim"
     },
@@ -103,7 +102,6 @@ return {
 
   {
     "nvim-telescope/telescope-ui-select.nvim",
-    -- TODO: Can this be triggered on sime kind of event instead of at VeryLazy?
     event = "VeryLazy",
     dependencies = {
       "nvim-telescope/telescope.nvim",
