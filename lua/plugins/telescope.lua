@@ -63,12 +63,28 @@ return {
 
   {
     "camgraff/telescope-tmux.nvim",
+    dependencies = { 'nvim-telescope/telescope.nvim' },
     keys = {
       { "<leader>ft", "<cmd>Telescope tmux sessions<cr>", desc = "Telescope sessions" },
     },
     config = function()
       require('telescope').load_extension("tmux")
     end
+  },
+
+  {
+    "FeiyouG/commander.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    keys = {
+      { "<leader>fc", "<cmd>Telescope commander<cr>", desc = "Telescope commands" },
+    },
+    opts = {
+      integration = {
+        lazy = {
+          enable = true
+        }
+      }
+    }
   },
 
   {
