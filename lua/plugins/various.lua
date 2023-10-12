@@ -35,7 +35,6 @@ return {
 
   {
     "folke/todo-comments.nvim",
-    event = "VeryLazy",
     keys = {
       { "]t",         function() require("todo-comments").jump_next() end, desc = "Next TODO", },
       { "[t",         function() require("todo-comments").jump_prev() end, desc = "Previous TODO", },
@@ -46,16 +45,9 @@ return {
   },
 
   {
-    "terrortylor/nvim-comment",
-    keys = {
-      { "<leader>cc", "<cmd>CommentToggle<cr>", desc = "Toggle comment" },
-    },
-    opts = {
-      create_mappings = false
-    },
-    config = function()
-      require("nvim_comment").setup({ create_mappings = false })
-    end
+    'numToStr/Comment.nvim',
+    event = "VeryLazy",
+    opts = {},
   },
 
   {
