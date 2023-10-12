@@ -58,8 +58,4 @@ return {
       })
     end
   },
-
-  -- TODO: This should not be here
-  { "guns/vim-sexp",                              ft = "clojure" },
-  { "tpope/vim-sexp-mappings-for-regular-people", ft = "clojure" }
 }

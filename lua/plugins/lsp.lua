@@ -172,6 +172,9 @@ return {
     ft = { "clojure" }
   },
 
+  { "guns/vim-sexp",                              ft = "clojure" },
+  { "tpope/vim-sexp-mappings-for-regular-people", ft = "clojure" },
+
   {
     "ap/vim-css-color",
     ft = { "css", "sass", "scss" }
