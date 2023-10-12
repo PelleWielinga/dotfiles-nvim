@@ -1,5 +1,4 @@
 return {
-  -- TODO: Look at this thing
   "akinsho/toggleterm.nvim",
   event = "VeryLazy",
   config = function()
@@ -57,9 +56,5 @@ return {
 
     simple_command('g', 'lazygit', "Lazygit")
     simple_command('c', 'cmatrix', "CMatrix")
-
-    -- TODO: Make these commands specific to the type of project.
-    simple_command('n', 'npm i ; read -P ""', "npm install")
-    simple_command('h', 'home-manager switch --flake /home/pelle/dev/space/home/nixos ; read -P ""', "Nix home-manager")
   end
 }
