@@ -31,8 +31,8 @@ local function lsp_keymaps(bufnr)
       l = { vim.diagnostic.open_float, "Open diagnostic float" }, -- Duplicate binding?
     },
     K = { vim.lsp.buf.hover, "Hover" },
-    ["[d"] = { prev_diagnostic, "Goto previous diagnostic" },
-    ["]d"] = { next_diagnostic, "Goto next diagnostic" },
+    ["[d"] = { prev_diagnostic, "Previous diagnostic" },
+    ["]d"] = { next_diagnostic, "Next diagnostic" },
   }, { bufnr = bufnr })
 
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
@@ -137,7 +137,6 @@ return {
     build = ":MasonUpdate",
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
-      "jay-babu/mason-null-ls.nvim"
     },
     config = function()
       require("mason").setup({})
@@ -148,23 +147,7 @@ return {
           exclude = { "rust_analyzer", "lua_ls", "clojure_lsp", "phpactor" },
         },
       })
-
-      require("mason-null-ls").setup({
-        ensure_installed = { "rustfmt" }
-      })
     end,
-  },
-
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = "VeryLazy",
-    config = function()
-      local null_ls = require("null-ls")
-
-      null_ls.setup({
-        sources = { null_ls.builtins.formatting.rustfmt },
-      })
-    end
   },
 
   -- Rust
