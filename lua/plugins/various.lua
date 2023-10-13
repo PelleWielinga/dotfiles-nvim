@@ -35,6 +35,8 @@ return {
 
   {
     "folke/todo-comments.nvim",
+    -- Loaded on startup for highlighting
+    event = "VeryLazy",
     keys = {
       { "]t",         function() require("todo-comments").jump_next() end, desc = "Next TODO", },
       { "[t",         function() require("todo-comments").jump_prev() end, desc = "Previous TODO", },
