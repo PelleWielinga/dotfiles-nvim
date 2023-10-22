@@ -44,6 +44,32 @@ end
 
 return {
   {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    event = "VeryLazy",
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = {
+          "c",
+          "cpp",
+          "lua",
+          "go",
+          "rust",
+          "haskell",
+          "clojure",
+          "java",
+          "kotlin",
+          "vim",
+          "vimdoc",
+          "query",
+          "yuck",
+          "javascript",
+          "typescript",
+        },
+      }
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
     config = function()
@@ -172,8 +198,20 @@ return {
     ft = { "clojure" }
   },
 
-  { "guns/vim-sexp",                              ft = "clojure" },
-  { "tpope/vim-sexp-mappings-for-regular-people", ft = "clojure" },
+  {
+    "guns/vim-sexp",
+    ft = { "clojure", "yuck" }
+  },
+
+  {
+    "tpope/vim-sexp-mappings-for-regular-people",
+    ft = { "clojure", "yuck" }
+  },
+
+  -- Yuck, for configuring eww
+  { "elkowar/yuck.vim", ft = "yuck" },
+
+  -- Other stuff
 
   {
     "ap/vim-css-color",

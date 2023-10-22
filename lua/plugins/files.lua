@@ -39,7 +39,8 @@ return {
           pattern = "/tests/(.*)/(.*)Test.php",
           target = "/src/%1/%2.php",
           context = "source"
-        }
+        },
+        "golang",
       }
     },
     config = function (_, opts)
