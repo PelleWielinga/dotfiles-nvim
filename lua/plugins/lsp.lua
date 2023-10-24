@@ -49,6 +49,9 @@ return {
     event = "VeryLazy",
     config = function()
       require('nvim-treesitter.configs').setup {
+        highlight = {
+          enable = true
+        },
         ensure_installed = {
           "c",
           "cpp",
@@ -65,6 +68,10 @@ return {
           "yuck",
           "javascript",
           "typescript",
+          "html",
+          "css",
+          "scss",
+          "svelte",
         },
       }
     end,
@@ -115,6 +122,11 @@ return {
       })
 
       lspconfig["hls"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+
+      lspconfig["svelte"].setup({
         on_attach = on_attach,
         capabilities = capabilities
       })
