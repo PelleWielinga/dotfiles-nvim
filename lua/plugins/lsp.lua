@@ -181,7 +181,7 @@ return {
       require("mason").setup({})
 
       require("mason-lspconfig").setup({
-        ensure_installed = { "gopls", "sqlls", "tsserver", "pyright", "rnix" },
+        ensure_installed = { "gopls", "sqlls", "tsserver", "pyright" },
         automatic_installation = {
           exclude = { "rust_analyzer", "lua_ls", "clojure_lsp", "phpactor" },
         },
