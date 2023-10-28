@@ -2,7 +2,13 @@ return {
   {
     'echasnovski/mini.files',
     keys = {
-      { "<A-`>", function() require('mini.files').open() end, desc = "File browser" }
+      {
+        "<A-`>",
+        function()
+          require('mini.files').open(vim.api.nvim_buf_get_name(0), false)
+        end,
+        desc = "File browser"
+      }
     },
     opts = {
       use_as_default_explorer = false,
@@ -43,7 +49,7 @@ return {
         "golang",
       }
     },
-    config = function (_, opts)
+    config = function(_, opts)
       require("other-nvim").setup(opts)
     end
   }
