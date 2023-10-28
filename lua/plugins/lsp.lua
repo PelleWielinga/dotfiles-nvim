@@ -71,6 +71,7 @@ return {
           "html",
           "css",
           "scss",
+          "terraform",
           "svelte",
         },
       }
