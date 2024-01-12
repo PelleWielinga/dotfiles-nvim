@@ -78,6 +78,16 @@ return {
     end,
   },
   {
+    'nvim-treesitter/playground',
+    keys = {
+      {
+        "<leader>et",
+        "<cmd>TSPlaygroundToggle<cr>",
+        desc = "TreeSitter playground toggle"
+      }
+    }
+  },
+  {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
     config = function()
