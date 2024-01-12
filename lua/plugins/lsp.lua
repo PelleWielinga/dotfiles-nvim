@@ -52,6 +52,9 @@ return {
         highlight = {
           enable = true
         },
+        incremental_selection = {
+          enable = true,
+        },
         ensure_installed = {
           "c",
           "cpp",
@@ -67,7 +70,9 @@ return {
           "query",
           "yuck",
           "javascript",
+          "jsx",
           "typescript",
+          "tsx",
           "html",
           "css",
           "scss",

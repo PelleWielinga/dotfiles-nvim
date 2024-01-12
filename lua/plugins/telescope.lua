@@ -31,6 +31,11 @@ return {
         desc = "Changed files"
       },
       {
+        "<leader>fo",
+        function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end,
+        desc = "Symbols"
+      },
+      {
         "<leader>fn",
         "<cmd>Telescope notify<cr>",
         "Telescope notify"
@@ -76,7 +81,13 @@ return {
     "FeiyouG/commander.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     keys = {
-      { "<leader>fc", "<cmd>Telescope commander<cr>", desc = "Telescope commands" },
+      {
+        "<leader>fc",
+        function()
+          require('commander').show()
+        end,
+        desc = "Telescope commands"
+      },
     },
     opts = {
       integration = {
