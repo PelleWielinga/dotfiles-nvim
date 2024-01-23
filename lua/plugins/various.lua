@@ -60,13 +60,10 @@ return {
       })
     end
   },
-
   {
-    "pocco81/auto-save.nvim",
-    event = "VeryLazy",
-    opts = {
-      trigger_events = { "InsertLeave", "TextChanged", "FocusLost" },
-      debounce_delay = 1000,
-    },
+    "willothy/savior.nvim",
+    dependencies = { "j-hui/fidget.nvim" },
+    event = { "InsertEnter", "TextChanged" },
+    opts = {}
   },
 }

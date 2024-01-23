@@ -49,7 +49,7 @@ return {
     event = "VeryLazy",
     config = function()
       require('nvim-treesitter.configs').setup {
-        highlight = {
+        highlight             = {
           enable = true
         },
         incremental_selection = {
@@ -60,10 +60,7 @@ return {
             node_decremental = '<C-S-m>',
           },
         },
-        textsubjects = {
-
-        },
-        ensure_installed = {
+        ensure_installed      = {
           "c",
           "cpp",
           "lua",
