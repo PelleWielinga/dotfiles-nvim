@@ -71,7 +71,6 @@ return {
     -- Nice spinner when loading lsp
     "j-hui/fidget.nvim",
     event = "VeryLazy",
-    tag = "legacy",
     opts = {},
   },
 }

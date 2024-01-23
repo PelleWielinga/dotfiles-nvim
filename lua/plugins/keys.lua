@@ -31,7 +31,9 @@ return {
 
     wk.register({
       [">"] = { ">gv", "Shift right" },
-      ["<"] = { "<gv", "Shift left" }
+      ["<"] = { "<gv", "Shift left" },
+      ["o"] = { "A<esc>o", "Insert newline after selection" },
+      ["O"] = { "I<esc>O", "Insert newline before selection" },
     }, { mode = "v" })
 
     wk.register({

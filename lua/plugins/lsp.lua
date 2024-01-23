@@ -54,6 +54,14 @@ return {
         },
         incremental_selection = {
           enable = true,
+          keymaps = {
+            init_selection = '<C-m>',
+            node_incremental = '<C-m>',
+            node_decremental = '<C-S-m>',
+          },
+        },
+        textsubjects = {
+
         },
         ensure_installed = {
           "c",
@@ -277,6 +285,7 @@ return {
   },
 
   {
+    -- TODO: This thing annys me. Mostly because it doesn't auto-close
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},

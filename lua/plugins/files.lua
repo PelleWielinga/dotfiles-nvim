@@ -20,6 +20,7 @@ return {
   },
 
   {
+    -- TODO: How to make this work with different windows
     'rgroli/other.nvim',
     keys = {
       { "go", "<cmd>Other<cr>", desc = "Goto other" }
