@@ -70,7 +70,6 @@ return {
           "query",
           "yuck",
           "javascript",
-          "jsx",
           "typescript",
           "tsx",
           "html",
@@ -78,6 +77,7 @@ return {
           "scss",
           "terraform",
           "svelte",
+          "python",
         },
       }
     end,
@@ -128,6 +128,11 @@ return {
       })
 
       lspconfig["tsserver"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities
+      })
+
+      lspconfig["cssls"].setup({
         on_attach = on_attach,
         capabilities = capabilities
       })
@@ -196,9 +201,9 @@ return {
       require("mason").setup({})
 
       require("mason-lspconfig").setup({
-        ensure_installed = { "gopls", "sqlls", "tsserver", "pyright" },
+        ensure_installed = { "gopls", "sqlls", "tsserver" },
         automatic_installation = {
-          exclude = { "rust_analyzer", "lua_ls", "clojure_lsp", "phpactor" },
+          exclude = { "rust_analyzer", "lua_ls", "clojure_lsp", "phpactor", "pyright" },
         },
       })
     end,
@@ -218,6 +223,25 @@ return {
         }
       })
     end,
+  },
+
+  {
+    "mfussenegger/nvim-lint",
+    event = "VeryLazy",
+    config = function()
+      require('lint').linters_by_ft = {
+        javascript = { "eslint" },
+        javascriptreact = { "eslint" },
+        typescript = { "eslint" },
+        typescriptreact = { "eslint" },
+      }
+
+      vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+        callback = function()
+          require('lint').try_lint()
+        end
+      })
+    end
   },
 
   -- Clojure
@@ -242,8 +266,14 @@ return {
   -- Other stuff
 
   {
-    "ap/vim-css-color",
-    ft = { "css", "sass", "scss" }
+    "NvChad/nvim-colorizer.lua",
+    ft = { "css", "sass", "scss" },
+    opts = {
+      user_default_options = {
+        rgb_fn = true,
+        hsl_fn = true,
+      }
+    },
   },
 
   {
@@ -258,7 +288,11 @@ return {
   -- Tests
   {
     "nvim-neotest/neotest",
-    dependencies = { "rouge8/neotest-rust" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "rouge8/neotest-rust",
+      "nvim-neotest/neotest-python",
+    },
     keys = {
       {
         "<leader>to",
@@ -287,6 +321,7 @@ return {
       require("neotest").setup({
         adapters = {
           require("neotest-rust"),
+          require("neotest-python"),
         }
       })
     end
