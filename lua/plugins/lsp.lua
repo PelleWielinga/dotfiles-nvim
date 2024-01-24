@@ -229,7 +229,6 @@ return {
   },
 
   {
-    -- TODO: This thing annys me. Mostly because it doesn't auto-close
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
