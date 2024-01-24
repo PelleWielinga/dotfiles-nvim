@@ -6,75 +6,88 @@ return {
         "<leader>fa",
         function()
           require("telescope.builtin").find_files({
-            find_command = { "rg", "--files", "--hidden", "-g", "!.git", "--no-ignore" }
+            find_command = { "rg", "--files", "--hidden", "-g", "!.git", "--no-ignore" },
           })
         end,
-        desc = "Find files including gitignore"
+        desc = "Find files including gitignore",
       },
       {
         "<leader>ff",
         function()
           require("telescope.builtin").find_files({
-            find_command = { "rg", "--files", "--hidden", "-g", "!.git" }
+            find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
           })
         end,
-        desc = "Find files"
+        desc = "Find files",
       },
       {
         "<leader>fg",
-        function() require("telescope.builtin").live_grep() end,
-        desc = "Grep"
+        function()
+          require("telescope.builtin").live_grep()
+        end,
+        desc = "Grep",
       },
       {
         "<leader>fs",
-        function() require("telescope.builtin").git_status() end,
-        desc = "Changed files"
+        function()
+          require("telescope.builtin").git_status()
+        end,
+        desc = "Changed files",
       },
       {
         "<leader>fo",
-        function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end,
-        desc = "Symbols"
+        function()
+          require("telescope.builtin").lsp_dynamic_workspace_symbols()
+        end,
+        desc = "Symbols",
       },
       {
         "<leader>fn",
         "<cmd>Telescope notify<cr>",
-        "Telescope notify"
-      }
+        "Telescope notify",
+      },
+      {
+        "gr",
+        function()
+          require("telescope.builtin").lsp_references()
+        end,
+        desc = "Find references",
+      },
     },
   },
 
   {
     "nvim-telescope/telescope-media-files.nvim",
     keys = {
-      { "<leader>fm", "<cmd>Telescope media_files<cr>", desc = "Find media files", }
+      { "<leader>fm", "<cmd>Telescope media_files<cr>", desc = "Find media files" },
     },
     dependencies = {
       "nvim-telescope/telescope.nvim",
     },
     config = function()
-      local telescope = require('telescope')
+      local telescope = require("telescope")
 
-      telescope.setup {
+      telescope.setup({
         extensions = {
           media_files = {
             filetypes = { "png", "jpg" },
           },
         },
-      }
+      })
 
-      telescope.load_extension('media_files')
-    end
+      telescope.load_extension("media_files")
+    end,
   },
 
   {
     "camgraff/telescope-tmux.nvim",
-    dependencies = { 'nvim-telescope/telescope.nvim' },
+    dependencies = { "nvim-telescope/telescope.nvim" },
     keys = {
       { "<leader>ft", "<cmd>Telescope tmux sessions<cr>", desc = "Telescope sessions" },
     },
     config = function()
-      require('telescope').load_extension("tmux")
-    end
+      require("telescope").load_extension("tmux")
+    end,
   },
 
   {
@@ -84,47 +97,47 @@ return {
       {
         "<leader>fc",
         function()
-          require('commander').show()
+          require("commander").show()
         end,
-        desc = "Telescope commands"
+        desc = "Telescope commands",
       },
     },
     opts = {
       integration = {
         lazy = {
-          enable = true
-        }
-      }
-    }
+          enable = true,
+        },
+      },
+    },
   },
 
   {
     "nvim-telescope/telescope-project.nvim",
     dependencies = {
-      "nvim-telescope/telescope.nvim"
+      "nvim-telescope/telescope.nvim",
     },
     keys = {
       {
         "<leader>fp",
         "<cmd>Telescope project<cr>",
-        "Telescope projects"
+        "Telescope projects",
       },
     },
     config = function()
-      local telescope = require('telescope');
+      local telescope = require("telescope")
 
-      telescope.setup {
+      telescope.setup({
         extensions = {
           project = {
             base_dirs = { "~/dev", max_depth = 4 },
             order_by = "recent",
             search_by = "path",
-          }
-        }
-      }
+          },
+        },
+      })
 
-      telescope.load_extension('project')
-    end
+      telescope.load_extension("project")
+    end,
   },
 
   {
@@ -134,17 +147,17 @@ return {
       "nvim-telescope/telescope.nvim",
     },
     config = function()
-      local telescope = require('telescope')
+      local telescope = require("telescope")
 
-      telescope.setup {
+      telescope.setup({
         extensions = {
           ["ui-select"] = {
-            require("telescope.themes").get_dropdown {}
-          }
+            require("telescope.themes").get_dropdown({}),
+          },
         },
-      }
+      })
 
       telescope.load_extension("ui-select")
-    end
+    end,
   },
 }

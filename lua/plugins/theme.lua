@@ -17,16 +17,22 @@ return {
     priority = 1000,
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<leader>nd", function() require("notify").dismiss() end, desc = "Dismiss notifications" },
+      {
+        "<leader>nd",
+        function()
+          require("notify").dismiss()
+        end,
+        desc = "Dismiss notifications",
+      },
     },
     config = function()
       vim.notify = require("notify")
       vim.notify.setup({
         render = "default",
         stages = "static",
-        top_down = false
+        top_down = false,
       })
-    end
+    end,
   },
 
   {
@@ -34,8 +40,8 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        globalstatus = true
-      }
+        globalstatus = true,
+      },
     },
   },
 
@@ -51,7 +57,7 @@ return {
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify"
+      "rcarriga/nvim-notify",
     },
     opts = {},
   },
@@ -60,9 +66,27 @@ return {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
     keys = {
-      { "<leader>hr", function() require("gitsigns").reset_hunk() end,   desc = "Reset hunk" },
-      { "<leader>hd", function() require("gitsigns").diffthis() end,     desc = "Diff this" },
-      { "<leader>hp", function() require("gitsigns").preview_hunk() end, desc = "Preview hunk" },
+      {
+        "<leader>gr",
+        function()
+          require("gitsigns").reset_hunk()
+        end,
+        desc = "Reset hunk",
+      },
+      {
+        "<leader>gd",
+        function()
+          require("gitsigns").diffthis()
+        end,
+        desc = "Diff this",
+      },
+      {
+        "<leader>gp",
+        function()
+          require("gitsigns").preview_hunk()
+        end,
+        desc = "Preview hunk",
+      },
     },
     opts = {},
   },

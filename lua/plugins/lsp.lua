@@ -1,66 +1,22 @@
-local function lsp_keymaps(bufnr)
-  local tsb = require("telescope.builtin")
-
-  local function next_diagnostic()
-    vim.diagnostic.goto_next({ border = "rounded" })
-  end
-
-  local function prev_diagnostic()
-    vim.diagnostic.goto_prev({ border = "rounded" })
-  end
-
-  local function goto_references()
-    tsb.lsp_references()
-  end
-
-  require("which-key").register({
-    ["<leader>"] = {
-      a = { vim.lsp.buf.code_action, "Code actions" },
-      q = { vim.diagnostic.setloclist, "Set loc list" },
-      r = {
-        name = "Refactor",
-        f = { vim.lsp.buf.format, "Format code" },
-        r = { vim.lsp.buf.rename, "Rename variable" },
-      },
-    },
-    g = {
-      D = { vim.lsp.buf.declaration, "Goto declaration" },
-      d = { vim.lsp.buf.definition, "Goto definition" },
-      i = { vim.lsp.buf.implementation, "Goto implementation" },
-      r = { goto_references, "Goto references" },
-      l = { vim.diagnostic.open_float, "Open diagnostic float" }, -- Duplicate binding?
-    },
-    K = { vim.lsp.buf.hover, "Hover" },
-    ["[d"] = { prev_diagnostic, "Previous diagnostic" },
-    ["]d"] = { next_diagnostic, "Next diagnostic" },
-  }, { bufnr = bufnr })
-
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
-end
-
-local function on_attach(_, bufnr)
-  lsp_keymaps(bufnr)
-end
-
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
     event = "VeryLazy",
     config = function()
-      require('nvim-treesitter.configs').setup {
-        highlight             = {
-          enable = true
+      require("nvim-treesitter.configs").setup({
+        highlight = {
+          enable = true,
         },
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = '<C-m>',
-            node_incremental = '<C-m>',
-            node_decremental = '<C-S-m>',
+            init_selection = "<C-m>",
+            node_incremental = "<C-m>",
+            node_decremental = "<C-S-m>",
           },
         },
-        ensure_installed      = {
+        ensure_installed = {
           "c",
           "cpp",
           "lua",
@@ -84,18 +40,18 @@ return {
           "svelte",
           "python",
         },
-      }
+      })
     end,
   },
   {
-    'nvim-treesitter/playground',
+    "nvim-treesitter/playground",
     keys = {
       {
         "<leader>et",
         "<cmd>TSPlaygroundToggle<cr>",
-        desc = "TreeSitter playground toggle"
-      }
-    }
+        desc = "TreeSitter playground toggle",
+      },
+    },
   },
   {
     "neovim/nvim-lspconfig",
@@ -104,13 +60,22 @@ return {
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      lspconfig["gopls"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
+      local defaults = {
+        "gopls",
+        "sqlls",
+        "tsserver",
+        "cssls",
+        "rnix",
+        "hls",
+        "svelte",
+        "clojure_lsp",
+      }
+
+      for _, v in pairs(defaults) do
+        lspconfig[v].setup({ capabilities = capabilities })
+      end
 
       lspconfig["lua_ls"].setup({
-        on_attach = on_attach,
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -124,56 +89,19 @@ return {
               },
             },
           },
-        }
-      })
-
-      lspconfig["sqlls"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
-
-      lspconfig["tsserver"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
-
-      lspconfig["cssls"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
-
-      lspconfig["rnix"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
-
-      lspconfig["hls"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities
-      })
-
-      lspconfig["svelte"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities
+        },
       })
 
       lspconfig["jsonls"].setup({
-        on_attach = function(x, bufnr)
-          on_attach(x, bufnr)
+        on_attach = function(_, bufnr)
           require("which-key").register({
-            ["<leader>rj"] = { "<cmd>%!jq .<cr>", "Format json" }
+            ["<leader>rj"] = { "<cmd>%!jq .<cr>", "Format json" },
           }, { bufnr = bufnr })
         end,
-        capabilities = capabilities
-      })
-
-      lspconfig["clojure_lsp"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities
+        capabilities = capabilities,
       })
 
       lspconfig["phpactor"].setup({
-        on_attach = on_attach,
         capabilities = capabilities,
         init_options = {
           ["language_server_phpstan.enabled"] = true,
@@ -182,7 +110,6 @@ return {
       })
 
       lspconfig["pyright"].setup({
-        on_attach = on_attach,
         capabilities = capabilities,
         settings = {
           python = {
@@ -190,9 +117,9 @@ return {
               typeCheckingMode = "off",
             },
           },
-        }
+        },
       })
-    end
+    end,
   },
 
   {
@@ -214,6 +141,30 @@ return {
     end,
   },
 
+  {
+    "stevearc/conform.nvim",
+    event = "VeryLazy",
+    keys = {
+      {
+        "<leader>rf",
+        function()
+          require("conform").format({ async = true, lsp_fallback = true })
+        end,
+        desc = "Format buffer",
+      },
+    },
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        python = { "isort", "black" },
+      },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+    },
+  },
+
   -- Rust
   {
     "simrat39/rust-tools.nvim",
@@ -223,9 +174,8 @@ return {
 
       require("rust-tools").setup({
         server = {
-          on_attach = on_attach,
-          capabilities = capabilities
-        }
+          capabilities = capabilities,
+        },
       })
     end,
   },
@@ -234,39 +184,36 @@ return {
     "mfussenegger/nvim-lint",
     event = "VeryLazy",
     config = function()
-      require('lint').linters_by_ft = {
+      require("lint").linters_by_ft = {
         javascript = { "eslint" },
         javascriptreact = { "eslint" },
         typescript = { "eslint" },
         typescriptreact = { "eslint" },
       }
 
-      vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()
-          require('lint').try_lint()
-        end
+          require("lint").try_lint()
+        end,
       })
-    end
+    end,
   },
 
   -- Clojure
   {
     "Olical/conjure",
-    ft = { "clojure" }
+    ft = { "clojure" },
   },
 
   {
     "guns/vim-sexp",
-    ft = { "clojure", "yuck" }
+    ft = { "clojure", "yuck" },
   },
 
   {
     "tpope/vim-sexp-mappings-for-regular-people",
-    ft = { "clojure", "yuck" }
+    ft = { "clojure", "yuck" },
   },
-
-  -- Yuck, for configuring eww
-  { "elkowar/yuck.vim", ft = "yuck" },
 
   -- Other stuff
 
@@ -277,7 +224,7 @@ return {
       user_default_options = {
         rgb_fn = true,
         hsl_fn = true,
-      }
+      },
     },
   },
 
@@ -287,8 +234,8 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
     keys = {
-      { "<leader>d", "<cmd>Trouble<cr>", desc = "Open Trouble window" }
-    }
+      { "<leader>d", "<cmd>Trouble<cr>", desc = "Open Trouble window" },
+    },
   },
 
   -- Tests
@@ -302,34 +249,42 @@ return {
     keys = {
       {
         "<leader>to",
-        function() require("neotest").output.open({ enter = true }) end,
-        desc = "Show test output"
+        function()
+          require("neotest").output.open({ enter = true })
+        end,
+        desc = "Show test output",
       },
       {
         "<leader>tn",
-        function() require("neotest").run.run() end,
-        desc = "Test nearest"
+        function()
+          require("neotest").run.run()
+        end,
+        desc = "Test nearest",
       },
 
       {
         "<leader>tl",
-        function() require("neotest").run.run_last() end,
-        desc = "Test last"
+        function()
+          require("neotest").run.run_last()
+        end,
+        desc = "Test last",
       },
 
       {
         "<leader>tf",
-        function() require("neotest").run.run(vim.fn.expand("%")) end,
-        desc = "Test file"
-      }
+        function()
+          require("neotest").run.run(vim.fn.expand("%"))
+        end,
+        desc = "Test file",
+      },
     },
     config = function()
       require("neotest").setup({
         adapters = {
           require("neotest-rust"),
           require("neotest-python"),
-        }
+        },
       })
-    end
-  }
+    end,
+  },
 }

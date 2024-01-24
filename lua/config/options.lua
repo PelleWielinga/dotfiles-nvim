@@ -18,7 +18,7 @@ local options = {
 
   -- Maximum number of items to show in a popup menu. Useful for limiting
   -- options in autocompletion.
-  pumheight = 10
+  pumheight = 10,
 }
 
 for k, v in pairs(options) do

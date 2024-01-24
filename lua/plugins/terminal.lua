@@ -3,15 +3,15 @@ return {
   event = "VeryLazy",
   config = function()
     local wk = require("which-key")
-    local toggleterm = require('toggleterm')
-    local Terminal = require('toggleterm.terminal').Terminal
+    local toggleterm = require("toggleterm")
+    local Terminal = require("toggleterm.terminal").Terminal
 
-    toggleterm.setup {
+    toggleterm.setup({
       size = 30,
       on_open = function()
         vim.cmd("startinsert!")
-      end
-    }
+      end,
+    })
 
     local function simple_command(key, cmd, name)
       local term = Terminal:new({
@@ -54,7 +54,7 @@ return {
 
     wk.register({ ["<leader>e"] = { name = "Execute" } })
 
-    simple_command('g', 'lazygit', "Lazygit")
-    simple_command('c', 'cmatrix', "CMatrix")
-  end
+    simple_command("g", "lazygit", "Lazygit")
+    simple_command("c", "cmatrix", "CMatrix")
+  end,
 }

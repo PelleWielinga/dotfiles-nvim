@@ -4,31 +4,54 @@ return {
     event = "VeryLazy",
     config = function()
       require("nvim-autopairs").setup({
-        disable_filetype = { "scheme", "list", "clojure" }
+        disable_filetype = { "scheme", "list", "clojure" },
       })
-    end
+    end,
   },
 
   {
     "folke/flash.nvim",
     opts = {},
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,       desc = "Flash", },
-      { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter", },
-      { "r", mode = "o",               function() require("flash").remote() end,     desc = "Remote Flash", },
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
       {
         "R",
         mode = { "o", "x" },
-        function() require("flash").treesitter_search() end,
-        desc =
-        "Flash Treesitter Search",
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Flash Treesitter Search",
       },
       {
         "<c-s>",
         mode = { "c" },
-        function() require("flash").toggle() end,
-        desc =
-        "Toggle Flash Search",
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
       },
     },
   },
@@ -38,32 +61,51 @@ return {
     -- Loaded on startup for highlighting
     event = "VeryLazy",
     keys = {
-      { "]t",         function() require("todo-comments").jump_next() end, desc = "Next TODO", },
-      { "[t",         function() require("todo-comments").jump_prev() end, desc = "Previous TODO", },
-      { "<leader>fd", "<cmd>TodoTelescope<cr>",                            desc = "Telescope TODO", },
+      {
+        "]t",
+        function()
+          require("todo-comments").jump_next()
+        end,
+        desc = "Next TODO",
+      },
+      {
+        "[t",
+        function()
+          require("todo-comments").jump_prev()
+        end,
+        desc = "Previous TODO",
+      },
+      { "<leader>fd", "<cmd>TodoTelescope<cr>", desc = "Telescope TODO" },
     },
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {}
+    opts = {},
   },
 
   {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     event = "VeryLazy",
     opts = {},
   },
 
   {
     "RRethy/vim-illuminate",
+    event = "VeryLazy",
     config = function()
       require("illuminate").configure({
         min_count_to_highlight = 2,
       })
-    end
+    end,
   },
   {
     "willothy/savior.nvim",
     dependencies = { "j-hui/fidget.nvim" },
     event = { "InsertEnter", "TextChanged" },
-    opts = {}
+    opts = {
+      callbacks = {
+        on_save = function(bufnr)
+          require("conform").format({ bufnr = bufnr, lsp_fallback = true })
+        end,
+      },
+    },
   },
 }
