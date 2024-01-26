@@ -100,12 +100,11 @@ return {
     "willothy/savior.nvim",
     dependencies = { "j-hui/fidget.nvim" },
     event = { "InsertEnter", "TextChanged" },
-    opts = {
-      callbacks = {
-        on_save = function(bufnr)
-          require("conform").format({ bufnr = bufnr, lsp_fallback = true })
-        end,
-      },
-    },
+    opts = {},
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "VeryLazy",
+    opts = {},
   },
 }
