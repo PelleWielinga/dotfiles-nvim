@@ -5,6 +5,8 @@ M.treesitter = {
   "query",
   "terraform",
   "yuck",
+  "bash",
+  "fish",
 }
 
 M.lsp = {
