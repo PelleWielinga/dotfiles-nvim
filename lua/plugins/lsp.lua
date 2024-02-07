@@ -16,32 +16,7 @@ return {
             node_decremental = "<C-S-m>",
           },
         },
-        ensure_installed = {
-          "c",
-          "clojure",
-          "cpp",
-          "css",
-          "go",
-          "haskell",
-          "html",
-          "java",
-          "javascript",
-          "kotlin",
-          "lua",
-          "php",
-          "python",
-          "query",
-          "rust",
-          "scss",
-          "svelte",
-          "terraform",
-          "tsx",
-          "twig",
-          "typescript",
-          "vim",
-          "vimdoc",
-          "yuck",
-        },
+        ensure_installed = require("languages").treesitter,
       })
     end,
   },
@@ -59,68 +34,7 @@ return {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
     config = function()
-      local lspconfig = require("lspconfig")
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      local defaults = {
-        "gopls",
-        "sqlls",
-        "tsserver",
-        "cssls",
-        "rnix",
-        "hls",
-        "svelte",
-        "clojure_lsp",
-      }
-
-      for _, v in pairs(defaults) do
-        lspconfig[v].setup({ capabilities = capabilities })
-      end
-
-      lspconfig["lua_ls"].setup({
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { "vim", "describe" },
-            },
-            workspace = {
-              library = {
-                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                [vim.fn.stdpath("config") .. "/lua"] = true,
-              },
-            },
-          },
-        },
-      })
-
-      lspconfig["jsonls"].setup({
-        on_attach = function(_, bufnr)
-          require("which-key").register({
-            ["<leader>rj"] = { "<cmd>%!jq .<cr>", "Format json" },
-          }, { bufnr = bufnr })
-        end,
-        capabilities = capabilities,
-      })
-
-      lspconfig["phpactor"].setup({
-        capabilities = capabilities,
-        init_options = {
-          ["language_server_phpstan.enabled"] = true,
-          ["language_server_psalm.enabled"] = true,
-        },
-      })
-
-      lspconfig["pyright"].setup({
-        capabilities = capabilities,
-        settings = {
-          python = {
-            analysis = {
-              typeCheckingMode = "off",
-            },
-          },
-        },
-      })
+      require("languages").setup_lsp()
     end,
   },
 
@@ -132,13 +46,14 @@ return {
       "williamboman/mason-lspconfig.nvim",
     },
     config = function()
-      require("mason").setup({})
+      local languages = require("languages")
 
+      require("mason").setup({})
       require("mason-lspconfig").setup({
-        ensure_installed = { "gopls", "sqlls", "tsserver" },
+        ensure_installed = languages.mason_include,
         automatic_installation = {
-          exclude = { "rust_analyzer", "lua_ls", "clojure_lsp", "phpactor", "pyright" },
-        },
+          exclude = languages.mason_exclude,
+        }
       })
     end,
   },
@@ -176,21 +91,6 @@ return {
     },
   },
 
-  -- Rust
-  {
-    "simrat39/rust-tools.nvim",
-    ft = { "rust" },
-    config = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      require("rust-tools").setup({
-        server = {
-          capabilities = capabilities,
-        },
-      })
-    end,
-  },
-
   {
     "mfussenegger/nvim-lint",
     event = "VeryLazy",
@@ -210,35 +110,6 @@ return {
     end,
   },
 
-  -- Clojure
-  {
-    "Olical/conjure",
-    ft = { "clojure" },
-  },
-
-  {
-    "guns/vim-sexp",
-    ft = { "clojure", "yuck" },
-  },
-
-  {
-    "tpope/vim-sexp-mappings-for-regular-people",
-    ft = { "clojure", "yuck" },
-  },
-
-  -- Other stuff
-
-  {
-    "NvChad/nvim-colorizer.lua",
-    ft = { "css", "sass", "scss" },
-    opts = {
-      user_default_options = {
-        rgb_fn = true,
-        hsl_fn = true,
-      },
-    },
-  },
-
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -248,7 +119,6 @@ return {
     },
   },
 
-  -- Tests
   {
     "nvim-neotest/neotest",
     dependencies = {

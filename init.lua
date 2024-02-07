@@ -1,4 +1,4 @@
-require "config.options"
+require("config.options")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
@@ -17,13 +17,15 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {
   install = {
-    colorscheme = { "tokyonight-night" }
+    colorscheme = { "tokyonight-night" },
   },
   change_detection = {
     enabled = true,
     notify = false,
   },
-  defaults = { lazy = true },
+  defaults = {
+    lazy = true,
+  },
   ui = {
     border = "rounded",
   },
