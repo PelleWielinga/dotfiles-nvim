@@ -35,4 +35,11 @@ M.plugins = {
   },
 }
 
+M.linters = {
+  javascript = { "eslint" },
+  javascriptreact = { "eslint" },
+  typescript = { "eslint" },
+  typescriptreact = { "eslint" },
+}
+
 return M

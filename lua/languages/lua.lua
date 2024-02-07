@@ -28,4 +28,11 @@ M.lsp = {
   },
 }
 
+M.conform = {
+  formatters_by_ft = {
+    lua = { "stylua" },
+  },
+
+}
+
 return M

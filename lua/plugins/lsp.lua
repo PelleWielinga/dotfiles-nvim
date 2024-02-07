@@ -70,37 +70,23 @@ return {
         desc = "Format buffer",
       },
     },
-    opts = {
-      formatters_by_ft = {
-        lua = { "stylua" },
-        python = { "isort", "black" },
-        markdown = { "prettier" },
-        php = { "php" },
-      },
-      notify_on_error = true,
-      formatters = {
-        php = {
-          command = "./vendor/bin/php-cs-fixer",
-          args = {
-            "fix",
-            "$FILENAME",
-          },
-          stdin = false,
-        },
-      },
-    },
+    config = function()
+      local utils = require("config.utils")
+      local languages = require("languages")
+
+      local opts = {
+        notify_on_error = true,
+      }
+
+      require("conform").setup(utils.table_merge(opts, languages.conform))
+    end,
   },
 
   {
     "mfussenegger/nvim-lint",
     event = "VeryLazy",
     config = function()
-      require("lint").linters_by_ft = {
-        javascript = { "eslint" },
-        javascriptreact = { "eslint" },
-        typescript = { "eslint" },
-        typescriptreact = { "eslint" },
-      }
+      require("lint").linters_by_ft = require("languages").linters
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()

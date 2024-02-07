@@ -18,4 +18,22 @@ M.lsp = {
   },
 }
 
+M.conform = {
+  formatters_by_ft = {
+    php = { "php" },
+  },
+
+  formatters = {
+    php = {
+      command = "./vendor/bin/php-cs-fixer",
+      args = {
+        "fix",
+        "$FILENAME",
+      },
+      stdin = false,
+    },
+  },
+}
+
+
 return M

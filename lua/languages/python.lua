@@ -20,4 +20,11 @@ M.lsp = {
   },
 }
 
+M.conform = {
+  formatters_by_ft = {
+    python = { "isort", "black" },
+  },
+}
+
+
 return M
