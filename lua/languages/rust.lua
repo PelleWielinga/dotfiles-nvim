@@ -14,17 +14,9 @@ M.lsp = {
 
 M.plugins = {
   {
-    "simrat39/rust-tools.nvim",
+    "mrcjkb/rustaceanvim",
+    version = "^4", -- Recommended
     ft = { "rust" },
-    config = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      require("rust-tools").setup({
-        server = {
-          capabilities = capabilities,
-        },
-      })
-    end,
   },
 }
 
