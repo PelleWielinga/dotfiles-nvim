@@ -7,6 +7,7 @@ M.treesitter = {
   "yuck",
   "bash",
   "fish",
+  "norg",
 }
 
 M.lsp = {
