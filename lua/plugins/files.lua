@@ -62,28 +62,28 @@ return {
         function()
           require("harpoon.ui").toggle_quick_menu()
         end,
-        "Harpoon toggle",
+        desc = "Harpoon quick menu",
       },
       {
         "<leader>hn",
         function()
           require("harpoon.ui").nav_next()
         end,
-        "Harpoon toggle",
+        desc = "Harpoon next",
       },
       {
         "<leader>hp",
         function()
           require("harpoon.ui").nav_prev()
         end,
-        "Harpoon toggle",
+        desc = "Harpoon prev",
       },
       {
         "<leader>ha",
         function()
           require("harpoon.mark").add_file()
         end,
-        "Harpoon toggle",
+        desc = "Harpoon add",
       },
     },
     opts = {},
