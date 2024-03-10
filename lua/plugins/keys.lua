@@ -18,7 +18,9 @@ return {
 
       -- Redefined down/up half a screen to be a bit slower. Easier to track across the screen.
       ["<C-d>"] = { "10j", "Move down fast" },
+      ["<PageDown>"] = { "10j", "Move down fast" },
       ["<C-u>"] = { "10k", "Move up fast" },
+      ["<PageUp>"] = { "10k", "Move up fast" },
 
       ["<leader>"] = {
         a = { vim.lsp.buf.code_action, "Code actions" },
