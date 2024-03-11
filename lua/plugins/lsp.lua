@@ -33,6 +33,18 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
+    keys = {
+      {
+        "<leader>li",
+        "<cmd>LspInfo<cr>",
+        desc = "LSP info",
+      },
+      {
+        "<leader>lr",
+        "<cmd>LspRestart<cr>",
+        desc = "LSP restart",
+      },
+    },
     config = function()
       require("languages").setup_lsp()
     end,
