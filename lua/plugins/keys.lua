@@ -63,6 +63,11 @@ return {
       ["<C-l>"] = { [[<Cmd>wincmd l<CR>]], "Focus split to the right" },
       ["<C-j>"] = { [[<Cmd>wincmd j<CR>]], "Focus split to below" },
       ["<C-k>"] = { [[<Cmd>wincmd k<CR>]], "Focus split to above" },
+
+      ["<C-Left>"] = { [[<Cmd>wincmd h<CR>]], "Focus split to the left" },
+      ["<C-Right>"] = { [[<Cmd>wincmd l<CR>]], "Focus split to the right" },
+      ["<C-Down>"] = { [[<Cmd>wincmd j<CR>]], "Focus split to below" },
+      ["<C-Up>"] = { [[<Cmd>wincmd k<CR>]], "Focus split to above" },
     }, {
       mode = { "t", "i", "n" },
     })
