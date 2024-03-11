@@ -25,4 +25,4 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.g.neovide_scale_factor = 0.9
+vim.g.neovide_scale_factor = 0.8
