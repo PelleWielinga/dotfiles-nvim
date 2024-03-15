@@ -3,7 +3,7 @@ return {
     "echasnovski/mini.files",
     keys = {
       {
-        "<A-`>",
+        "<leader>pf",
         function()
           require("mini.files").open(vim.api.nvim_buf_get_name(0), false)
         end,
