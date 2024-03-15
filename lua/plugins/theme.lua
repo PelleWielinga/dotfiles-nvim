@@ -18,7 +18,7 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
       {
-        "<leader>nd",
+        "<leader>pd",
         function()
           require("notify").dismiss()
         end,
