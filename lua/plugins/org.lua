@@ -9,6 +9,12 @@ return {
         load = {
           ["core.defaults"] = {},
           ["core.concealer"] = {},
+          ["core.keybinds"] = {
+            config = {
+              default_keybinds = true,
+              neorg_leader = "<leader>n",
+            },
+          },
           ["core.dirman"] = {
             config = {
               workspaces = {
