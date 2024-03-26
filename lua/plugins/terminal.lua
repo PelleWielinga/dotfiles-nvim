@@ -17,7 +17,7 @@ return {
       local term = Terminal:new({
         cmd = cmd,
         hidden = true,
-        direction = "float",
+        direction = "tab",
       })
 
       local function toggle()
