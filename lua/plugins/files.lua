@@ -55,37 +55,22 @@ return {
     end,
   },
   {
-    "ThePrimeagen/harpoon",
-    keys = {
-      {
-        "<leader>hh",
-        function()
-          require("harpoon.ui").toggle_quick_menu()
-        end,
-        desc = "Harpoon quick menu",
-      },
-      {
-        "<leader>hn",
-        function()
-          require("harpoon.ui").nav_next()
-        end,
-        desc = "Harpoon next",
-      },
-      {
-        "<leader>hp",
-        function()
-          require("harpoon.ui").nav_prev()
-        end,
-        desc = "Harpoon prev",
-      },
-      {
-        "<leader>ha",
-        function()
-          require("harpoon.mark").add_file()
-        end,
-        desc = "Harpoon add",
-      },
+    "cbochs/grapple.nvim",
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons", lazy = true },
     },
-    opts = {},
+    keys = {
+      { "<leader>ha", "<cmd>Grapple toggle<cr>", desc = "Tag a file" },
+      { "<leader>hh", "<cmd>Grapple toggle_tags<cr>", desc = "Toggle tags menu" },
+
+      { "<leader>1", "<cmd>Grapple select index=1<cr>", desc = "Select first tag" },
+      { "<leader>2", "<cmd>Grapple select index=2<cr>", desc = "Select second tag" },
+      { "<leader>3", "<cmd>Grapple select index=3<cr>", desc = "Select third tag" },
+      { "<leader>4", "<cmd>Grapple select index=4<cr>", desc = "Select fourth tag" },
+      { "<leader>5", "<cmd>Grapple select index=5<cr>", desc = "Select fifth tag" },
+
+      { "<C-Home>", "<cmd>Grapple cycle backward<cr>", desc = "Go to previous tag" },
+      { "<C-End>", "<cmd>Grapple cycle forward<cr>", desc = "Go to next tag" },
+    },
   },
 }
