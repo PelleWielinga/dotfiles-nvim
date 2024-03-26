@@ -76,8 +76,17 @@ return {
         desc = "Previous TODO",
       },
       { "<leader>fd", "<cmd>TodoTelescope<cr>", desc = "Telescope TODO" },
+      { "<leader>df", "<cmd>TodoTrouble keywords=FIX<cr>", desc = "Trouble FIX" },
+      { "<leader>if", function ()
+        local api = require("Comment.api")
+        local config = require("Comment.config"):get()
+
+        api.insert.linewise.above(config)
+        -- Why is this a? i is not working.
+        vim.api.nvim_feedkeys("FIX: ", "a", true)
+      end, desc = "Trouble FIX" },
     },
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "folke/trouble.nvim" },
     opts = {},
   },
 
@@ -106,14 +115,5 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     event = "VeryLazy",
     opts = {},
-  },
-
-  {
-    "rest-nvim/rest.nvim",
-    event = "VeryLazy",
-    dependencies = { { "nvim-lua/plenary.nvim" } },
-    config = function()
-      require("rest-nvim").setup({})
-    end,
   },
 }
