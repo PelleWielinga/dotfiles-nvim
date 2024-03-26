@@ -113,13 +113,14 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
     keys = {
-      { "<leader>d", "<cmd>Trouble<cr>", desc = "Open Trouble window" },
+      { "<leader>dt", "<cmd>Trouble<cr>", desc = "Open Trouble window" },
     },
   },
 
   {
     "nvim-neotest/neotest",
     dependencies = {
+      "nvim-neotest/nvim-nio",
       "nvim-treesitter/nvim-treesitter",
       "rouge8/neotest-rust",
       "nvim-neotest/neotest-python",
@@ -135,6 +136,7 @@ return {
       {
         "<leader>tn",
         function()
+          vim.cmd("w")
           require("neotest").run.run()
         end,
         desc = "Test nearest",
@@ -143,14 +145,15 @@ return {
       {
         "<leader>tl",
         function()
+          vim.cmd("w")
           require("neotest").run.run_last()
         end,
         desc = "Test last",
       },
-
       {
         "<leader>tf",
         function()
+          vim.cmd("w")
           require("neotest").run.run(vim.fn.expand("%"))
         end,
         desc = "Test file",
