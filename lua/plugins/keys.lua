@@ -26,6 +26,11 @@ return {
         a = { vim.lsp.buf.code_action, "Code actions" },
         f = { name = "Find" },
         g = { name = "Git" },
+        l = {
+          name = "LSP",
+          t = { vim.lsp.buf.type_definition, "Goto type definition" },
+          s = { vim.lsp.buf.signature_help, "Signature help" },
+        },
         b = {
           name = "Buffer actions",
           d = { [[<cmd>bn<cr><cmd>bd#<cr>]], "Close buffer without closing window" },
@@ -33,8 +38,6 @@ return {
         r = {
           name = "Refactor",
           r = { vim.lsp.buf.rename, "Rename variable" },
-          -- This should be configured using LSP, but the current formatting is a bit crappy
-          j = { "<cmd>%!jq .<cr>", "Format json" },
         },
       },
 
