@@ -3,6 +3,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     event = "VeryLazy",
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     config = function()
       require("nvim-treesitter.configs").setup({
         highlight = {
@@ -14,6 +15,18 @@ return {
             init_selection = "<C-m>",
             node_incremental = "<C-m>",
             node_decremental = "<C-S-m>",
+          },
+        },
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+            },
           },
         },
         ensure_installed = require("languages").treesitter,
@@ -65,7 +78,7 @@ return {
         ensure_installed = languages.mason_include,
         automatic_installation = {
           exclude = languages.mason_exclude,
-        }
+        },
       })
     end,
   },

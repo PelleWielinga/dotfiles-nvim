@@ -42,6 +42,21 @@ return {
         desc = "Symbols",
       },
       {
+        "<leader>fk",
+        function()
+          require("telescope.builtin").lsp_dynamic_workspace_symbols({
+            symbols = {
+              "class",
+              "struct",
+              "interface",
+              "enum",
+            },
+          })
+        end,
+        desc = "Classes",
+      },
+
+      {
         "<leader>fn",
         "<cmd>Telescope notify<cr>",
         "Telescope notify",
