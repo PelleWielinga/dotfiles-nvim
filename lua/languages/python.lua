@@ -9,13 +9,6 @@ M.lsp = {
     name = "pyright",
     mason = false,
     setup = {
-      settings = {
-        python = {
-          analysis = {
-            typeCheckingMode = "off",
-          },
-        },
-      },
     },
   },
 }
