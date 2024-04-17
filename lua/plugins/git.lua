@@ -77,4 +77,21 @@ return {
       },
     },
   },
+
+  {
+    "FabijanZulj/blame.nvim",
+    keys = {
+      {
+        "<leader>gb",
+        [[<cmd>BlameToggle<cr>]],
+        desc = "Toggle blame",
+      },
+    },
+    config = function()
+      require("blame").setup({
+        date_format = "%Y-%m-%d",
+        commit_detail_view = "tab",
+      })
+    end,
+  },
 }
