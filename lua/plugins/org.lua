@@ -2,7 +2,9 @@ return {
   {
     "nvim-neorg/neorg",
     event = "VeryLazy",
-    build = ":Neorg sync-parsers",
+
+    -- TODO: This broke. Should I replace it with something?
+    -- build = ":Neorg sync-parsers",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("neorg").setup({
