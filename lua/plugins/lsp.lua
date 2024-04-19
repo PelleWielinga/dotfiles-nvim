@@ -134,6 +134,7 @@ return {
     "nvim-neotest/neotest",
     dependencies = {
       "nvim-neotest/nvim-nio",
+      "nvim-neotest/neotest-go",
       "nvim-treesitter/nvim-treesitter",
       "rouge8/neotest-rust",
       "nvim-neotest/neotest-python",
@@ -196,6 +197,7 @@ return {
         adapters = {
           require("neotest-rust"),
           require("neotest-python"),
+          require("neotest-go"),
         },
       })
     end,
