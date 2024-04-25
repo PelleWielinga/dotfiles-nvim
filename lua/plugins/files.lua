@@ -23,7 +23,8 @@ return {
     -- TODO: How to make this work with different windows
     "rgroli/other.nvim",
     keys = {
-      { "go", "<cmd>Other<cr>", desc = "Goto other" },
+      -- TODO: Find another keybinding to use.
+      -- { "go", "<cmd>Other<cr>", desc = "Goto other" },
     },
     opts = {
       mappings = {
