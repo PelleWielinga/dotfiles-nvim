@@ -24,60 +24,40 @@ return {
         end,
         desc = "Preview hunk",
       },
+      {
+        "<leader>gs",
+        function()
+          require("gitsigns").stage_hunk()
+        end,
+        desc = "Stage hunk",
+      },
+      {
+        "<leader>gS",
+        function()
+          require("gitsigns").stage_buffer()
+        end,
+        desc = "Stage buffer",
+      },
+      {
+        "<leader>gu",
+        function()
+          require("gitsigns").undo_stage_hunk()
+        end,
+        desc = "Undo stage hunk",
+      },
     },
     opts = {},
   },
-
   {
     "tpope/vim-fugitive",
     keys = {
       {
-        "<leader>gs",
+        "<leader>gf",
         [[<cmd>Git<cr>]],
-        desc = "Git status",
+        desc = "Git fugitive",
       },
     },
   },
-
-  {
-    "SuperBo/fugit2.nvim",
-    opts = {},
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "nvim-lua/plenary.nvim",
-      {
-        "chrisgrieser/nvim-tinygit", -- optional: for Github PR view
-        dependencies = { "stevearc/dressing.nvim" },
-      },
-      "sindrets/diffview.nvim", -- optional: for Diffview
-    },
-    cmd = { "Fugit2", "Fugit2Graph" },
-    keys = {
-      { "<leader>gf", mode = "n", "<cmd>Fugit2<cr>" },
-    },
-  },
-
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
-
-      -- Only one of these is needed, not both.
-      "nvim-telescope/telescope.nvim", -- optional
-      "ibhagwan/fzf-lua", -- optional
-    },
-    config = true,
-    keys = {
-      {
-        "<leader>gn",
-        [[<cmd>Neogit<cr>]],
-        desc = "Neogit status",
-      },
-    },
-  },
-
   {
     "FabijanZulj/blame.nvim",
     keys = {
