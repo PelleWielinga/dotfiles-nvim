@@ -182,21 +182,23 @@ return {
         function()
           require("neotest").jump.next({ status = "failed" })
         end,
-        desc = "Jump to next failed test",
+        desc = "Next failed test",
       },
       {
         "[n",
         function()
           require("neotest").jump.prev({ status = "failed" })
         end,
-        desc = "Jump to previous failed test",
+        desc = "Previous failed test",
       },
     },
     config = function()
       require("neotest").setup({
         adapters = {
           require("neotest-rust"),
-          require("neotest-python"),
+          require("neotest-python")({
+            args = { "-v" },
+          }),
           require("neotest-go"),
         },
       })
