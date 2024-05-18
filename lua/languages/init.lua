@@ -44,8 +44,14 @@ local packages = {
   },
 
   go = {
-    treesitter = { "go" },
-    lsp = { { name = "gopls" } }
+    treesitter = { "go", "templ" },
+    lsp = {
+      { name = "gopls" },
+      { name = "templ" }
+    },
+    setup = function()
+      vim.filetype.add({ extension = { templ = "templ" } })
+    end
   },
 
   haskell = {
@@ -251,6 +257,10 @@ local M = {
 }
 
 for _, module_conf in pairs(packages) do
+  if module_conf.setup then
+    module_conf.setup()
+  end
+
   local module = utils.table_merge_copy(default_module, module_conf)
 
   for _, ts in pairs(module.treesitter) do
