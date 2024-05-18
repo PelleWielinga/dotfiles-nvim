@@ -197,7 +197,7 @@ return {
         adapters = {
           require("neotest-rust"),
           require("neotest-python")({
-            args = { "-v" },
+            args = { "-vv" },
           }),
           require("neotest-go"),
         },

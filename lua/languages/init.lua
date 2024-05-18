@@ -160,8 +160,25 @@ local packages = {
 
     conform = {
       formatters_by_ft = {
-        python = { "isort", "black" },
+        python = { "black", "isort" },
       },
+
+      formatters = {
+        isort = {
+          cwd = function()
+            vim.fn.getcwd()
+          end,
+          prepend_args = { "--profile=black" }
+        },
+
+        black = {
+          cwd = function()
+            vim.fn.getcwd()
+          end,
+
+          prepend_args = { "--line-length", "100" }
+        },
+      }
     }
   },
 
