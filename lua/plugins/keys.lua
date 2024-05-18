@@ -16,12 +16,6 @@ return {
     wk.register({
       ["<C-x>"] = { ":wa<cr>:qa<cr>", "Save and close all" },
 
-      -- Redefined down/up half a screen to be a bit slower. Easier to track across the screen.
-      ["<C-d>"] = { "10j", "Move down fast" },
-      ["<PageDown>"] = { "10j", "Move down fast" },
-      ["<C-u>"] = { "10k", "Move up fast" },
-      ["<PageUp>"] = { "10k", "Move up fast" },
-
       ["<leader>"] = {
         a = { vim.lsp.buf.code_action, "Code actions" },
         f = { name = "Find" },
@@ -53,6 +47,14 @@ return {
       ["[d"] = { prev_diagnostic, "Previous diagnostic" },
       ["]d"] = { next_diagnostic, "Next diagnostic" },
     })
+
+    wk.register({
+      -- Redefined down/up half a screen to be a bit slower. Easier to track across the screen.
+      ["<C-d>"] = { "10j", "Move down fast" },
+      ["<PageDown>"] = { "10j", "Move down fast" },
+      ["<C-u>"] = { "10k", "Move up fast" },
+      ["<PageUp>"] = { "10k", "Move up fast" },
+    }, { mode = { "n", "v" } })
 
     wk.register({
       [">"] = { ">gv", "Shift right" },
