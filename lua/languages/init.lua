@@ -1,19 +1,227 @@
 local utils = require("config.utils")
 
+
 local packages = {
-  "clojure",
-  "c",
-  "data",
-  "go",
-  "haskell",
-  "java",
-  "lua",
-  "misc",
-  "nix",
-  "php",
-  "python",
-  "rust",
-  "web",
+  c = {
+    treesitter = { "c", "cpp" }
+  },
+
+  clojure = {
+    {
+      treesitter = {
+        "clojure",
+      },
+
+      lsp = {
+        {
+          name = "clojure_lsp",
+          mason = false,
+        }
+      },
+
+      plugins = {
+        {
+          "Olical/conjure",
+          ft = { "clojure" },
+        },
+
+        {
+          "guns/vim-sexp",
+          ft = { "clojure", "yuck" },
+        },
+
+        {
+          "tpope/vim-sexp-mappings-for-regular-people",
+          ft = { "clojure", "yuck" },
+        },
+      }
+    }
+  },
+
+  data = {
+    treesitter = { "json", "xml", "yaml", "toml" },
+    lsp = { { name = "jsonls" } },
+  },
+
+  go = {
+    treesitter = { "go" },
+    lsp = { { name = "gopls" } }
+  },
+
+  haskell = {
+    treesitter = { "haskell" },
+    lsp = { { name = "hls", mason = false } }
+  },
+
+  java = {
+    treesitter = { "java", "kotlin" }
+  },
+
+  lua = {
+    treesitter = { "lua", "vim", "vimdoc" },
+
+    lsp = {
+      {
+        name = "lua_ls",
+        mason = false,
+        setup = {
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim", "describe" },
+              },
+              workspace = {
+                library = {
+                  [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                  [vim.fn.stdpath("config") .. "/lua"] = true,
+                },
+              },
+            },
+          },
+        },
+      }
+    },
+
+    conform = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+      },
+    }
+  },
+
+  misc = {
+    treesitter = {
+      "latex",
+      "query",
+      "terraform",
+      "yuck",
+      "bash",
+      "fish",
+      "norg",
+    },
+
+    lsp = { { name = "sqlls" } },
+
+    conform = {
+      formatters_by_ft = {
+        markdown = { "prettier" },
+      },
+    },
+  },
+
+  nix = {
+    treesitter = { "nix" },
+    lsp = { { name = "rnix", mason = false } },
+  },
+
+  php = {
+    treesitter = { "twig", "php" },
+
+    lsp = {
+      {
+        name = "phpactor",
+        mason = false,
+        setup = {
+          init_options = {
+            ["language_server_phpstan.enabled"] = true,
+            ["language_server_psalm.enabled"] = true,
+          },
+        },
+      },
+    },
+
+    conform = {
+      formatters_by_ft = {
+        php = { "php" },
+      },
+
+      formatters = {
+        php = {
+          command = "./vendor/bin/php-cs-fixer",
+          args = {
+            "fix",
+            "$FILENAME",
+          },
+          stdin = false,
+        },
+      },
+    },
+  },
+
+  python = {
+    treesitter = { "python" },
+    lsp = { { name = "pyright", mason = false } },
+
+    conform = {
+      formatters_by_ft = {
+        python = { "isort", "black" },
+      },
+    }
+  },
+
+  rust = {
+    treesitter = { "rust" },
+
+    lsp = {
+      {
+        name = "rust_analyzer",
+        lsp_config = false,
+        mason = false,
+      },
+    },
+
+    plugins = {
+      {
+        "mrcjkb/rustaceanvim",
+        version = "^4", -- Recommended
+        ft = { "rust" },
+      },
+    }
+  },
+
+  web = {
+    treesitter = {
+      "css",
+      "html",
+      "javascript",
+      "scss",
+      "svelte",
+      "tsx",
+      "typescript",
+    },
+
+    lsp = {
+      {
+        name = "cssls",
+      },
+      {
+        name = "svelte",
+      },
+      {
+        name = "tsserver",
+      },
+    },
+
+    plugins = {
+      {
+        "NvChad/nvim-colorizer.lua",
+        ft = { "css", "sass", "scss" },
+        opts = {
+          user_default_options = {
+            rgb_fn = true,
+            hsl_fn = true,
+          },
+        },
+      },
+    },
+
+    linters = {
+      javascript = { "eslint" },
+      javascriptreact = { "eslint" },
+      typescript = { "eslint" },
+      typescriptreact = { "eslint" },
+    }
+  },
 }
 
 local default_module = {
@@ -42,35 +250,32 @@ local M = {
   linters = {},
 }
 
-for _, pack in pairs(packages) do
-  local require_ok, module_conf = pcall(require, "languages." .. pack)
-  if require_ok then
-    local module = utils.table_merge_copy(default_module, module_conf)
+for _, module_conf in pairs(packages) do
+  local module = utils.table_merge_copy(default_module, module_conf)
 
-    for _, ts in pairs(module.treesitter) do
-      table.insert(M.treesitter, ts)
+  for _, ts in pairs(module.treesitter) do
+    table.insert(M.treesitter, ts)
+  end
+
+  for _, lsp_conf in pairs(module.lsp) do
+    local lsp = utils.table_merge_copy(default_lsp, lsp_conf)
+
+    if lsp.mason then
+      table.insert(M.mason_include, lsp.name)
+    else
+      table.insert(M.mason_exclude, lsp.name)
     end
 
-    for _, lsp_conf in pairs(module.lsp) do
-      local lsp = utils.table_merge_copy(default_lsp, lsp_conf)
-
-      if lsp.mason then
-        table.insert(M.mason_include, lsp.name)
-      else
-        table.insert(M.mason_exclude, lsp.name)
-      end
-
-      if lsp.lsp_config then
-        lsp_config[lsp.name] = lsp.setup
-      end
+    if lsp.lsp_config then
+      lsp_config[lsp.name] = lsp.setup
     end
+  end
 
-    utils.table_merge(M.conform, module.conform)
-    utils.table_merge(M.linters, module.linters)
+  utils.table_merge(M.conform, module.conform)
+  utils.table_merge(M.linters, module.linters)
 
-    for _, plugin in pairs(module.plugins) do
-      table.insert(M.plugins, plugin)
-    end
+  for _, plugin in pairs(module.plugins) do
+    table.insert(M.plugins, plugin)
   end
 end
 
@@ -83,6 +288,5 @@ function M.setup_lsp()
     lspconfig[name].setup(setup)
   end
 end
-
 
 return M
