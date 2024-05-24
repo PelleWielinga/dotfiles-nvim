@@ -7,34 +7,32 @@ local packages = {
   },
 
   clojure = {
-    {
-      treesitter = {
-        "clojure",
-      },
+    treesitter = {
+      "clojure",
+    },
 
-      lsp = {
-        {
-          name = "clojure_lsp",
-          mason = false,
-        }
-      },
-
-      plugins = {
-        {
-          "Olical/conjure",
-          ft = { "clojure" },
-        },
-
-        {
-          "guns/vim-sexp",
-          ft = { "clojure", "yuck" },
-        },
-
-        {
-          "tpope/vim-sexp-mappings-for-regular-people",
-          ft = { "clojure", "yuck" },
-        },
+    lsp = {
+      {
+        name = "clojure_lsp",
+        mason = false,
       }
+    },
+
+    plugins = {
+      {
+        "Olical/conjure",
+        ft = { "clojure" },
+      },
+
+      {
+        "guns/vim-sexp",
+        ft = { "clojure", "yuck" },
+      },
+
+      {
+        "tpope/vim-sexp-mappings-for-regular-people",
+        ft = { "clojure", "yuck" },
+      },
     }
   },
 
@@ -117,7 +115,8 @@ local packages = {
 
   nix = {
     treesitter = { "nix" },
-    lsp = { { name = "rnix", mason = false } },
+    lsp = { { name = "nil_ls", mason = false } },
+    conform = { formatters_by_ft = { nix = { "nixfmt" } } }
   },
 
   php = {
@@ -235,6 +234,23 @@ local packages = {
             hsl_fn = true,
           },
         },
+      },
+      {
+        "windwp/nvim-ts-autotag",
+        event = "VeryLazy",
+        config = function()
+          require 'nvim-treesitter.configs'.setup {
+            autotag = {
+              enable = true,
+            }
+          }
+        end
+      }
+    },
+
+    conform = {
+      formatters_by_ft = {
+        javascript = { "prettierd" },
       },
     },
 
