@@ -108,20 +108,6 @@ return {
   },
 
   {
-    "mfussenegger/nvim-lint",
-    event = "VeryLazy",
-    config = function()
-      require("lint").linters_by_ft = require("languages").linters
-
-      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        callback = function()
-          require("lint").try_lint()
-        end,
-      })
-    end,
-  },
-
-  {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
