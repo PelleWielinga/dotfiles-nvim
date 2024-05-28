@@ -14,8 +14,8 @@ return {
     opts = {
       modes = {
         char = {
-          enabled = false
-        }
+          enabled = false,
+        },
       },
     },
     keys = {
@@ -121,5 +121,19 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     event = "VeryLazy",
     opts = {},
+  },
+  {
+    "benlubas/molten-nvim",
+    version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
+    keys = {
+      { "<leader>mi", "<cmd>MoltenInit<cr>", desc = "Molten init" },
+      { "<leader>mr", "<cmd>MoltenRestart<cr>", desc = "Molten restart" },
+      { "<leader>me", "<cmd>MoltenEvaluateLine<cr>", desc = "Molten evaluate line" },
+      { "<leader>me", "<cmd>MoltenEvaluateVisual<cr>", mode = "v", desc = "Molten evaluate selection" },
+      { "]o", "<cmd>MoltenNext<cr>", desc = "Next Molten output" },
+      { "[o", "<cmd>MoltenPrev<cr>", desc = "Previous Molten output" },
+    },
+    build = ":UpdateRemotePlugins",
+    init = function() end,
   },
 }
