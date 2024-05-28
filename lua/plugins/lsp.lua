@@ -29,7 +29,7 @@ return {
             },
           },
         },
-        ensure_installed = require("languages").treesitter,
+        -- ensure_installed = require("languages").treesitter,
       })
     end,
   },
@@ -136,7 +136,6 @@ return {
       {
         "<leader>tn",
         function()
-          vim.cmd("w")
           require("neotest").run.run()
         end,
         desc = "Test nearest",
@@ -145,7 +144,6 @@ return {
       {
         "<leader>tl",
         function()
-          vim.cmd("w")
           require("neotest").run.run_last()
         end,
         desc = "Test last",
@@ -153,8 +151,14 @@ return {
       {
         "<leader>tf",
         function()
-          vim.cmd("w")
           require("neotest").run.run(vim.fn.expand("%"))
+        end,
+        desc = "Test file",
+      },
+      {
+        "<leader>td",
+        function()
+          require("neotest").run.run({ strategy = "dap" })
         end,
         desc = "Test file",
       },
@@ -184,6 +188,7 @@ return {
           require("neotest-rust"),
           require("neotest-python")({
             args = { "-vv" },
+            dap = { justMyCode = false },
           }),
           require("neotest-go"),
         },

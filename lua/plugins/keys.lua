@@ -18,21 +18,26 @@ return {
 
       ["<leader>"] = {
         a = { vim.lsp.buf.code_action, "Code actions" },
+        b = {
+          name = "Buffer actions",
+          d = { [[<cmd>bn<cr><cmd>bd#<cr>]], "Close buffer without closing window" },
+        },
+        d = { name = "Debug" },
         f = { name = "Find" },
         g = { name = "Git" },
+        h = { name = "Harpoon" },
         l = {
           name = "LSP",
           t = { vim.lsp.buf.type_definition, "Goto type definition" },
           s = { vim.lsp.buf.signature_help, "Signature help" },
         },
-        b = {
-          name = "Buffer actions",
-          d = { [[<cmd>bn<cr><cmd>bd#<cr>]], "Close buffer without closing window" },
-        },
+        m = { name = "Molten" },
         r = {
           name = "Refactor",
           r = { vim.lsp.buf.rename, "Rename variable" },
         },
+        t = { name = "Test" },
+        x = { name = "Extra" },
       },
 
       g = {
