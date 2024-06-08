@@ -68,6 +68,13 @@ return {
         end,
         desc = "Find references",
       },
+      {
+        "<leader>fp",
+        function()
+          require("lib.project_picker").projects()
+        end,
+        desc = "Find projects",
+      },
     },
   },
 
@@ -124,35 +131,6 @@ return {
         },
       },
     },
-  },
-
-  {
-    "nvim-telescope/telescope-project.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-    },
-    keys = {
-      {
-        "<leader>fp",
-        "<cmd>Telescope project<cr>",
-        "Telescope projects",
-      },
-    },
-    config = function()
-      local telescope = require("telescope")
-
-      telescope.setup({
-        extensions = {
-          project = {
-            base_dirs = { "~/dev", max_depth = 4 },
-            order_by = "recent",
-            search_by = "path",
-          },
-        },
-      })
-
-      telescope.load_extension("project")
-    end,
   },
 
   {

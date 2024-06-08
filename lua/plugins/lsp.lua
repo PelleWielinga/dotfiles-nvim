@@ -29,7 +29,7 @@ return {
             },
           },
         },
-        -- ensure_installed = require("languages").treesitter,
+        ensure_installed = "all",
       })
     end,
   },

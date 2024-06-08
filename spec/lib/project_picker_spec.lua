@@ -1,0 +1,8 @@
+describe("Plugin Configuration", function()
+  it("should load plugins without errors", function()
+    assert.has_no.errors(function()
+      local projects = require("lua.lib.project_picker")
+      projects._get_projects()
+    end)
+  end)
+end)

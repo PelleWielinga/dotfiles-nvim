@@ -55,7 +55,15 @@ local packages = {
           settings = {
             Lua = {
               diagnostics = {
-                globals = { "vim", "describe" },
+                globals = {
+                  "vim",
+                  "describe",
+                  "it",
+                  "before_each",
+                  "after_each",
+                  "setup",
+                  "teardown"
+                },
               },
               workspace = {
                 library = {
@@ -140,7 +148,7 @@ local packages = {
     treesitter = { "python" },
     lsp = {
       { name = "pyright", mason = false },
-      { name = "ruff", mason = false },
+      { name = "ruff",    mason = false },
     },
 
     conform = {

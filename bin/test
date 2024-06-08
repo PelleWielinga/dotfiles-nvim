@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+COMMAND="clear && busted -m ./lua/?.lua && echo && luacheck -q lua spec"
+
+sh -c "$COMMAND"
+reflex -d none -r '\.lua$' -- sh -c "$COMMAND"

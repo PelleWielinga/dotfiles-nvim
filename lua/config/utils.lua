@@ -35,21 +35,28 @@ function M.table_deep_copy(t)
   return result
 end
 
-local function dump(o)
-   if type(o) == 'table' then
-      local s = '{ '
-      for k,v in pairs(o) do
-         if type(k) ~= 'number' then k = '"'..k..'"' end
-         s = s .. '['..k..'] = ' .. dump(v) .. ','
+function M.dump(object, indent)
+  if type(object) == 'table' then
+    local new_indent = indent .. '  '
+
+    local s = '{\n'
+    for key, v in pairs(object) do
+      if type(key) == 'number' then
+        s = s .. new_indent .. M.dump(v, new_indent) .. ',\n'
+      else
+        s = s .. new_indent .. "'" .. key .. "' = " .. M.dump(v, new_indent) .. ',\n'
       end
-      return s .. '} '
-   else
-      return tostring(o)
-   end
+    end
+    return s .. indent .. '}'
+  elseif type(object) == 'string' then
+    return "'" .. object .. "'"
+  else
+    return tostring(object)
+  end
 end
 
 function M.pretty_print(o)
-  print(dump(o))
+  print(M.dump(o, ""))
 end
 
 return M
