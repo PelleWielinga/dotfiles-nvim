@@ -17,23 +17,6 @@ local packages = {
         mason = false,
       }
     },
-
-    plugins = {
-      {
-        "Olical/conjure",
-        ft = { "clojure" },
-      },
-
-      {
-        "guns/vim-sexp",
-        ft = { "clojure", "yuck" },
-      },
-
-      {
-        "tpope/vim-sexp-mappings-for-regular-people",
-        ft = { "clojure", "yuck" },
-      },
-    }
   },
 
   data = {
@@ -155,7 +138,10 @@ local packages = {
 
   python = {
     treesitter = { "python" },
-    lsp = { { name = "pyright", mason = false } },
+    lsp = {
+      { name = "pyright", mason = false },
+      { name = "ruff", mason = false },
+    },
 
     conform = {
       formatters_by_ft = {
@@ -191,14 +177,6 @@ local packages = {
         mason = false,
       },
     },
-
-    plugins = {
-      {
-        "mrcjkb/rustaceanvim",
-        version = "^4", -- Recommended
-        ft = { "rust" },
-      },
-    }
   },
 
   web = {
@@ -224,30 +202,6 @@ local packages = {
       },
     },
 
-    plugins = {
-      {
-        "NvChad/nvim-colorizer.lua",
-        ft = { "css", "sass", "scss" },
-        opts = {
-          user_default_options = {
-            rgb_fn = true,
-            hsl_fn = true,
-          },
-        },
-      },
-      {
-        "windwp/nvim-ts-autotag",
-        event = "VeryLazy",
-        config = function()
-          require 'nvim-treesitter.configs'.setup {
-            autotag = {
-              enable = true,
-            }
-          }
-        end
-      }
-    },
-
     conform = {
       formatters_by_ft = {
         javascript = { "prettierd" },
@@ -268,7 +222,6 @@ local default_module = {
   lsp = {},
   conform = {},
   linters = {},
-  plugins = {},
 }
 
 local default_lsp = {
@@ -284,7 +237,6 @@ local M = {
   treesitter = {},
   mason_include = {},
   mason_exclude = {},
-  plugins = {},
   conform = {}, -- formatting
   linters = {},
 }
@@ -316,10 +268,6 @@ for _, module_conf in pairs(packages) do
 
   utils.table_merge(M.conform, module.conform)
   utils.table_merge(M.linters, module.linters)
-
-  for _, plugin in pairs(module.plugins) do
-    table.insert(M.plugins, plugin)
-  end
 end
 
 function M.setup_lsp()
