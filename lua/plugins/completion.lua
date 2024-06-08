@@ -1,9 +1,5 @@
 return {
   {
-    "github/copilot.vim",
-    event = "VeryLazy",
-  },
-  {
     "hrsh7th/nvim-cmp",
     event = "VeryLazy",
     dependencies = {

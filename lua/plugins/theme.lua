@@ -1,13 +1,13 @@
 return {
   {
-    "folke/tokyonight.nvim",
+    "rebelot/kanagawa.nvim",
 
     -- Since start plugins can possibly change existing highlight groups,
     -- it's important to make sure that your main colorscheme is loaded first.
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme tokyonight-night]])
+      vim.cmd([[colorscheme kanagawa-dragon]])
     end,
   },
 

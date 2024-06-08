@@ -126,6 +126,11 @@ return {
     event = "VeryLazy",
     opts = {},
   },
+  {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    opts = {},
+  },
   { "folke/neodev.nvim", opts = {} },
   {
     "benlubas/molten-nvim",
