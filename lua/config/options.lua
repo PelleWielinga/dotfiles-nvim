@@ -15,6 +15,7 @@ local options = {
   tabstop = 4,
   shiftwidth = 4,
   cursorline = true,
+  relativenumber = true,
 
   -- Maximum number of items to show in a popup menu. Useful for limiting
   -- options in autocompletion.
