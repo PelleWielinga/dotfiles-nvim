@@ -51,6 +51,10 @@ return {
 
       ["[d"] = { prev_diagnostic, "Previous diagnostic" },
       ["]d"] = { next_diagnostic, "Next diagnostic" },
+
+      -- Repeat for magic strdy
+      ["[:"] = { prev_diagnostic, "Previous diagnostic" },
+      ["]:"] = { next_diagnostic, "Next diagnostic" },
     })
 
     wk.register({
