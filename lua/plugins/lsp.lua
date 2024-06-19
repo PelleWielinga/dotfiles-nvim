@@ -109,11 +109,31 @@ return {
 
   {
     "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {},
-    keys = {
-      { "<leader>dt", "<cmd>Trouble<cr>", desc = "Open Trouble window" },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "nvim-telescope/telescope.nvim",
     },
+    keys = {
+      { "<leader>xx", "<cmd>Trouble diagnostics open focus=true<cr>", desc = "Trouble diagnostics" },
+      { "<leader>xc", "<cmd>Trouble symbols open focus=true<cr>",     desc = "Trouble symbols" },
+      { "<leader>xr", "<cmd>Trouble lsp open focus=true<cr>",         desc = "Trouble lsp" },
+    },
+    config = function()
+      require("trouble").setup({
+        auto_close = true
+      })
+
+      local open_with_trouble = require("trouble.sources.telescope").open
+      local telescope = require("telescope")
+      telescope.setup({
+        defaults = {
+          mappings = {
+            i = { ["<c-t>"] = open_with_trouble },
+            n = { ["<c-t>"] = open_with_trouble },
+          },
+        },
+      })
+    end
   },
 
   {
@@ -134,19 +154,32 @@ return {
         desc = "Show test output",
       },
       {
+        "<leader>tp",
+        function()
+          require("neotest").output_panel.open({ enter = true })
+        end,
+        desc = "Show test output panel",
+      },
+      {
         "<leader>tn",
         function()
           require("neotest").run.run()
         end,
         desc = "Test nearest",
       },
-
       {
         "<leader>tl",
         function()
           require("neotest").run.run_last()
         end,
         desc = "Test last",
+      },
+      {
+        "<leader>tw",
+        function()
+          require("neotest").watch.toggle(vim.fn.expand("%"))
+        end,
+        desc = "Watch file",
       },
       {
         "<leader>tf",
@@ -176,6 +209,21 @@ return {
       },
       {
         "[n",
+        function()
+          require("neotest").jump.prev({ status = "failed" })
+        end,
+        desc = "Previous failed test",
+      },
+      -- Duplicates for magic strdy
+      {
+        "]=",
+        function()
+          require("neotest").jump.next({ status = "failed" })
+        end,
+        desc = "Next failed test",
+      },
+      {
+        "[=",
         function()
           require("neotest").jump.prev({ status = "failed" })
         end,
