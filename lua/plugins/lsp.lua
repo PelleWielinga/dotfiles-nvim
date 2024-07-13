@@ -101,6 +101,10 @@ return {
 
       local opts = {
         notify_on_error = true,
+        format_on_save = {
+          timeout_ms = 500,
+          lsp_format = "fallback",
+        },
       }
 
       require("conform").setup(utils.table_merge(opts, languages.conform))
@@ -115,12 +119,12 @@ return {
     },
     keys = {
       { "<leader>xx", "<cmd>Trouble diagnostics open focus=true<cr>", desc = "Trouble diagnostics" },
-      { "<leader>xc", "<cmd>Trouble symbols open focus=true<cr>",     desc = "Trouble symbols" },
-      { "<leader>xr", "<cmd>Trouble lsp open focus=true<cr>",         desc = "Trouble lsp" },
+      { "<leader>xc", "<cmd>Trouble symbols open focus=true<cr>", desc = "Trouble symbols" },
+      { "<leader>xr", "<cmd>Trouble lsp open focus=true<cr>", desc = "Trouble lsp" },
     },
     config = function()
       require("trouble").setup({
-        auto_close = true
+        auto_close = true,
       })
 
       local open_with_trouble = require("trouble.sources.telescope").open
@@ -133,7 +137,7 @@ return {
           },
         },
       })
-    end
+    end,
   },
 
   {
