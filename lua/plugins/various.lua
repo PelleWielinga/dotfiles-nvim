@@ -115,14 +115,14 @@ return {
       })
     end,
   },
-  {
-    "willothy/savior.nvim",
-    dependencies = { "j-hui/fidget.nvim" },
-    event = { "InsertEnter", "TextChanged" },
-    opts = {
-      notify = false
-    },
-  },
+  -- {
+  --   "willothy/savior.nvim",
+  --   dependencies = { "j-hui/fidget.nvim" },
+  --   event = { "InsertEnter", "TextChanged" },
+  --   opts = {
+  --     notify = false
+  --   },
+  -- },
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "VeryLazy",
