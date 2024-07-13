@@ -24,6 +24,10 @@ local packages = {
     lsp = { { name = "jsonls" } },
   },
 
+  gleam = {
+
+  },
+
   go = {
     treesitter = { "go", "templ" },
     lsp = {
@@ -32,7 +36,12 @@ local packages = {
     },
     setup = function()
       vim.filetype.add({ extension = { templ = "templ" } })
-    end
+    end,
+    conform = {
+      formatters_by_ft = {
+        go = { "golines" },
+      },
+    }
   },
 
   haskell = {
