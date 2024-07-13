@@ -25,6 +25,8 @@
         {
           default = pkgs.mkShell {
             buildInputs = [
+              pkgs.stylua
+
               rocks.luafilesystem
               rocks.busted
               rocks.luacheck
