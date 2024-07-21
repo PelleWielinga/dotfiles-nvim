@@ -24,7 +24,7 @@ return {
         term:toggle()
       end
 
-      wk.register({ [key] = { toggle, name } }, { prefix = "<leader>e" })
+      wk.add({ "<leader>e" .. key, toggle, desc = name })
     end
 
     local function register_generic_term(index)
@@ -43,16 +43,20 @@ return {
         end
       end
 
-      wk.register({ ["<A-" .. index .. ">"] = { toggle, name } }, { mode = { "n", "t", "i" } })
+      wk.add({
+        { "<A-" .. index .. ">", toggle, desc = name, mode = { "n", "t", "i" } },
+      })
     end
 
-    wk.register({ ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", "Toggle terminal" } }, { mode = { "n", "i", "t" } })
+    wk.add({
+      { "<C-\\>", "<cmd>ToggleTerm<cr>", desc = "Toggle terminal", mode = { "i", "n", "t" } },
+    })
 
     for i = 1, 5 do
       register_generic_term(i)
     end
 
-    wk.register({ ["<leader>e"] = { name = "Execute" } })
+    wk.add({ { "<leader>e", group = "Execute" } })
 
     simple_command("g", "lazygit", "Lazygit")
     simple_command("c", "cmatrix", "CMatrix")

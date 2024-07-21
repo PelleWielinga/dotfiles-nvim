@@ -13,75 +13,65 @@ return {
       vim.diagnostic.goto_prev({ border = "rounded" })
     end
 
-    wk.register({
-      ["<C-x>"] = { ":wa<cr>:qa<cr>", "Save and close all" },
+    wk.add({
+      { "<c-x>", ":wqa!<cr>", desc = "Save and close all" },
+      { "<leader>a", vim.lsp.buf.code_action, desc = "Code actions" },
 
-      ["<leader>"] = {
-        a = { vim.lsp.buf.code_action, "Code actions" },
-        b = {
-          name = "Buffer actions",
-          d = { [[<cmd>bn<cr><cmd>bd#<cr>]], "Close buffer without closing window" },
-        },
-        d = { name = "Debug" },
-        f = { name = "Find" },
-        g = { name = "Git" },
-        h = { name = "Harpoon" },
-        l = {
-          name = "LSP",
-          t = { vim.lsp.buf.type_definition, "Goto type definition" },
-          s = { vim.lsp.buf.signature_help, "Signature help" },
-        },
-        m = { name = "Molten" },
-        r = {
-          name = "Refactor",
-          r = { vim.lsp.buf.rename, "Rename variable" },
-        },
-        t = { name = "Test" },
-        x = { name = "Extra" },
+      { "<leader>b", group = "Buffer actions" },
+      { "<leader>bd", "<cmd>bn<cr><cmd>bd#<cr>", desc = "Close buffer without closing window" },
+
+      { "<leader>d", group = "Debug" },
+      { "<leader>f", group = "Find" },
+      { "<leader>g", group = "Git" },
+      { "<leader>h", group = "Harpoon" },
+
+      { "<leader>l", group = "LSP" },
+      { "<leader>ls", vim.lsp.buf.type_definition, desc = "Signature help" },
+      { "<leader>lt", vim.lsp.buf.signature_help, desc = "Goto type definition" },
+
+      { "<leader>m", group = "Molten" },
+
+      { "<leader>r", group = "Refactor" },
+      { "<leader>rr", vim.lsp.buf.rename, desc = "Rename variable" },
+
+      { "<leader>t", group = "Test" },
+      { "<leader>x", group = "Extra" },
+
+      { "K", vim.lsp.buf.hover, desc = "Hover" },
+
+      { "[:", vim.lsp.buf.prev_diagnostic, desc = "Previous diagnostic" },
+      { "[d", vim.lsp.buf.prev_diagnostic, desc = "Previous diagnostic" },
+      { "]:", vim.lsp.buf.next_diagnostic, desc = "Next diagnostic" },
+      { "]d", vim.lsp.buf.next_diagnostic, desc = "Next diagnostic" },
+
+      { "gD", vim.lsp.buf.declaration, desc = "Goto declaration" },
+      { "gd", vim.lsp.buf.definition, desc = "Goto definition" },
+      { "gi", vim.lsp.buf.implementation, desc = "Goto implementation" },
+      { "gl", vim.diagnostic.open_float, desc = "Open diagnostic float" },
+
+      { "<", "<gv", desc = "Shift left", mode = "v" },
+      { ">", ">gv", desc = "Shift right", mode = "v" },
+
+      {
+        mode = { "n", "v" },
+        -- Redefined down/up half a screen to be a bit slower. Easier to track across the screen.
+        { "<C-d>", "10j", desc = "Move down fast" },
+        { "<C-u>", "10k", desc = "Move up fast" },
+        { "<PageDown>", "10j", desc = "Move down fast" },
+        { "<PageUp>", "10k", desc = "Move up fast" },
       },
 
-      g = {
-        D = { vim.lsp.buf.declaration, "Goto declaration" },
-        d = { vim.lsp.buf.definition, "Goto definition" },
-        i = { vim.lsp.buf.implementation, "Goto implementation" },
-        l = { vim.diagnostic.open_float, "Open diagnostic float" }, -- Duplicate binding?
+      {
+        mode = { "i", "n", "t" },
+        { "<C-Down>", "<Cmd>wincmd j<CR>", desc = "Focus split to below" },
+        { "<C-Left>", "<Cmd>wincmd h<CR>", desc = "Focus split to the left" },
+        { "<C-Right>", "<Cmd>wincmd l<CR>", desc = "Focus split to the right" },
+        { "<C-Up>", "<Cmd>wincmd k<CR>", desc = "Focus split to above" },
+        { "<C-h>", "<Cmd>wincmd h<CR>", desc = "Focus split to the left" },
+        { "<C-j>", "<Cmd>wincmd j<CR>", desc = "Focus split to below" },
+        { "<C-k>", "<Cmd>wincmd k<CR>", desc = "Focus split to above" },
+        { "<C-l>", "<Cmd>wincmd l<CR>", desc = "Focus split to the right" },
       },
-
-      K = { vim.lsp.buf.hover, "Hover" },
-
-      ["[d"] = { prev_diagnostic, "Previous diagnostic" },
-      ["]d"] = { next_diagnostic, "Next diagnostic" },
-
-      -- Repeat for magic strdy
-      ["[:"] = { prev_diagnostic, "Previous diagnostic" },
-      ["]:"] = { next_diagnostic, "Next diagnostic" },
-    })
-
-    wk.register({
-      -- Redefined down/up half a screen to be a bit slower. Easier to track across the screen.
-      ["<C-d>"] = { "10j", "Move down fast" },
-      ["<PageDown>"] = { "10j", "Move down fast" },
-      ["<C-u>"] = { "10k", "Move up fast" },
-      ["<PageUp>"] = { "10k", "Move up fast" },
-    }, { mode = { "n", "v" } })
-
-    wk.register({
-      [">"] = { ">gv", "Shift right" },
-      ["<"] = { "<gv", "Shift left" },
-    }, { mode = "v" })
-
-    wk.register({
-      ["<C-h>"] = { [[<Cmd>wincmd h<CR>]], "Focus split to the left" },
-      ["<C-l>"] = { [[<Cmd>wincmd l<CR>]], "Focus split to the right" },
-      ["<C-j>"] = { [[<Cmd>wincmd j<CR>]], "Focus split to below" },
-      ["<C-k>"] = { [[<Cmd>wincmd k<CR>]], "Focus split to above" },
-
-      ["<C-Left>"] = { [[<Cmd>wincmd h<CR>]], "Focus split to the left" },
-      ["<C-Right>"] = { [[<Cmd>wincmd l<CR>]], "Focus split to the right" },
-      ["<C-Down>"] = { [[<Cmd>wincmd j<CR>]], "Focus split to below" },
-      ["<C-Up>"] = { [[<Cmd>wincmd k<CR>]], "Focus split to above" },
-    }, {
-      mode = { "t", "i", "n" },
     })
   end,
 }
