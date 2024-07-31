@@ -1,9 +1,8 @@
 local utils = require("config.utils")
 
-
 local packages = {
   c = {
-    treesitter = { "c", "cpp" }
+    treesitter = { "c", "cpp" },
   },
 
   clojure = {
@@ -15,7 +14,7 @@ local packages = {
       {
         name = "clojure_lsp",
         mason = false,
-      }
+      },
     },
   },
 
@@ -24,15 +23,13 @@ local packages = {
     lsp = { { name = "jsonls" } },
   },
 
-  gleam = {
-
-  },
+  gleam = {},
 
   go = {
     treesitter = { "go", "templ" },
     lsp = {
       { name = "gopls" },
-      { name = "templ" }
+      { name = "templ" },
     },
     setup = function()
       vim.filetype.add({ extension = { templ = "templ" } })
@@ -41,16 +38,16 @@ local packages = {
       formatters_by_ft = {
         go = { "golines" },
       },
-    }
+    },
   },
 
   haskell = {
     treesitter = { "haskell" },
-    lsp = { { name = "hls", mason = false } }
+    lsp = { { name = "hls", mason = false } },
   },
 
   java = {
-    treesitter = { "java", "kotlin" }
+    treesitter = { "java", "kotlin" },
   },
 
   lua = {
@@ -71,7 +68,7 @@ local packages = {
                   "before_each",
                   "after_each",
                   "setup",
-                  "teardown"
+                  "teardown",
                 },
               },
               workspace = {
@@ -83,14 +80,14 @@ local packages = {
             },
           },
         },
-      }
+      },
     },
 
     conform = {
       formatters_by_ft = {
         lua = { "stylua" },
       },
-    }
+    },
   },
 
   misc = {
@@ -116,7 +113,7 @@ local packages = {
   nix = {
     treesitter = { "nix" },
     lsp = { { name = "nil_ls", mason = false } },
-    conform = { formatters_by_ft = { nix = { "nixfmt" } } }
+    conform = { formatters_by_ft = { nix = { "nixfmt" } } },
   },
 
   php = {
@@ -157,7 +154,7 @@ local packages = {
     treesitter = { "python" },
     lsp = {
       { name = "pyright", mason = false },
-      { name = "ruff",    mason = false },
+      -- { name = "ruff",    mason = false },
     },
 
     conform = {
@@ -170,7 +167,7 @@ local packages = {
           cwd = function()
             vim.fn.getcwd()
           end,
-          prepend_args = { "--profile=black" }
+          prepend_args = { "--profile=black" },
         },
 
         black = {
@@ -178,10 +175,10 @@ local packages = {
             vim.fn.getcwd()
           end,
 
-          prepend_args = { "--line-length", "100" }
+          prepend_args = { "--line-length", "100" },
         },
-      }
-    }
+      },
+    },
   },
 
   rust = {
@@ -230,7 +227,7 @@ local packages = {
       javascriptreact = { "eslint" },
       typescript = { "eslint" },
       typescriptreact = { "eslint" },
-    }
+    },
   },
 }
 
