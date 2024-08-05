@@ -28,7 +28,7 @@ local packages = {
   go = {
     treesitter = { "go", "templ" },
     lsp = {
-      { name = "gopls" },
+      { name = "gopls", mason = "false" },
       { name = "templ" },
     },
     setup = function()
