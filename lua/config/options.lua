@@ -32,15 +32,12 @@ vim.g.neovide_scale_factor = 0.8
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   pattern = "*",
   callback = function()
-    local file_path = vim.fn.expand("%:p")
-    local buftype = vim.bo.buftype
-
-    if file_path == "" or buftype ~= "" then
+    if vim.bo.buftype ~= "" or vim.bo.bufhidden then
       -- If the buffer does not represent a file, do nothing.
       return
     end
 
-    if vim.fn.filereadable(file_path) == 0 then
+    if vim.fn.filereadable(vim.fn.expand("%:p")) == 0 then
       -- If the file doesn't exist, close the buffer
       vim.cmd("bdelete")
     else
