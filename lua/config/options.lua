@@ -16,6 +16,7 @@ local options = {
   shiftwidth = 4,
   cursorline = true,
   relativenumber = true,
+  autoread = true,
 
   -- Maximum number of items to show in a popup menu. Useful for limiting
   -- options in autocompletion.
@@ -27,3 +28,8 @@ for k, v in pairs(options) do
 end
 
 vim.g.neovide_scale_factor = 0.8
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+  pattern = "*",
+  command = "checktime",
+})
