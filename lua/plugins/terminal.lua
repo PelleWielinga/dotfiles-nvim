@@ -8,16 +8,14 @@ return {
 
     toggleterm.setup({
       size = 30,
-      on_open = function()
-        vim.cmd("startinsert!")
-      end,
+      start_in_insert = true,
     })
 
     local function simple_command(key, cmd, name)
       local term = Terminal:new({
         cmd = cmd,
         hidden = true,
-        direction = "tab",
+        direction = "float",
       })
 
       local function toggle()
@@ -37,7 +35,6 @@ return {
           term:open()
         elseif not term:is_focused() then
           term:focus()
-          vim.cmd("startinsert!")
         else
           term:close()
         end

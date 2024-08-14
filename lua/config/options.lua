@@ -29,20 +29,29 @@ end
 
 vim.g.neovide_scale_factor = 0.8
 
+local autoupdatefile = vim.api.nvim_create_augroup("autoupdatefile", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufNewFile" }, {
+  pattern = "*",
+  group = autoupdatefile,
+  callback = function(event)
+    -- vim.notify("new file")
+    vim.cmd("w " .. event.file)
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   pattern = "*",
-  callback = function()
-    if vim.bo.buftype ~= "" or vim.bo.bufhidden then
-      -- If the buffer does not represent a file, do nothing.
-      return
-    end
-
-    if vim.fn.filereadable(vim.fn.expand("%:p")) == 0 then
-      -- If the file doesn't exist, close the buffer
-      vim.cmd("bdelete")
+  group = autoupdatefile,
+  callback = function(event)
+    if event.file == "" then
+      -- vim.notify("not a file")
+    elseif vim.fn.filereadable(event.file) == 0 then
+      -- vim.notify("bufdelete")
+      vim.cmd("bdelete " .. event.buf)
     else
-      -- If the file exists, check for changes on disk
-      vim.cmd("checktime")
+      -- vim.notify("checktime")
+      vim.cmd("checktime " .. event.buf)
     end
   end,
 })
