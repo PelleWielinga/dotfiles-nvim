@@ -101,10 +101,6 @@ return {
 
       local opts = {
         notify_on_error = true,
-        format_on_save = {
-          timeout_ms = 500,
-          lsp_format = "fallback",
-        },
       }
 
       require("conform").setup(utils.table_merge(opts, languages.conform))

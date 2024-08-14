@@ -81,7 +81,7 @@ return {
         end,
         desc = "Previous TODO",
       },
-      { "<leader>fd", "<cmd>TodoTelescope<cr>",            desc = "Telescope TODO" },
+      { "<leader>fd", "<cmd>TodoTelescope<cr>", desc = "Telescope TODO" },
       { "<leader>df", "<cmd>TodoTrouble keywords=FIX<cr>", desc = "Trouble FIX" },
       {
         "<leader>if",
@@ -93,7 +93,7 @@ return {
           -- Why is this a? i is not working.
           vim.api.nvim_feedkeys("FIX: ", "a", true)
         end,
-        desc = "Trouble FIX"
+        desc = "Trouble FIX",
       },
     },
     dependencies = { "nvim-lua/plenary.nvim", "folke/trouble.nvim" },
@@ -115,14 +115,14 @@ return {
       })
     end,
   },
-  -- {
-  --   "willothy/savior.nvim",
-  --   dependencies = { "j-hui/fidget.nvim" },
-  --   event = { "InsertEnter", "TextChanged" },
-  --   opts = {
-  --     notify = false
-  --   },
-  -- },
+  {
+    "willothy/savior.nvim",
+    dependencies = { "j-hui/fidget.nvim" },
+    event = { "InsertEnter", "TextChanged", "BufLeave", "FocusLost" },
+    opts = {
+      notify = false,
+    },
+  },
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "VeryLazy",
@@ -138,21 +138,21 @@ return {
     "benlubas/molten-nvim",
     version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
     keys = {
-      { "<leader>mi", "<cmd>MoltenInit<cr>",             desc = "Molten init" },
-      { "<leader>mx", "<cmd>MoltenRestart<cr>",          desc = "Molten restart" },
-      { "<leader>mm", "<cmd>MoltenEvaluateLine<cr>",     desc = "Molten evaluate line" },
+      { "<leader>mi", "<cmd>MoltenInit<cr>", desc = "Molten init" },
+      { "<leader>mx", "<cmd>MoltenRestart<cr>", desc = "Molten restart" },
+      { "<leader>mm", "<cmd>MoltenEvaluateLine<cr>", desc = "Molten evaluate line" },
       { "<leader>me", "<cmd>MoltenEvaluateOperator<cr>", desc = "Molten evaluate operator" },
       {
         "<leader>me",
         "<cmd>MoltenEvaluateVisual<cr>",
         mode = "v",
-        desc = "Molten evaluate selection"
+        desc = "Molten evaluate selection",
       },
       { "<leader>mr", "<cmd>MoltenReevaluateCell<cr>", desc = "Molten re-evaluate cell" },
-      { "]o",         "<cmd>MoltenNext<cr>",           desc = "Next Molten output" },
-      { "[o",         "<cmd>MoltenPrev<cr>",           desc = "Previous Molten output" },
+      { "]o", "<cmd>MoltenNext<cr>", desc = "Next Molten output" },
+      { "[o", "<cmd>MoltenPrev<cr>", desc = "Previous Molten output" },
     },
     build = ":UpdateRemotePlugins",
-    init = function() end
+    init = function() end,
   },
 }
