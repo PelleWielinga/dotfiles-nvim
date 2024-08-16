@@ -31,14 +31,14 @@ vim.g.neovide_scale_factor = 0.8
 
 local autoupdatefile = vim.api.nvim_create_augroup("autoupdatefile", { clear = true })
 
-vim.api.nvim_create_autocmd({ "BufNewFile" }, {
-  pattern = "*",
-  group = autoupdatefile,
-  callback = function(event)
-    -- vim.notify("new file")
-    vim.cmd("w " .. event.file)
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "BufNewFile" }, {
+--   pattern = "*",
+--   group = autoupdatefile,
+--   callback = function(event)
+--     -- vim.notify("new file")
+--     vim.cmd("w " .. event.file)
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   pattern = "*",
@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
       -- vim.notify("not a file")
     elseif vim.fn.filereadable(event.file) == 0 then
       -- vim.notify("bufdelete")
-      vim.cmd("bdelete " .. event.buf)
+      -- vim.cmd("bdelete " .. event.buf)
     else
       -- vim.notify("checktime")
       vim.cmd("checktime " .. event.buf)
