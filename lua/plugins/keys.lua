@@ -39,10 +39,10 @@ return {
 
       { "K", vim.lsp.buf.hover, desc = "Hover" },
 
-      { "[:", vim.lsp.buf.prev_diagnostic, desc = "Previous diagnostic" },
-      { "[d", vim.lsp.buf.prev_diagnostic, desc = "Previous diagnostic" },
-      { "]:", vim.lsp.buf.next_diagnostic, desc = "Next diagnostic" },
-      { "]d", vim.lsp.buf.next_diagnostic, desc = "Next diagnostic" },
+      { "[:", prev_diagnostic, desc = "Previous diagnostic" },
+      { "[d", prev_diagnostic, desc = "Previous diagnostic" },
+      { "]:", next_diagnostic, desc = "Next diagnostic" },
+      { "]d", next_diagnostic, desc = "Next diagnostic" },
 
       { "gD", vim.lsp.buf.declaration, desc = "Goto declaration" },
       { "gd", vim.lsp.buf.definition, desc = "Goto definition" },
