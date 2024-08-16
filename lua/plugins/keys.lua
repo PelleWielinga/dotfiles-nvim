@@ -24,6 +24,7 @@ return {
       { "<leader>f", group = "Find" },
       { "<leader>g", group = "Git" },
       { "<leader>h", group = "Harpoon" },
+      { "<leader>o", group = "Oil" },
 
       { "<leader>l", group = "LSP" },
       { "<leader>ls", vim.lsp.buf.type_definition, desc = "Signature help" },
