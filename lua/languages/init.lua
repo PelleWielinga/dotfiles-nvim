@@ -154,7 +154,13 @@ local packages = {
     treesitter = { "python" },
     lsp = {
       { name = "pyright", mason = false },
-      -- { name = "ruff",    mason = false },
+      {
+        name = "ruff",
+        mason = false,
+        setup = {
+          cmd = { "ruff", "server", "--preview" },
+        },
+      },
     },
 
     conform = {
