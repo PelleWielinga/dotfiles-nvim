@@ -144,6 +144,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "rouge8/neotest-rust",
       "nvim-neotest/neotest-python",
+      "olimorris/neotest-phpunit",
     },
     keys = {
       {
@@ -239,6 +240,7 @@ return {
             dap = { justMyCode = false },
           }),
           require("neotest-go"),
+          require("neotest-phpunit"),
         },
       })
     end,
