@@ -17,7 +17,6 @@ local options = {
   cursorline = true,
   relativenumber = true,
   autoread = true,
-  conceallevel = 1,
 
   -- Maximum number of items to show in a popup menu. Useful for limiting
   -- options in autocompletion.
