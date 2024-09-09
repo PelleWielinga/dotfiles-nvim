@@ -105,7 +105,7 @@ local packages = {
 
     conform = {
       formatters_by_ft = {
-        markdown = { "prettier" },
+        markdown = { "prettierd" },
       },
     },
   },
@@ -153,7 +153,7 @@ local packages = {
   python = {
     treesitter = { "python" },
     lsp = {
-      { name = "pyright", mason = false },
+      { name = "basedpyright", mason = false },
       {
         name = "ruff",
         mason = false,
@@ -218,7 +218,8 @@ local packages = {
         name = "svelte",
       },
       {
-        name = "tsserver",
+        name = "ts_ls",
+        mason = false,
       },
     },
 
