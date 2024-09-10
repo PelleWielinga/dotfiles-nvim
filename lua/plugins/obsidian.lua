@@ -33,12 +33,12 @@ return {
     {
       "<leader>nb",
       [[<cmd>ObsidianBacklinks<cr>]],
-      desc = "Search for note",
+      desc = "Backlinks",
     },
     {
       "<leader>nr",
       [[<cmd>ObsidianRename<cr>]],
-      desc = "Search for note",
+      desc = "Rename",
     },
   },
   opts = {
