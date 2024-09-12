@@ -59,5 +59,8 @@ return {
     templates = {
       folder = "templates",
     },
+    follow_url_func = function(url)
+      vim.ui.open(url)
+    end,
   },
 }
