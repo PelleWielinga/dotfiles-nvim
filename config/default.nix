@@ -1,6 +1,7 @@
 {
   imports = [
     ./languages/nix.nix
+    ./languages/lua.nix
   ];
 
   colorschemes.kanagawa = {
