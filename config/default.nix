@@ -1,8 +1,10 @@
+{ pkgs, ... }:
 {
   imports = [
     ./languages/nix.nix
     ./languages/lua.nix
     ./languages/python.nix
+    ./flash.nix
   ];
 
   colorschemes.kanagawa = {
@@ -78,6 +80,13 @@
       };
     }
     {
+      action = "<cmd>lua vim.lsp.buf.code_action()<cr>";
+      key = "<leader>a";
+      options = {
+        desc = "Code actions";
+      };
+    }
+    {
       action = # lua
         ''
           :lua require("conform").format({ async = true, lsp_fallback = true })
@@ -99,22 +108,25 @@
     }
   ];
 
+  extraPlugins = [
+    pkgs.vimPlugins.nvim-surround
+  ];
+
+  extraConfigLua = # lua
+    ''
+      require("nvim-surround").setup({})
+    '';
+
   plugins = {
-    conform-nvim = {
-      enable = true;
-    };
-
-    which-key = {
-      enable = true;
-    };
-
-    lsp = {
-      enable = true;
-    };
-
-    treesitter = {
-      enable = true;
-    };
+    comment.enable = true;
+    conform-nvim.enable = true;
+    fidget.enable = true;
+    illuminate.enable = true;
+    lsp.enable = true;
+    nvim-autopairs.enable = true;
+    treesitter-context.enable = true;
+    treesitter.enable = true;
+    which-key.enable = true;
 
     mini = {
       enable = true;
@@ -123,6 +135,23 @@
           go_in = "";
           go_in_plus = "<Right>";
           go_out = "<Left>";
+        };
+      };
+    };
+
+    lualine = {
+      enable = true;
+      settings = {
+        options = {
+          globalstatus = true;
+        };
+        sections = {
+          lualine_c = [
+            {
+              __unkeyed-1 = "filename";
+              path = 1;
+            }
+          ];
         };
       };
     };

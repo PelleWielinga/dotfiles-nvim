@@ -23,24 +23,6 @@ return {
     end,
   },
 
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    opts = {
-      options = {
-        globalstatus = true,
-      },
-      sections = {
-        lualine_c = {
-          {
-            "filename",
-            path = 1,
-          },
-        },
-      },
-    },
-  },
-
   -- {
   --   "folke/noice.nvim",
   --   event = "VeryLazy",
