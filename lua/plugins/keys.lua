@@ -54,15 +54,6 @@ return {
       { ">", ">gv", desc = "Shift right", mode = "v" },
 
       {
-        mode = { "n", "v" },
-        -- Redefined down/up half a screen to be a bit slower. Easier to track across the screen.
-        { "<C-d>", "10j", desc = "Move down fast" },
-        { "<C-u>", "10k", desc = "Move up fast" },
-        { "<PageDown>", "10j", desc = "Move down fast" },
-        { "<PageUp>", "10k", desc = "Move up fast" },
-      },
-
-      {
         mode = { "i", "n", "t" },
         { "<C-Down>", "<Cmd>wincmd j<CR>", desc = "Focus split to below" },
         { "<C-Left>", "<Cmd>wincmd h<CR>", desc = "Focus split to the left" },

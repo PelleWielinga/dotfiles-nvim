@@ -42,6 +42,37 @@
     timeoutlen = 300;
   };
 
+  keymaps = [
+    {
+      action = "10j";
+      key = "<C-d>";
+      options = {
+        desc = "Move down fast";
+      };
+    }
+    {
+      action = "10k";
+      key = "<C-u>";
+      options = {
+        desc = "Move up fast";
+      };
+    }
+    {
+      action = "10j";
+      key = "<PageDown>";
+      options = {
+        desc = "Move down fast";
+      };
+    }
+    {
+      action = "10k";
+      key = "<PageUp>";
+      options = {
+        desc = "Move up fast";
+      };
+    }
+  ];
+
   plugins = {
     telescope = {
       enable = true;
