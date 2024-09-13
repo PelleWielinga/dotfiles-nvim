@@ -84,30 +84,6 @@ return {
   },
 
   {
-    "stevearc/conform.nvim",
-    event = "VeryLazy",
-    keys = {
-      {
-        "<leader>rf",
-        function()
-          require("conform").format({ async = true, lsp_fallback = true })
-        end,
-        desc = "Format buffer",
-      },
-    },
-    config = function()
-      local utils = require("config.utils")
-      local languages = require("languages")
-
-      local opts = {
-        notify_on_error = true,
-      }
-
-      require("conform").setup(utils.table_merge(opts, languages.conform))
-    end,
-  },
-
-  {
     "folke/trouble.nvim",
     dependencies = {
       "nvim-tree/nvim-web-devicons",

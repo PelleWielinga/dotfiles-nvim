@@ -1,4 +1,8 @@
 {
+  imports = [
+    ./languages/nix.nix
+  ];
+
   colorschemes.kanagawa = {
     enable = true;
     settings = {
@@ -71,9 +75,31 @@
         desc = "Move up fast";
       };
     }
+    {
+      action = # lua
+        ''
+          :lua require("conform").format({ async = true, lsp_fallback = true })
+        '';
+      key = "<leader>rf";
+      options = {
+        desc = "Conform format";
+      };
+    }
   ];
 
   plugins = {
+    conform-nvim = {
+      enable = true;
+    };
+
+    which-key = {
+      enable = true;
+    };
+
+    lsp = {
+      enable = true;
+    };
+
     telescope = {
       enable = true;
       keymaps = {

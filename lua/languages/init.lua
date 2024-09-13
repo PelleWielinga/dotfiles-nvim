@@ -110,12 +110,6 @@ local packages = {
     },
   },
 
-  nix = {
-    treesitter = { "nix" },
-    lsp = { { name = "nil_ls", mason = false } },
-    conform = { formatters_by_ft = { nix = { "nixfmt" } } },
-  },
-
   php = {
     treesitter = { "twig", "php" },
 
