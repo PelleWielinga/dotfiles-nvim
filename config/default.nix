@@ -86,6 +86,16 @@
         desc = "Conform format";
       };
     }
+    {
+      action = # lua
+        ''
+          :lua require("mini.files").open(vim.api.nvim_buf_get_name(0), false)
+        '';
+      key = "<leader>pf";
+      options = {
+        desc = "File browser";
+      };
+    }
   ];
 
   plugins = {
@@ -99,6 +109,17 @@
 
     lsp = {
       enable = true;
+    };
+
+    mini = {
+      enable = true;
+      modules.files = {
+        mappings = {
+          go_in = "";
+          go_in_plus = "<Right>";
+          go_out = "<Left>";
+        };
+      };
     };
 
     telescope = {

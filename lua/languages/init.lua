@@ -1,10 +1,6 @@
 local utils = require("config.utils")
 
 local packages = {
-  c = {
-    treesitter = { "c", "cpp" },
-  },
-
   clojure = {
     treesitter = {
       "clojure",
@@ -19,14 +15,10 @@ local packages = {
   },
 
   data = {
-    treesitter = { "json", "xml", "yaml", "toml" },
     lsp = { { name = "jsonls" } },
   },
 
-  gleam = {},
-
   go = {
-    treesitter = { "go", "templ" },
     lsp = {
       { name = "gopls", mason = false },
       { name = "templ" },
@@ -44,10 +36,6 @@ local packages = {
   haskell = {
     treesitter = { "haskell" },
     lsp = { { name = "hls", mason = false } },
-  },
-
-  java = {
-    treesitter = { "java", "kotlin" },
   },
 
   misc = {
@@ -154,16 +142,6 @@ local packages = {
   },
 
   web = {
-    treesitter = {
-      "css",
-      "html",
-      "javascript",
-      "scss",
-      "svelte",
-      "tsx",
-      "typescript",
-    },
-
     lsp = {
       {
         name = "cssls",
