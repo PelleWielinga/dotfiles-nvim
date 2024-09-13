@@ -2,6 +2,7 @@
   imports = [
     ./languages/nix.nix
     ./languages/lua.nix
+    ./languages/python.nix
   ];
 
   colorschemes.kanagawa = {
@@ -108,6 +109,10 @@
     };
 
     lsp = {
+      enable = true;
+    };
+
+    treesitter = {
       enable = true;
     };
 
