@@ -1,4 +1,3 @@
-{ ... }:
 let
   flash = str: ''<cmd>lua require("flash").'' + str + "()<cr>";
 in

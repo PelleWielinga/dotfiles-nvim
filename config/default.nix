@@ -5,6 +5,7 @@
     ./languages/lua.nix
     ./languages/python.nix
     ./flash.nix
+    ./obsidian.nix
   ];
 
   colorschemes.kanagawa = {
