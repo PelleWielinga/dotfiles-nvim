@@ -21,13 +21,6 @@ return {
         desc = "Find files",
       },
       {
-        "<leader>fg",
-        function()
-          require("telescope.builtin").live_grep()
-        end,
-        desc = "Grep",
-      },
-      {
         "<leader>fs",
         function()
           require("telescope.builtin").git_status()

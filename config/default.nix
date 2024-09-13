@@ -9,6 +9,12 @@
     };
   };
 
+  globals = {
+    mapleader = " ";
+    maplocalleader = " ";
+    neovide_scale_factor = 0.8;
+  };
+
   opts = {
     wrap = false;
     conceallevel = 2;
@@ -34,5 +40,26 @@
     termguicolors = true;
     timeout = true;
     timeoutlen = 300;
+  };
+
+  plugins = {
+    telescope = {
+      enable = true;
+      keymaps = {
+        "<leader>ff" = {
+          action = "find_files";
+          options = {
+            desc = "Telescope files";
+          };
+        };
+
+        "<leader>fg" = {
+          action = "live_grep";
+          options = {
+            desc = "Telescope grep";
+          };
+        };
+      };
+    };
   };
 }
