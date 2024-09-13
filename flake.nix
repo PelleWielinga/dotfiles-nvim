@@ -2,37 +2,44 @@
   description = "Neovim config";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixvim.url = "github:nix-community/nixvim";
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
   outputs =
-    { self, nixpkgs }:
-    let
-      supportedSystems = [
+    { nixvim, flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
         "x86_64-linux"
         "aarch64-darwin"
       ];
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
-    in
-    {
-      devShells = forAllSystems (
-        system:
+
+      perSystem =
+        { pkgs, system, ... }:
         let
-          pkgs = nixpkgsFor.${system};
-          rocks = pkgs.lua51Packages;
+          nixvimLib = nixvim.lib.${system};
+          nixvim' = nixvim.legacyPackages.${system};
+          nixvimModule = {
+            inherit pkgs;
+            module = import ./config; # import the module directly
+            # You can use `extraSpecialArgs` to pass additional arguments to your module files
+            extraSpecialArgs = {
+              # inherit (inputs) foo;
+            };
+          };
+          nvim = nixvim'.makeNixvimWithModule nixvimModule;
         in
         {
-          default = pkgs.mkShell {
-            buildInputs = [
-              pkgs.stylua
-
-              rocks.luafilesystem
-              rocks.busted
-              rocks.luacheck
-            ];
+          checks = {
+            # Run `nix flake check .` to verify that your config is not broken
+            default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
           };
-        }
-      );
+
+          packages = {
+            # Lets you run `nix run .` to start nixvim
+            default = nvim;
+          };
+        };
     };
 }

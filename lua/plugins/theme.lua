@@ -1,17 +1,5 @@
 return {
   {
-    "rebelot/kanagawa.nvim",
-
-    -- Since start plugins can possibly change existing highlight groups,
-    -- it's important to make sure that your main colorscheme is loaded first.
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd([[colorscheme kanagawa-dragon]])
-    end,
-  },
-
-  {
     "rcarriga/nvim-notify",
     lazy = false,
     priority = 1000,
