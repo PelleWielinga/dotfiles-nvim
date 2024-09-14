@@ -4,9 +4,10 @@
     ./languages/nix.nix
     ./languages/lua.nix
     ./languages/python.nix
+    ./cmp.nix
     ./flash.nix
-    ./obsidian.nix
     ./git.nix
+    ./obsidian.nix
   ];
 
   colorschemes.kanagawa = {
