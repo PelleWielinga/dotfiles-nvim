@@ -24,10 +24,16 @@ in
       key = "<leader>gb";
       options.desc = "Git blame";
     }
+    {
+      action = "<cmd>LazyGit<cr>";
+      key = "<leader>gl";
+      options.desc = "LazyGit";
+    }
   ];
 
   plugins = {
     fugitive.enable = true;
     gitsigns.enable = true;
+    lazygit.enable = true;
   };
 }
