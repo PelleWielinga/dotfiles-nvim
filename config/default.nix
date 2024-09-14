@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  lua = str: "<cmd>lua " + str + "<cr>";
+in
 {
   imports = [
     ./languages/nix.nix
@@ -108,6 +111,26 @@
       options = {
         desc = "File browser";
       };
+    }
+    {
+      action = lua "vim.lsp.buf.declaration()";
+      key = "gD";
+      options.desc = "Goto declaration";
+    }
+    {
+      action = lua "vim.lsp.buf.definition()";
+      key = "gd";
+      options.desc = "Goto definition";
+    }
+    {
+      action = lua "vim.lsp.buf.implementation()";
+      key = "gi";
+      options.desc = "Goto implementation";
+    }
+    {
+      action = lua "vim.diagnostic.open_float()";
+      key = "gl";
+      options.desc = "Open diagnostic float";
     }
   ];
 

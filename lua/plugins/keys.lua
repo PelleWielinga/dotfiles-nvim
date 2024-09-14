@@ -45,11 +45,6 @@ return {
       { "]:", next_diagnostic, desc = "Next diagnostic" },
       { "]d", next_diagnostic, desc = "Next diagnostic" },
 
-      { "gD", vim.lsp.buf.declaration, desc = "Goto declaration" },
-      { "gd", vim.lsp.buf.definition, desc = "Goto definition" },
-      { "gi", vim.lsp.buf.implementation, desc = "Goto implementation" },
-      { "gl", vim.diagnostic.open_float, desc = "Open diagnostic float" },
-
       { "<", "<gv", desc = "Shift left", mode = "v" },
       { ">", ">gv", desc = "Shift right", mode = "v" },
 
