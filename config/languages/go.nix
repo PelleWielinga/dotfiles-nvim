@@ -1,7 +1,11 @@
 { lib, pkgs, ... }:
 {
   plugins = {
-    lsp.servers.gopls.enable = true;
+    lsp.servers = {
+      gopls.enable = true;
+      templ.enable = true;
+    };
+
     conform-nvim.settings = {
       formatters_by_ft.go = [ "gofumpt" ];
       formatters.gofumpt.command = lib.getExe pkgs.gofumpt;
