@@ -5,18 +5,8 @@ return {
   config = function()
     local wk = require("which-key")
 
-    local function next_diagnostic()
-      vim.diagnostic.goto_next({ border = "rounded" })
-    end
-
-    local function prev_diagnostic()
-      vim.diagnostic.goto_prev({ border = "rounded" })
-    end
-
     wk.add({
       { "<c-x>", ":wqa!<cr>", desc = "Save and close all" },
-      { "<leader>a", vim.lsp.buf.code_action, desc = "Code actions" },
-
       { "<leader>b", group = "Buffer actions" },
       { "<leader>bd", "<cmd>bn<cr><cmd>bd#<cr>", desc = "Close buffer without closing window" },
 
@@ -29,24 +19,12 @@ return {
       { "<leader>l", group = "LSP" },
       { "<leader>ls", vim.lsp.buf.type_definition, desc = "Signature help" },
       { "<leader>lt", vim.lsp.buf.signature_help, desc = "Goto type definition" },
-
       { "<leader>m", group = "Molten" },
-
       { "<leader>r", group = "Refactor" },
-      { "<leader>rr", vim.lsp.buf.rename, desc = "Rename variable" },
-
       { "<leader>t", group = "Test" },
       { "<leader>x", group = "Extra" },
 
       { "K", vim.lsp.buf.hover, desc = "Hover" },
-
-      { "[:", prev_diagnostic, desc = "Previous diagnostic" },
-      { "[d", prev_diagnostic, desc = "Previous diagnostic" },
-      { "]:", next_diagnostic, desc = "Next diagnostic" },
-      { "]d", next_diagnostic, desc = "Next diagnostic" },
-
-      { "<", "<gv", desc = "Shift left", mode = "v" },
-      { ">", ">gv", desc = "Shift right", mode = "v" },
 
       {
         mode = { "i", "n", "t" },

@@ -135,6 +135,43 @@ in
       key = "gl";
       options.desc = "Open diagnostic float";
     }
+    {
+      key = "[:";
+      action = lua "vim.diagnostic.goto_prev()";
+      options.desc = "Previous diagnostic";
+    }
+    {
+      key = "[d";
+      action = lua "vim.diagnostic.goto_prev()";
+      options.desc = "Previous diagnostic";
+    }
+    {
+      key = "]:";
+      action = lua "vim.diagnostic.goto_next()";
+      options.desc = "Next diagnostic";
+    }
+    {
+      key = "]d";
+      action = lua "vim.diagnostic.goto_next()";
+      options.desc = "Next diagnostic";
+    }
+    {
+      key = "<";
+      action = "<gv";
+      options.desc = "Shift left";
+      mode = "v";
+    }
+    {
+      key = ">";
+      action = ">gv";
+      options.desc = "Shift right";
+      mode = "v";
+    }
+    {
+      key = "<leader>rr";
+      action = lua "vim.lsp.buf.rename()";
+      options.desc = "Rename variable";
+    }
   ];
 
   extraPlugins = [
