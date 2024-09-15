@@ -152,8 +152,14 @@ in
     lsp.enable = true;
     nvim-autopairs.enable = true;
     treesitter-context.enable = true;
-    treesitter.enable = true;
     which-key.enable = true;
+
+    treesitter = {
+      enable = true;
+      settings = {
+        highlight.enable = true;
+      };
+    };
 
     mini = {
       enable = true;
