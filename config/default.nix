@@ -11,6 +11,8 @@ in
     ./flash.nix
     ./git.nix
     ./obsidian.nix
+    ./neotest.nix
+    ./copilot.nix
   ];
 
   colorschemes.kanagawa = {
