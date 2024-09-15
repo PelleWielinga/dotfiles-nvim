@@ -233,6 +233,7 @@ in
       enable = true;
       extensions = {
         ui-select.enable = true;
+        frecency.enable = true;
       };
       keymaps = {
         "<leader>ff" = {
@@ -241,7 +242,12 @@ in
             desc = "Telescope files";
           };
         };
-
+        "<leader>fr" = {
+          action = ''frecency workspace=CWD'';
+          options = {
+            desc = "Telescope frecency";
+          };
+        };
         "<leader>fg" = {
           action = "live_grep";
           options = {
