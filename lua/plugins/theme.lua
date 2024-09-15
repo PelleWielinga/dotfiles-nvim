@@ -22,21 +22,4 @@ return {
       })
     end,
   },
-
-  -- {
-  --   "folke/noice.nvim",
-  --   event = "VeryLazy",
-  --   dependencies = {
-  --     "MunifTanjim/nui.nvim",
-  --     "rcarriga/nvim-notify",
-  --   },
-  --   opts = {},
-  -- },
-
-  {
-    -- Nice spinner when loading lsp
-    "j-hui/fidget.nvim",
-    event = "VeryLazy",
-    opts = {},
-  },
 }

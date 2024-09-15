@@ -144,6 +144,7 @@ in
     '';
 
   plugins = {
+    auto-save.enable = true;
     comment.enable = true;
     conform-nvim.enable = true;
     fidget.enable = true;
