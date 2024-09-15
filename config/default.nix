@@ -4,15 +4,16 @@ let
 in
 {
   imports = [
-    ./languages/nix.nix
-    ./languages/lua.nix
-    ./languages/python.nix
     ./cmp.nix
+    ./copilot.nix
     ./flash.nix
     ./git.nix
-    ./obsidian.nix
+    ./languages/go.nix
+    ./languages/lua.nix
+    ./languages/nix.nix
+    ./languages/python.nix
     ./neotest.nix
-    ./copilot.nix
+    ./obsidian.nix
   ];
 
   colorschemes.kanagawa = {
