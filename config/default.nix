@@ -5,7 +5,7 @@ in
 {
   imports = [
     ./cmp.nix
-    ./copilot.nix
+    # ./copilot.nix
     ./flash.nix
     ./git.nix
     ./languages/go.nix
