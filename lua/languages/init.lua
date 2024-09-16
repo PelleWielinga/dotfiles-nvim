@@ -18,49 +18,11 @@ local packages = {
     lsp = { { name = "jsonls" } },
   },
 
-  go = {
-    lsp = {
-      { name = "gopls", mason = false },
-      { name = "templ" },
-    },
-    setup = function()
-      vim.filetype.add({ extension = { templ = "templ" } })
-    end,
-    conform = {
-      formatters_by_ft = {
-        go = { "golines" },
-      },
-    },
-  },
-
   haskell = {
-    treesitter = { "haskell" },
     lsp = { { name = "hls", mason = false } },
   },
 
-  misc = {
-    treesitter = {
-      "latex",
-      "query",
-      "terraform",
-      "yuck",
-      "bash",
-      "fish",
-      "norg",
-    },
-
-    lsp = { { name = "sqlls" } },
-
-    conform = {
-      formatters_by_ft = {
-        markdown = { "prettierd" },
-      },
-    },
-  },
-
   php = {
-    treesitter = { "twig", "php" },
-
     lsp = {
       {
         name = "phpactor",
@@ -93,8 +55,6 @@ local packages = {
   },
 
   rust = {
-    treesitter = { "rust" },
-
     lsp = {
       {
         name = "rust_analyzer",

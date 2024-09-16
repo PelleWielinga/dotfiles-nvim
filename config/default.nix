@@ -9,6 +9,7 @@ in
     ./flash.nix
     ./git.nix
     ./languages/go.nix
+    ./languages/misc.nix
     ./languages/lua.nix
     ./languages/nix.nix
     ./languages/python.nix

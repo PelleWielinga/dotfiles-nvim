@@ -13,24 +13,6 @@ return {
     ft = { "clojure", "yuck" },
   },
 
-  -- Golang
-  {
-    "ray-x/go.nvim",
-    dependencies = {
-      "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      require("go").setup({
-        gofmt = 'golines',
-        max_line_len = 100
-      })
-    end,
-    event = { "CmdlineEnter" },
-    ft = { "go", 'gomod', 'templ' },
-  },
-
   -- Rust
   {
     "mrcjkb/rustaceanvim",
@@ -53,11 +35,11 @@ return {
     "windwp/nvim-ts-autotag",
     event = "VeryLazy",
     config = function()
-      require 'nvim-treesitter.configs'.setup {
+      require("nvim-treesitter.configs").setup({
         autotag = {
           enable = true,
-        }
-      }
-    end
-  }
+        },
+      })
+    end,
+  },
 }
