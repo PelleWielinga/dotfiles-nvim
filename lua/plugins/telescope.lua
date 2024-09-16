@@ -12,15 +12,6 @@ return {
         desc = "Find files including gitignore",
       },
       {
-        "<leader>ff",
-        function()
-          require("telescope.builtin").find_files({
-            find_command = { "rg", "--files", "--hidden", "-g", "!.git" },
-          })
-        end,
-        desc = "Find files",
-      },
-      {
         "<leader>fs",
         function()
           require("telescope.builtin").git_status()
@@ -48,18 +39,10 @@ return {
         end,
         desc = "Classes",
       },
-
       {
         "<leader>fn",
         "<cmd>Telescope notify<cr>",
         "Telescope notify",
-      },
-      {
-        "gr",
-        function()
-          require("telescope.builtin").lsp_references()
-        end,
-        desc = "Find references",
       },
       {
         "<leader>fp",

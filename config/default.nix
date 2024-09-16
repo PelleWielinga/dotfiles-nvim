@@ -254,6 +254,10 @@ in
             desc = "Telescope grep";
           };
         };
+        "gr" = {
+          action = ''lsp_references'';
+          options.desc = "Find references";
+        };
       };
     };
   };
