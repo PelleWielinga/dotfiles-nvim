@@ -15,25 +15,21 @@ in
     (gitsigns "s" "stage_hunk" "Stage hunk")
     (gitsigns "u" "undo_stage_hunk" "Undo stage hunk")
     {
-      action = "<cmd>Git<cr>";
-      key = "<leader>gf";
-      options.desc = "Git fugitive";
-    }
-    {
-      action = "<cmd>Git blame<cr>";
-      key = "<leader>gb";
-      options.desc = "Git blame";
-    }
-    {
       action = "<cmd>LazyGit<cr>";
       key = "<leader>gl";
       options.desc = "LazyGit";
     }
+    {
+      action = "<cmd>Neogit<cr>";
+      key = "<leader>gn";
+      options.desc = "Neogit";
+    }
   ];
 
   plugins = {
-    fugitive.enable = true;
+    diffview.enable = true;
     gitsigns.enable = true;
     lazygit.enable = true;
+    neogit.enable = true;
   };
 }
