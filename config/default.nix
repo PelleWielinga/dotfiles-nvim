@@ -104,6 +104,7 @@ in
       key = "<leader>rf";
       options = {
         desc = "Conform format";
+        silent = true;
       };
     }
     {
@@ -114,6 +115,7 @@ in
       key = "<leader>pf";
       options = {
         desc = "File browser";
+        silent = true;
       };
     }
     {
@@ -189,11 +191,19 @@ in
     comment.enable = true;
     conform-nvim.enable = true;
     fidget.enable = true;
-    illuminate.enable = true;
     lsp.enable = true;
     nvim-autopairs.enable = true;
     treesitter-context.enable = true;
     which-key.enable = true;
+
+    illuminate = {
+      enable = true;
+      minCountToHighlight = 2;
+      underCursor = false;
+      filetypesDenylist = [
+        "markdown"
+      ];
+    };
 
     treesitter = {
       enable = true;
