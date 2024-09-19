@@ -21,7 +21,7 @@ in
     enable = true;
     settings = {
       background = {
-        dark = "dragon";
+        dark = "wave";
         light = "lotus";
       };
     };
