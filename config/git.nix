@@ -24,6 +24,21 @@ in
       key = "<leader>gn";
       options.desc = "Neogit";
     }
+    {
+      action = "<cmd>DiffviewOpen<cr>";
+      key = "<leader>gv";
+      options.desc = "Diffview open";
+    }
+    {
+      action = "<cmd>DiffviewFileHistory %<cr>";
+      key = "<leader>gh";
+      options.desc = "Diffview open";
+    }
+    {
+      action = "<cmd>DiffviewClose<cr>";
+      key = "<leader>gq";
+      options.desc = "Diffview close";
+    }
   ];
 
   plugins = {
