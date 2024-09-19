@@ -16,6 +16,7 @@ in
     (obsidian "s" "Search" "Search for a note")
     (obsidian "b" "Backlinks" "Backlinks")
     (obsidian "r" "Rename" "Rename note")
+    (obsidian "c" "NewFromTemplate" "Create from template")
   ];
 
   plugins = {
