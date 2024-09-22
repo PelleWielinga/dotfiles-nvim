@@ -9,9 +9,10 @@ in
     ./flash.nix
     ./git.nix
     ./languages/go.nix
-    ./languages/misc.nix
     ./languages/lua.nix
+    ./languages/misc.nix
     ./languages/nix.nix
+    ./languages/php.nix
     ./languages/python.nix
     ./neotest.nix
     ./obsidian.nix
