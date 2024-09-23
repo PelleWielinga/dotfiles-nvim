@@ -40,27 +40,13 @@ in
         templates = {
           folder = "templates";
         };
+        follow_url_func = # lua
+          ''
+            function(url)
+              vim.ui.open(url)
+            end
+          '';
       };
     };
   };
 }
-
-# return {
-#   "epwalsh/obsidian.nvim",
-#   ft = "markdown",
-#   dependencies = {
-#     "nvim-lua/plenary.nvim",
-#   },
-#   opts = {
-#     daily_notes = {
-#       template = "Daily.md",
-#       folder = "journal/",
-#     },
-#     templates = {
-#       folder = "templates",
-#     },
-#     follow_url_func = function(url)
-#       vim.ui.open(url)
-#     end,
-#   },
-# }
