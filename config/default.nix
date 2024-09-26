@@ -16,6 +16,7 @@ in
     ./languages/python.nix
     ./neotest.nix
     ./obsidian.nix
+    ./telescope.nix
   ];
 
   colorschemes.kanagawa = {
@@ -196,6 +197,7 @@ in
     nvim-autopairs.enable = true;
     treesitter-context.enable = true;
     which-key.enable = true;
+    web-devicons.enable = true;
 
     illuminate = {
       enable = true;
@@ -237,38 +239,6 @@ in
               path = 1;
             }
           ];
-        };
-      };
-    };
-
-    telescope = {
-      enable = true;
-      extensions = {
-        ui-select.enable = true;
-        frecency.enable = true;
-      };
-      keymaps = {
-        "<leader>ff" = {
-          action = "find_files";
-          options = {
-            desc = "Telescope files";
-          };
-        };
-        "<leader>fr" = {
-          action = ''frecency workspace=CWD'';
-          options = {
-            desc = "Telescope frecency";
-          };
-        };
-        "<leader>fg" = {
-          action = "live_grep";
-          options = {
-            desc = "Telescope grep";
-          };
-        };
-        "gr" = {
-          action = ''lsp_references'';
-          options.desc = "Find references";
         };
       };
     };
