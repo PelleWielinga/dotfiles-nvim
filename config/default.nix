@@ -16,6 +16,7 @@ in
     ./languages/python.nix
     ./neotest.nix
     ./obsidian.nix
+    ./treesitter.nix
     ./telescope.nix
   ];
 
@@ -206,13 +207,6 @@ in
       filetypesDenylist = [
         "markdown"
       ];
-    };
-
-    treesitter = {
-      enable = true;
-      settings = {
-        highlight.enable = true;
-      };
     };
 
     mini = {
