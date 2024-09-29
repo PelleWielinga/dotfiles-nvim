@@ -77,9 +77,10 @@
     fidget.enable = true;
     lsp.enable = true;
     nvim-autopairs.enable = true;
+    todo-comments.enable = true;
     treesitter-context.enable = true;
-    which-key.enable = true;
     web-devicons.enable = true;
+    which-key.enable = true;
 
     illuminate = {
       enable = true;
