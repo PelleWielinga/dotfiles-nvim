@@ -68,6 +68,7 @@
   extraConfigLua = # lua
     ''
       require("nvim-surround").setup({})
+      luasnip = require("luasnip")
     '';
 
   plugins = {

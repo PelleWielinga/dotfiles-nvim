@@ -14,24 +14,22 @@
         mapping = {
           "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
           "<Down>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-          "<Tab>" = # lua
+          "<Right>" = # lua
             ''
-              cmp.mapping(function()
-                luasnip = require("luasnip")
+              cmp.mapping(function(fallback)
                 if luasnip.expand_or_jumpable() then
                   luasnip.expand_or_jump()
                 elseif cmp.visible() then
                   cmp.confirm({select = true})
                 else
-                  cmp.complete()
+                  fallback()
                 end
               end, {'i', 's'})
             '';
 
-          "<S-Tab>" = # lua
+          "<Left>" = # lua
             ''
               cmp.mapping(function(fallback)
-                luasnip = require("luasnip")
                 if luasnip.jumpable(-1) then
                   luasnip.jump(-1)
                 else
