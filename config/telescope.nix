@@ -1,11 +1,13 @@
 { pkgs, ... }:
+let
+  libsqlite = "${pkgs.sqlite.out}/lib/libsqlite3${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
+in
 {
   extraPlugins = [
-
     (pkgs.vimPlugins.sqlite-lua.overrideAttrs (oldAttrs: {
       postPatch = ''
         substituteInPlace lua/sqlite/defs.lua \
-          --replace-fail "path = vim.g.sqlite_clib_path" 'path = vim.g.sqlite_clib_path or "${pkgs.sqlite.out}/lib/libsqlite3.so"'
+          --replace-fail "path = vim.g.sqlite_clib_path" 'path = vim.g.sqlite_clib_path or "${libsqlite}"'
       '';
     }))
 
