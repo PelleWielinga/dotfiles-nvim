@@ -1,9 +1,8 @@
 { pkgs, ... }:
-let
-  lua = str: "<cmd>lua " + str + "<cr>";
-in
 {
   imports = [
+    ./keys.nix
+
     ./cmp.nix
     # ./copilot.nix
     ./flash.nix
@@ -16,8 +15,8 @@ in
     ./languages/python.nix
     ./neotest.nix
     ./obsidian.nix
-    ./treesitter.nix
     ./telescope.nix
+    ./treesitter.nix
   ];
 
   colorschemes.kanagawa = {
@@ -33,7 +32,6 @@ in
   globals = {
     mapleader = " ";
     maplocalleader = " ";
-    neovide_scale_factor = 0.8;
   };
 
   opts = {
@@ -62,123 +60,6 @@ in
     timeout = true;
     timeoutlen = 300;
   };
-
-  keymaps = [
-    {
-      action = "10j";
-      key = "<C-d>";
-      options = {
-        desc = "Move down fast";
-      };
-    }
-    {
-      action = "10k";
-      key = "<C-u>";
-      options = {
-        desc = "Move up fast";
-      };
-    }
-    {
-      action = "10j";
-      key = "<PageDown>";
-      options = {
-        desc = "Move down fast";
-      };
-    }
-    {
-      action = "10k";
-      key = "<PageUp>";
-      options = {
-        desc = "Move up fast";
-      };
-    }
-    {
-      action = "<cmd>lua vim.lsp.buf.code_action()<cr>";
-      key = "<leader>a";
-      options = {
-        desc = "Code actions";
-      };
-    }
-    {
-      action = # lua
-        ''
-          :lua require("conform").format({ async = true, lsp_fallback = true })
-        '';
-      key = "<leader>rf";
-      options = {
-        desc = "Conform format";
-        silent = true;
-      };
-    }
-    {
-      action = # lua
-        ''
-          :lua require("mini.files").open(vim.api.nvim_buf_get_name(0), false)
-        '';
-      key = "<leader>pf";
-      options = {
-        desc = "File browser";
-        silent = true;
-      };
-    }
-    {
-      action = lua "vim.lsp.buf.declaration()";
-      key = "gD";
-      options.desc = "Goto declaration";
-    }
-    {
-      action = lua "vim.lsp.buf.definition()";
-      key = "gd";
-      options.desc = "Goto definition";
-    }
-    {
-      action = lua "vim.lsp.buf.implementation()";
-      key = "gi";
-      options.desc = "Goto implementation";
-    }
-    {
-      action = lua "vim.diagnostic.open_float()";
-      key = "gl";
-      options.desc = "Open diagnostic float";
-    }
-    {
-      key = "[:";
-      action = lua "vim.diagnostic.goto_prev()";
-      options.desc = "Previous diagnostic";
-    }
-    {
-      key = "[d";
-      action = lua "vim.diagnostic.goto_prev()";
-      options.desc = "Previous diagnostic";
-    }
-    {
-      key = "]:";
-      action = lua "vim.diagnostic.goto_next()";
-      options.desc = "Next diagnostic";
-    }
-    {
-      key = "]d";
-      action = lua "vim.diagnostic.goto_next()";
-      options.desc = "Next diagnostic";
-    }
-    {
-      key = "<";
-      action = "<gv";
-      options.desc = "Shift left";
-      mode = "v";
-    }
-    {
-      key = ">";
-      action = ">gv";
-      options.desc = "Shift right";
-      mode = "v";
-    }
-    {
-      key = "<leader>rr";
-      action = lua "vim.lsp.buf.rename()";
-      options.desc = "Rename variable";
-    }
-  ];
 
   extraPlugins = [
     pkgs.vimPlugins.nvim-surround
