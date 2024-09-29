@@ -13,6 +13,7 @@
     ./languages/nix.nix
     ./languages/php.nix
     ./languages/python.nix
+    ./languages/ruby.nix
     ./neotest.nix
     ./obsidian.nix
     ./telescope.nix
