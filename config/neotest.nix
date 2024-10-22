@@ -66,10 +66,10 @@
     neotest = {
       enable = true;
       adapters = {
-        rust.enable = true;
         python.enable = true;
         go.enable = true;
         phpunit.enable = true;
+        zig.enable = true;
       };
     };
   };

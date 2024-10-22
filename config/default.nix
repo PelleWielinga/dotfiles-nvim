@@ -14,7 +14,9 @@
     ./languages/php.nix
     ./languages/python.nix
     ./languages/ruby.nix
+    ./languages/rust.nix
     ./languages/typescript.nix
+    ./languages/zig.nix
     ./neotest.nix
     ./obsidian.nix
     ./telescope.nix

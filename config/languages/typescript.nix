@@ -2,7 +2,7 @@
 {
   plugins = {
     lsp.servers = {
-      ts-ls.enable = true;
+      ts_ls.enable = true;
       cssls.enable = true;
     };
 
