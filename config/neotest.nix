@@ -66,7 +66,6 @@
     neotest = {
       enable = true;
       adapters = {
-        python.enable = true;
         go.enable = true;
         phpunit.enable = true;
         zig.enable = true;
@@ -74,8 +73,3 @@
     };
   };
 }
-
-#         require("neotest-python")({
-#           args = { "-vv" },
-#           dap = { justMyCode = false },
-#         }),
