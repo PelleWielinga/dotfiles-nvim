@@ -7,6 +7,7 @@
     # ./copilot.nix
     ./flash.nix
     ./git.nix
+    ./languages/clojure.nix
     ./languages/go.nix
     ./languages/lua.nix
     ./languages/misc.nix
