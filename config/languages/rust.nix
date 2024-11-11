@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   plugins = {
     lsp.servers.rust_analyzer = {
