@@ -23,11 +23,15 @@
               pkgs.ripgrep
               pkgs.fzf
 
+              pkgs.sqlite
+
               pkgs.nil
+              pkgs.lua-language-server
             ];
 
             shellHook = ''
               export NVIM_RUNTIME_PATH="$HOME/.config/nvim"
+              export LIBSQLITE="${pkgs.sqlite.out}/lib/libsqlite3.so"
             '';
           };
 

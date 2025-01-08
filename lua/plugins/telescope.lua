@@ -34,13 +34,13 @@ return {
         end,
         desc = "Changed files",
       },
-      {
-        "<leader>fo",
-        function()
-          require("telescope.builtin").lsp_dynamic_workspace_symbols()
-        end,
-        desc = "Symbols",
-      },
+      -- {
+      --   "<leader>fo",
+      --   function()
+      --     require("telescope.builtin").lsp_dynamic_workspace_symbols()
+      --   end,
+      --   desc = "Symbols",
+      -- },
       {
         "<leader>fk",
         function()
