@@ -7,7 +7,7 @@
   };
 
   outputs =
-    { flake-parts, ... }@inputs:
+    { flake-parts, self, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
@@ -69,7 +69,7 @@
             program = "${pkgs.writeShellScriptBin "nvim-runtime" ''
               #!/bin/sh
 
-              export NVIM_RUNTIME_PATH="$HOME/.config/nvim"
+              export NVIM_RUNTIME_PATH="${self}"
               export LIBSQLITE=${libsqlite}
               export PATH="${dynamicPath}:$PATH"
               export LUA_PATH="${luaPath}"
