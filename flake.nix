@@ -61,12 +61,7 @@
             '';
           };
 
-          packages.default = pkgs.neovim;
-
-          apps.default = {
-            type = "app";
-
-            program = "${pkgs.writeShellScriptBin "nvim-runtime" ''
+          packages.default = pkgs.writeShellScriptBin "nvim-runtime" ''
               #!/bin/sh
 
               export NVIM_RUNTIME_PATH="${self}"
@@ -76,8 +71,7 @@
               export LUA_CPATH="${luaCPath}"
 
               exec ${pkgs.neovim}/bin/nvim "$@"
-            ''}/bin/nvim-runtime";
-          };
+            '';
         };
     };
 }
