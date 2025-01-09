@@ -18,11 +18,6 @@ local packages = {
     },
   },
 
-  data = {
-    treesitter = { "json", "xml", "yaml", "toml" },
-    lsp = { { name = "jsonls" } },
-  },
-
   gleam = {},
 
   go = {
@@ -153,7 +148,7 @@ local packages = {
   python = {
     treesitter = { "python" },
     lsp = {
-      { name = "basedpyright", mason = false },
+      { name = "basedpyright" },
       {
         name = "ruff",
         mason = false,
@@ -219,7 +214,6 @@ local packages = {
       },
       {
         name = "ts_ls",
-        mason = false,
       },
     },
 

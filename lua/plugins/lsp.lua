@@ -64,26 +64,6 @@ return {
   },
 
   {
-    "williamboman/mason.nvim",
-    event = "VeryLazy",
-    build = ":MasonUpdate",
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-    },
-    config = function()
-      local languages = require("languages")
-
-      require("mason").setup({})
-      require("mason-lspconfig").setup({
-        ensure_installed = languages.mason_include,
-        automatic_installation = {
-          exclude = languages.mason_exclude,
-        },
-      })
-    end,
-  },
-
-  {
     "stevearc/conform.nvim",
     event = "VeryLazy",
     keys = {
@@ -115,8 +95,8 @@ return {
     },
     keys = {
       { "<leader>xx", "<cmd>Trouble diagnostics open focus=true<cr>", desc = "Trouble diagnostics" },
-      { "<leader>xc", "<cmd>Trouble symbols open focus=true<cr>", desc = "Trouble symbols" },
-      { "<leader>xr", "<cmd>Trouble lsp open focus=true<cr>", desc = "Trouble lsp" },
+      { "<leader>xc", "<cmd>Trouble symbols open focus=true<cr>",     desc = "Trouble symbols" },
+      { "<leader>xr", "<cmd>Trouble lsp open focus=true<cr>",         desc = "Trouble lsp" },
     },
     config = function()
       require("trouble").setup({

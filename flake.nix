@@ -16,6 +16,10 @@
 
       perSystem =
         { pkgs, system, ... }:
+        let
+          libsqlite = "${pkgs.sqlite.out}/lib/libsqlite3${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
+          lua = pkgs.lua51Packages;
+        in
         {
           devShells.default = pkgs.mkShell {
             buildInputs = [
@@ -27,11 +31,21 @@
 
               pkgs.nil
               pkgs.lua-language-server
+
+              # Python
+              pkgs.python3
+              pkgs.ruff
+              pkgs.basedpyright
+
+              # JS/TS
+              pkgs.typescript-language-server
+
+              lua.luafilesystem
             ];
 
             shellHook = ''
               export NVIM_RUNTIME_PATH="$HOME/.config/nvim"
-              export LIBSQLITE="${pkgs.sqlite.out}/lib/libsqlite3.so"
+              export LIBSQLITE=${libsqlite}
             '';
           };
 
@@ -39,7 +53,12 @@
 
           apps.default = {
             type = "app";
-            program = "${pkgs.neovim}/bin/nvim";
+            program = "${pkgs.writeShellScriptBin "nvim-runtime" ''
+              #!/bin/sh
+              export NVIM_RUNTIME_PATH="$HOME/.config/nvim"
+              export LIBSQLITE=${libsqlite}
+              exec ${pkgs.neovim}/bin/nvim "$@"
+            ''}/bin/nvim-runtime";
           };
         };
     };
