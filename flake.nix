@@ -47,7 +47,7 @@
 
 
           luaPath = lib.concatStringsSep ";" (map (pkg: "${pkg}/share/lua/5.1/?.lua") luaPackages) + ";;;";
-          luaCPath = lib.concatStringsSep ";" (map (pkg: "${pkg}/lib/lua/5.1/?${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}") luaPackages) + ";;";
+          luaCPath = lib.concatStringsSep ";" (map (pkg: "${pkg}/lib/lua/5.1/?.so") luaPackages) + ";;";
 
           dynamicPath = lib.concatStringsSep ":" (map (pkg: "${pkg}/bin") buildInputs);
         in
