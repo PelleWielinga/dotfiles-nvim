@@ -61,7 +61,7 @@
             '';
           };
 
-          packages.default = pkgs.writeShellScriptBin "nvim-runtime" ''
+          packages.default = pkgs.writeShellScriptBin "nvim" ''
               #!/bin/sh
 
               export NVIM_RUNTIME_PATH="${self}"
