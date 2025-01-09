@@ -15,15 +15,16 @@
       ];
 
       perSystem =
-        { pkgs, system, ... }:
+        { pkgs, system, lib, ... }:
         let
           libsqlite = "${pkgs.sqlite.out}/lib/libsqlite3${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
           lua = pkgs.lua51Packages;
-        in
-        {
-          devShells.default = pkgs.mkShell {
-            buildInputs = [
-              pkgs.neovim
+
+          luaPackages = [
+             pkgs.lua51Packages.luafilesystem
+          ];
+
+          buildInputs = [
               pkgs.ripgrep
               pkgs.fzf
 
@@ -38,10 +39,21 @@
               pkgs.basedpyright
 
               # JS/TS
+              pkgs.nodejs_22
               pkgs.typescript-language-server
 
               lua.luafilesystem
-            ];
+          ] ++ luaPackages;
+
+
+          luaPath = lib.concatStringsSep ";" (map (pkg: "${pkg}/share/lua/5.1/?.lua") luaPackages) + ";;;";
+          luaCPath = lib.concatStringsSep ";" (map (pkg: "${pkg}/lib/lua/5.1/?${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}") luaPackages) + ";;";
+
+          dynamicPath = lib.concatStringsSep ":" (map (pkg: "${pkg}/bin") buildInputs);
+        in
+        {
+          devShells.default = pkgs.mkShell {
+            inherit buildInputs;
 
             shellHook = ''
               export NVIM_RUNTIME_PATH="$HOME/.config/nvim"
@@ -53,10 +65,16 @@
 
           apps.default = {
             type = "app";
+
             program = "${pkgs.writeShellScriptBin "nvim-runtime" ''
               #!/bin/sh
+
               export NVIM_RUNTIME_PATH="$HOME/.config/nvim"
               export LIBSQLITE=${libsqlite}
+              export PATH="${dynamicPath}:$PATH"
+              export LUA_PATH="${luaPath}"
+              export LUA_CPATH="${luaCPath}"
+
               exec ${pkgs.neovim}/bin/nvim "$@"
             ''}/bin/nvim-runtime";
           };
