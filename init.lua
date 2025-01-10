@@ -1,3 +1,5 @@
+vim.opt.rtp:prepend(os.getenv("NVIM_RUNTIME_PATH"))
+
 require("config.options")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

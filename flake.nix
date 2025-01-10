@@ -45,8 +45,7 @@
               lua.luafilesystem
           ] ++ luaPackages;
 
-
-          luaPath = lib.concatStringsSep ";" (map (pkg: "${pkg}/share/lua/5.1/?.lua") luaPackages) + ";;;";
+          luaPath = lib.concatStringsSep ";" (["${self}/lua/?.lua"] ++ (map (pkg: "${pkg}/share/lua/5.1/?.lua") luaPackages)) + ";;;";
           luaCPath = lib.concatStringsSep ";" (map (pkg: "${pkg}/lib/lua/5.1/?.so") luaPackages) + ";;";
 
           dynamicPath = lib.concatStringsSep ":" (map (pkg: "${pkg}/bin") buildInputs);
@@ -64,6 +63,7 @@
           packages.default = pkgs.writeShellScriptBin "nvim" ''
               #!/bin/sh
 
+              export VIMINIT="source ${self}/init.lua"
               export NVIM_RUNTIME_PATH="${self}"
               export LIBSQLITE=${libsqlite}
               export PATH="${dynamicPath}:$PATH"

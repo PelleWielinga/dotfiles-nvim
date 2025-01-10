@@ -59,7 +59,7 @@ return {
       },
     },
     config = function()
-      require("languages").setup_lsp()
+      require("languages.init").setup_lsp()
     end,
   },
 
@@ -77,7 +77,7 @@ return {
     },
     config = function()
       local utils = require("config.utils")
-      local languages = require("languages")
+      local languages = require("languages.init")
 
       local opts = {
         notify_on_error = true,
