@@ -32,6 +32,7 @@
 
               pkgs.nil
               pkgs.lua-language-server
+              pkgs.nixfmt-rfc-style
 
               # Python
               pkgs.python3
