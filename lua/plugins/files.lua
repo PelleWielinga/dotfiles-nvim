@@ -1,21 +1,5 @@
 return {
   {
-    "echasnovski/mini.files",
-    keys = {
-      {
-        "<leader>pf",
-        function()
-          require("mini.files").open(vim.api.nvim_buf_get_name(0), false)
-        end,
-        desc = "File browser",
-      },
-    },
-    opts = {
-      use_as_default_explorer = false,
-    },
-  },
-
-  {
     "rgroli/other.nvim",
     keys = {
       { "gs", "<cmd>Other<cr>", desc = "Switch to other" },

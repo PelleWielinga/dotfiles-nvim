@@ -148,10 +148,16 @@ local packages = {
   python = {
     treesitter = { "python" },
     lsp = {
-      { name = "basedpyright" },
+      {
+        name = "basedpyright",
+        setup = {
+          analysis = {
+            typeCheckingMode = "standard",
+          },
+        }
+      },
       {
         name = "ruff",
-        mason = false,
         setup = {
           cmd = { "ruff", "server", "--preview" },
         },
@@ -160,23 +166,15 @@ local packages = {
 
     conform = {
       formatters_by_ft = {
-        python = { "black", "isort" },
+        python = { "ruff" },
       },
 
       formatters = {
-        isort = {
-          cwd = function()
-            vim.fn.getcwd()
-          end,
-          prepend_args = { "--profile=black" },
-        },
-
-        black = {
-          cwd = function()
-            vim.fn.getcwd()
-          end,
-
-          prepend_args = { "--line-length", "100" },
+        ruff = {
+          command = "ruff",
+          args = {
+            "format", "-",
+          }
         },
       },
     },

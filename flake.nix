@@ -27,6 +27,7 @@
           buildInputs = [
               pkgs.ripgrep
               pkgs.fzf
+              pkgs.gnumake
 
               pkgs.sqlite
 
