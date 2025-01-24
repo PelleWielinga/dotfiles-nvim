@@ -63,58 +63,11 @@ return {
   },
 
   {
-    "folke/todo-comments.nvim",
-    -- Loaded on startup for highlighting
-    event = "VeryLazy",
-    keys = {
-      {
-        "]t",
-        function()
-          require("todo-comments").jump_next()
-        end,
-        desc = "Next TODO",
-      },
-      {
-        "[t",
-        function()
-          require("todo-comments").jump_prev()
-        end,
-        desc = "Previous TODO",
-      },
-      { "<leader>fd", "<cmd>TodoTelescope<cr>", desc = "Telescope TODO" },
-      { "<leader>df", "<cmd>TodoTrouble keywords=FIX<cr>", desc = "Trouble FIX" },
-      {
-        "<leader>if",
-        function()
-          local api = require("Comment.api")
-          local config = require("Comment.config"):get()
-
-          api.insert.linewise.above(config)
-          -- Why is this a? i is not working.
-          vim.api.nvim_feedkeys("FIX: ", "a", true)
-        end,
-        desc = "Trouble FIX",
-      },
-    },
-    dependencies = { "nvim-lua/plenary.nvim", "folke/trouble.nvim" },
-    opts = {},
-  },
-
-  {
     "numToStr/Comment.nvim",
     event = "VeryLazy",
     opts = {},
   },
 
-  {
-    "RRethy/vim-illuminate",
-    event = "VeryLazy",
-    config = function()
-      require("illuminate").configure({
-        min_count_to_highlight = 2,
-      })
-    end,
-  },
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "VeryLazy",
@@ -130,9 +83,9 @@ return {
     "benlubas/molten-nvim",
     version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
     keys = {
-      { "<leader>mi", "<cmd>MoltenInit<cr>", desc = "Molten init" },
-      { "<leader>mx", "<cmd>MoltenRestart<cr>", desc = "Molten restart" },
-      { "<leader>mm", "<cmd>MoltenEvaluateLine<cr>", desc = "Molten evaluate line" },
+      { "<leader>mi", "<cmd>MoltenInit<cr>",             desc = "Molten init" },
+      { "<leader>mx", "<cmd>MoltenRestart<cr>",          desc = "Molten restart" },
+      { "<leader>mm", "<cmd>MoltenEvaluateLine<cr>",     desc = "Molten evaluate line" },
       { "<leader>me", "<cmd>MoltenEvaluateOperator<cr>", desc = "Molten evaluate operator" },
       {
         "<leader>me",
@@ -141,8 +94,8 @@ return {
         desc = "Molten evaluate selection",
       },
       { "<leader>mr", "<cmd>MoltenReevaluateCell<cr>", desc = "Molten re-evaluate cell" },
-      { "]o", "<cmd>MoltenNext<cr>", desc = "Next Molten output" },
-      { "[o", "<cmd>MoltenPrev<cr>", desc = "Previous Molten output" },
+      { "]o",         "<cmd>MoltenNext<cr>",           desc = "Next Molten output" },
+      { "[o",         "<cmd>MoltenPrev<cr>",           desc = "Previous Molten output" },
     },
     build = ":UpdateRemotePlugins",
     init = function() end,

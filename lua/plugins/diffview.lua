@@ -12,11 +12,6 @@ return {
         "<cmd>DiffviewClose<cr>",
         desc = "Diffview close",
       },
-      {
-        "<leader>gh",
-        "<cmd>DiffviewFileHistory %<cr>",
-        desc = "Diffview history",
-      },
     }
   }
 }

@@ -30,6 +30,9 @@ end
 
 vim.g.neovide_scale_factor = 0.8
 
+-- Can this be configured with the Snacks plugin?
+vim.g.snacks_animate = false
+
 local autoupdatefile = vim.api.nvim_create_augroup("autoupdatefile", { clear = true })
 
 -- vim.api.nvim_create_autocmd({ "BufNewFile" }, {
