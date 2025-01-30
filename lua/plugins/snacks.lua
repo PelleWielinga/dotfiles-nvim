@@ -22,6 +22,15 @@ return {
 
       -- Disable any scrolling animations. Slow and unnecessary.
       scroll = { enabled = false },
+
+      zen = {
+        win = {
+          backdrop = {
+            transparent = false,
+            blend = 99,
+          }
+        }
+      }
     },
 
     keys = {

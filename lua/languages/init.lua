@@ -64,6 +64,7 @@ local packages = {
                   "after_each",
                   "setup",
                   "teardown",
+                  "Snacks",
                 },
               },
               workspace = {
