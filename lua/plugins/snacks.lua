@@ -35,6 +35,7 @@ return {
       { "<leader>fn", function() Snacks.picker.notifier.show_history() end, desc = "Picker notifications" },
       { "<leader>fo", function() Snacks.picker.files() end,                 desc = "Picker open file" },
       { "<leader>fs", function() Snacks.picker.lsp_symbols() end,           desc = "Picker symbols in file" },
+      { "<leader>fv", function() Snacks.picker.colorschemes() end,          desc = "Picker colorschemes" },
       {
         "<leader>fw",
         function()
