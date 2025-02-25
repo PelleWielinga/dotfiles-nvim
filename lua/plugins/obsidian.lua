@@ -16,6 +16,11 @@ return {
       desc = "Today's note",
     },
     {
+      "<leader>nm",
+      [[<cmd>ObsidianTomorrow<cr>]],
+      desc = "Tomorrow's note",
+    },
+    {
       "<leader>ny",
       [[<cmd>ObsidianYesterday<cr>]],
       desc = "Yesterday's note",
