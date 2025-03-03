@@ -5,6 +5,10 @@ return {
     keys = {
       { "<leader>pf", "<cmd>Oil<cr>", desc = "Oil current directory" },
     },
-    opts = {},
+    opts = {
+      view_options = {
+        show_hidden = true,
+      }
+    },
   },
 }
