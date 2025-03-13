@@ -1,6 +1,7 @@
 return {
   {
     "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewClose" },
     keys = {
       {
         "<leader>gv",

@@ -15,39 +15,48 @@
       ];
 
       perSystem =
-        { pkgs, system, lib, ... }:
+        {
+          pkgs,
+          system,
+          lib,
+          ...
+        }:
         let
           libsqlite = "${pkgs.sqlite.out}/lib/libsqlite3${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
           lua = pkgs.lua51Packages;
 
           luaPackages = [
-             pkgs.lua51Packages.luafilesystem
+            pkgs.lua51Packages.luafilesystem
           ];
 
           buildInputs = [
-              pkgs.ripgrep
-              pkgs.fzf
-              pkgs.gnumake
+            pkgs.ripgrep
+            pkgs.fzf
+            pkgs.gnumake
 
-              pkgs.sqlite
+            pkgs.sqlite
 
-              pkgs.nil
-              pkgs.lua-language-server
-              pkgs.nixfmt-rfc-style
+            pkgs.nil
+            pkgs.lua-language-server
+            pkgs.nixfmt-rfc-style
 
-              # Python
-              pkgs.python3
-              pkgs.ruff
-              pkgs.basedpyright
+            # Python
+            pkgs.python3
+            pkgs.ruff
+            pkgs.basedpyright
 
-              # JS/TS
-              pkgs.nodejs_22
-              pkgs.typescript-language-server
+            # JS/TS
+            pkgs.nodejs_22
+            pkgs.typescript-language-server
 
-              lua.luafilesystem
+            lua.luafilesystem
           ] ++ luaPackages;
 
-          luaPath = lib.concatStringsSep ";" (["${self}/lua/?.lua"] ++ (map (pkg: "${pkg}/share/lua/5.1/?.lua") luaPackages)) + ";;;";
+          luaPath =
+            lib.concatStringsSep ";" (
+              [ "${self}/lua/?.lua" ] ++ (map (pkg: "${pkg}/share/lua/5.1/?.lua") luaPackages)
+            )
+            + ";;;";
           luaCPath = lib.concatStringsSep ";" (map (pkg: "${pkg}/lib/lua/5.1/?.so") luaPackages) + ";;";
 
           dynamicPath = lib.concatStringsSep ":" (map (pkg: "${pkg}/bin") buildInputs);
@@ -63,17 +72,17 @@
           };
 
           packages.default = pkgs.writeShellScriptBin "nvim" ''
-              #!/bin/sh
+            #!/bin/sh
 
-              export VIMINIT="source ${self}/init.lua"
-              export NVIM_RUNTIME_PATH="${self}"
-              export LIBSQLITE=${libsqlite}
-              export PATH="${dynamicPath}:$PATH"
-              export LUA_PATH="${luaPath}"
-              export LUA_CPATH="${luaCPath}"
+            export VIMINIT="source ${self}/init.lua"
+            export NVIM_RUNTIME_PATH="${self}"
+            export LIBSQLITE=${libsqlite}
+            export PATH="${dynamicPath}:$PATH"
+            export LUA_PATH="${luaPath}"
+            export LUA_CPATH="${luaCPath}"
 
-              exec ${pkgs.neovim}/bin/nvim "$@"
-            '';
+            exec ${pkgs.neovim}/bin/nvim "$@"
+          '';
         };
     };
 }
