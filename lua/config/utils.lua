@@ -36,19 +36,25 @@ function M.table_deep_copy(t)
 end
 
 function M.dump(object, indent)
-  if type(object) == 'table' then
-    local new_indent = indent .. '  '
+  if type(object) == "table" then
+    local new_indent = indent .. "  "
 
-    local s = '{\n'
+    local s = "{\n"
     for key, v in pairs(object) do
-      if type(key) == 'number' then
-        s = s .. new_indent .. M.dump(v, new_indent) .. ',\n'
+      if type(key) == "number" then
+        s = s .. new_indent .. M.dump(v, new_indent) .. ",\n"
       else
-        s = s .. new_indent .. "'" .. key .. "' = " .. M.dump(v, new_indent) .. ',\n'
+        s = s
+          .. new_indent
+          .. "'"
+          .. key
+          .. "' = "
+          .. M.dump(v, new_indent)
+          .. ",\n"
       end
     end
-    return s .. indent .. '}'
-  elseif type(object) == 'string' then
+    return s .. indent .. "}"
+  elseif type(object) == "string" then
     return "'" .. object .. "'"
   else
     return tostring(object)

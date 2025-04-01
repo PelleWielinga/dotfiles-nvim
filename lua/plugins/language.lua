@@ -23,12 +23,12 @@ return {
     },
     config = function()
       require("go").setup({
-        gofmt = 'golines',
-        max_line_len = 100
+        gofmt = "golines",
+        max_line_len = 100,
       })
     end,
     event = { "CmdlineEnter" },
-    ft = { "go", 'gomod', 'templ' },
+    ft = { "go", "gomod", "templ" },
   },
 
   -- Rust
@@ -53,11 +53,11 @@ return {
     "windwp/nvim-ts-autotag",
     event = "VeryLazy",
     config = function()
-      require 'nvim-treesitter.configs'.setup {
+      require("nvim-treesitter.configs").setup({
         autotag = {
           enable = true,
-        }
-      }
-    end
-  }
+        },
+      })
+    end,
+  },
 }

@@ -97,7 +97,7 @@ local packages = {
       "norg",
     },
 
-    lsp = { { name = "sqlls" } },
+    lsp = { { name = "sqls" } },
 
     conform = {
       formatters_by_ft = {
@@ -155,7 +155,7 @@ local packages = {
           analysis = {
             typeCheckingMode = "standard",
           },
-        }
+        },
       },
       {
         name = "ruff",
@@ -174,8 +174,9 @@ local packages = {
         ruff = {
           command = "ruff",
           args = {
-            "format", "-",
-          }
+            "format",
+            "-",
+          },
         },
       },
     },

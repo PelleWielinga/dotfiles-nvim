@@ -13,6 +13,6 @@ return {
         "<cmd>DiffviewClose<cr>",
         desc = "Diffview close",
       },
-    }
-  }
+    },
+  },
 }

@@ -1,0 +1,7 @@
+pre-commit:
+  parallel: true
+  commands:
+    stylua:
+      glob: "*.lua"
+      run: stylua --check {staged_files} || (stylua {staged_files} && exit 1)
+      stage_fixed: true

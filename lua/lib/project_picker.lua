@@ -4,7 +4,7 @@ local zellij = require("lib.zellij")
 local M = {}
 
 local function ends_with(str, ending)
-  return ending == "" or str:sub(- #ending) == ending
+  return ending == "" or str:sub(-#ending) == ending
 end
 
 local function is_regular_dir(path)
@@ -72,27 +72,29 @@ M.projects = function(opts)
   local pickers = require("telescope.pickers")
   local finders = require("telescope.finders")
   local conf = require("telescope.config").values
-  local actions = require "telescope.actions"
-  local action_state = require "telescope.actions.state"
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
 
   opts = opts or {}
-  pickers.new(opts, {
-    prompt_title = "Projects",
-    finder = finders.new_table {
-      results = M._get_projects(),
-    },
-    sorter = conf.generic_sorter(opts),
-    attach_mappings = function(prompt_bufnr)
-      actions.select_default:replace(function()
-        actions.close(prompt_bufnr)
-        local selection = action_state.get_selected_entry()
-        local project = selection.value
+  pickers
+    .new(opts, {
+      prompt_title = "Projects",
+      finder = finders.new_table({
+        results = M._get_projects(),
+      }),
+      sorter = conf.generic_sorter(opts),
+      attach_mappings = function(prompt_bufnr)
+        actions.select_default:replace(function()
+          actions.close(prompt_bufnr)
+          local selection = action_state.get_selected_entry()
+          local project = selection.value
 
-        zellij.switch_to_tab_or_create(project)
-      end)
-      return true
-    end,
-  }):find()
+          zellij.switch_to_tab_or_create(project)
+        end)
+        return true
+      end,
+    })
+    :find()
 end
 
 return M

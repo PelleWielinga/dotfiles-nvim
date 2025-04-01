@@ -94,9 +94,21 @@ return {
       "nvim-telescope/telescope.nvim",
     },
     keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics open focus=true<cr>", desc = "Trouble diagnostics" },
-      { "<leader>xc", "<cmd>Trouble symbols open focus=true<cr>",     desc = "Trouble symbols" },
-      { "<leader>xr", "<cmd>Trouble lsp open focus=true<cr>",         desc = "Trouble lsp" },
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics open focus=true<cr>",
+        desc = "Trouble diagnostics",
+      },
+      {
+        "<leader>xc",
+        "<cmd>Trouble symbols open focus=true<cr>",
+        desc = "Trouble symbols",
+      },
+      {
+        "<leader>xr",
+        "<cmd>Trouble lsp open focus=true<cr>",
+        desc = "Trouble lsp",
+      },
     },
     config = function()
       require("trouble").setup({

@@ -22,8 +22,8 @@ describe("Utils", function()
       "item 2",
       nested = {
         number = 1,
-        "value"
-      }
+        "value",
+      },
     }
 
     assert.equals(expected, utils.dump(actual, ""))

@@ -1,16 +1,17 @@
 local M = {}
 
 local function run_command(cmd, raw)
-  local f = assert(io.popen(cmd, 'r'))
-  local s = assert(f:read('*a'))
+  local f = assert(io.popen(cmd, "r"))
+  local s = assert(f:read("*a"))
   f:close()
-  if raw then return s end
-  s = string.gsub(s, '^%s+', '')
-  s = string.gsub(s, '%s+$', '')
-  s = string.gsub(s, '[\n\r]+', ' ')
+  if raw then
+    return s
+  end
+  s = string.gsub(s, "^%s+", "")
+  s = string.gsub(s, "%s+$", "")
+  s = string.gsub(s, "[\n\r]+", " ")
   return s
 end
-
 
 local function run_list_command(cmd)
   local items = {}

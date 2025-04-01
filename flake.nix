@@ -35,7 +35,9 @@
             pkgs.fzf
             pkgs.gnumake
 
+            # SQL
             pkgs.sqlite
+            pkgs.sqls
 
             pkgs.nil
             pkgs.lua-language-server
@@ -49,6 +51,10 @@
             # JS/TS
             pkgs.nodejs_22
             pkgs.typescript-language-server
+
+            # Development tools
+            pkgs.lefthook
+            pkgs.stylua
 
             lua.luafilesystem
           ] ++ luaPackages;
