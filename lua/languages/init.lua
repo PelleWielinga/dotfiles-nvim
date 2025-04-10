@@ -101,7 +101,7 @@ local packages = {
 
     conform = {
       formatters_by_ft = {
-        markdown = { "prettierd" },
+        markdown = { "prettier" },
       },
     },
   },
@@ -212,14 +212,12 @@ local packages = {
       {
         name = "svelte",
       },
-      {
-        name = "ts_ls",
-      },
     },
 
     conform = {
       formatters_by_ft = {
-        javascript = { "prettierd" },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
       },
     },
 

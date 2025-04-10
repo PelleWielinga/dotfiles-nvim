@@ -137,6 +137,7 @@ return {
       "rouge8/neotest-rust",
       "nvim-neotest/neotest-python",
       "olimorris/neotest-phpunit",
+      "nvim-neotest/neotest-jest",
     },
     keys = {
       {
@@ -233,6 +234,7 @@ return {
           }),
           require("neotest-go"),
           require("neotest-phpunit"),
+          require("neotest-jest"),
         },
       })
     end,

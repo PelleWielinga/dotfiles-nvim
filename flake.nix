@@ -25,6 +25,7 @@
         let
           libsqlite = "${pkgs.sqlite.out}/lib/libsqlite3${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
           lua = pkgs.lua51Packages;
+          node = pkgs.nodePackages_latest;
 
           luaPackages = [
             pkgs.lua51Packages.luafilesystem
@@ -49,8 +50,9 @@
             pkgs.basedpyright
 
             # JS/TS
-            pkgs.nodejs_22
-            pkgs.typescript-language-server
+            node.nodejs
+            node.prettier
+            pkgs.eslint
 
             # Development tools
             pkgs.lefthook
