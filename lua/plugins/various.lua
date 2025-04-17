@@ -69,11 +69,6 @@ return {
   },
 
   {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "VeryLazy",
-    opts = {},
-  },
-  {
     "kylechui/nvim-surround",
     event = "VeryLazy",
     opts = {},
