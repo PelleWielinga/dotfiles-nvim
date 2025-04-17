@@ -285,7 +285,6 @@ end
 
 function M.setup_lsp()
   local lspconfig = require("lspconfig")
-  local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
   for name, setup in pairs(lsp_config) do
     setup.capabilities = capabilities
