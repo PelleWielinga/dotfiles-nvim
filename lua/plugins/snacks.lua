@@ -10,7 +10,7 @@ return {
       input = { enabled = true },
 
       -- Basically an alternative to Telescope.
-      picker = { enabled = true },
+      picker = { enabled = true, formatters = { file = { truncate = 50 } } },
 
       notifier = { enabled = true },
       quickfile = { enabled = true },
