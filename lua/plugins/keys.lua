@@ -15,7 +15,7 @@ return {
 
     wk.add({
       { "<c-x>", ":wqa!<cr>", desc = "Save and close all" },
-      { "<leader>c", vim.lsp.buf.code_action, desc = "Code actions" },
+      { "<leader>a", vim.lsp.buf.code_action, desc = "Code actions" },
 
       { "<leader>b", group = "Buffer actions" },
       {
